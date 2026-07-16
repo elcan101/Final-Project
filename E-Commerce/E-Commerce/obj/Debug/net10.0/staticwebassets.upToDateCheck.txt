@@ -1,0 +1,4 @@
+wwwroot\jsscript.js
+wwwroot\style.css
+C:\Users\HP\Desktop\Final-Project\E-Commerce\E-Commerce\wwwroot\jsscript.js
+C:\Users\HP\Desktop\Final-Project\E-Commerce\E-Commerce\wwwroot\style.css

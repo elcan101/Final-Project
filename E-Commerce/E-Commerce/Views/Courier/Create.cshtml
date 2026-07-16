@@ -1,0 +1,50 @@
+@model E_Commerce.Models.CourierProfile
+
+@{
+    ViewData["Title"] = "Yeni Kuryer";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="mb-0">Yeni Kuryer</h4>
+    <a asp-action="Index" class="text-muted">← Siyahıya qayıt</a>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-lg-6">
+        <form asp-action="Create" class="form-card">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <div class="mb-3">
+                <label asp-for="CourierId" class="form-label">Kuryer ID</label>
+                <input asp-for="CourierId" class="form-control" placeholder="Məs: KURYER-001" />
+                <span asp-validation-for="CourierId" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="VehicleType" class="form-label">Nəqliyyat növü</label>
+                <select asp-for="VehicleType" class="form-select">
+                    <option value="">— Seçin —</option>
+                    <option value="Piyada">Piyada</option>
+                    <option value="Velosiped">Velosiped</option>
+                    <option value="Skuter">Skuter</option>
+                    <option value="Avtomobil">Avtomobil</option>
+                </select>
+                <span asp-validation-for="VehicleType" class="text-danger"></span>
+            </div>
+
+            <div class="form-check form-switch type-switch mb-4">
+                <input asp-for="IsAvailable" class="form-check-input" role="switch" />
+                <label asp-for="IsAvailable" class="form-check-label">Hazırda boşdur</label>
+            </div>
+
+            <div class="d-flex justify-content-end gap-2">
+                <a asp-action="Index" class="btn btn-outline-secondary">Ləğv et</a>
+                <button type="submit" class="btn-deal">Əlavə Et</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

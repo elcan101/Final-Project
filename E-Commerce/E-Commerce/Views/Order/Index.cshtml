@@ -1,0 +1,50 @@
+@model IEnumerable<E_Commerce.Models.Order>
+
+@{
+    ViewData["Title"] = "Sifarişlərim";
+}
+
+<h4 class="mb-4">Sifarişlərim</h4>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+
+@if (Model != null && Model.Any())
+{
+    <div class="simple-table">
+        <table class="table align-middle">
+            <thead>
+                <tr>
+                    <th>Sifariş №</th>
+                    <th>Tarix</th>
+                    <th>Məbləğ</th>
+                    <th>Keşbek</th>
+                    <th>Vəziyyət</th>
+                    <th>Kuryer</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var order in Model)
+                {
+                    <tr>
+                        <td>#@order.Id</td>
+                        <td>@order.CreatedDate.ToString("dd.MM.yyyy HH:mm")</td>
+                        <td>@order.TotalAmount AZN</td>
+                        <td>@order.CashbackAmount AZN</td>
+                        <td><span class="status-badge">@order.Status</span></td>
+                        <td>@(order.Courier?.CourierId ?? "—")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <div class="text-center py-5">
+        <p class="text-muted mb-3">Hələ heç bir sifarişiniz yoxdur.</p>
+        <a asp-controller="Product" asp-action="Index" class="btn-deal">Kitablara bax</a>
+    </div>
+}

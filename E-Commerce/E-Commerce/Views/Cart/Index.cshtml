@@ -1,0 +1,53 @@
+@model E_Commerce.Models.Cart
+
+@{
+    ViewData["Title"] = "Səbətim";
+    decimal total = Model.CartItems?.Sum(ci => ci.Product.Price * ci.Quantity) ?? 0;
+}
+
+<h4 class="mb-4">Səbətim</h4>
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-warning">@TempData["Error"]</div>
+}
+
+@if (Model.CartItems != null && Model.CartItems.Any())
+{
+    <div class="cart-list">
+        @foreach (var item in Model.CartItems)
+        {
+            <div class="cart-row d-flex align-items-center justify-content-between flex-wrap gap-3">
+                <div class="d-flex align-items-center gap-3">
+                    <img src="@item.Product.ImageUrl" alt="@item.Product.Title" class="cart-thumb" />
+                    <div>
+                        <div class="fw-bold">@item.Product.Title</div>
+                        <small class="text-muted">@item.Product.Price AZN / ədəd</small>
+                    </div>
+                </div>
+
+                <form asp-action="UpdateQuantity" method="post" class="d-flex align-items-center gap-2">
+                    <input type="hidden" name="id" value="@item.Id" />
+                    <input type="number" name="quantity" value="@item.Quantity" min="0" class="form-control form-control-sm qty-input" />
+                    <button type="submit" class="btn btn-sm btn-outline-secondary">Yenilə</button>
+                </form>
+
+                <div class="fw-bold" style="min-width: 90px; text-align:right;">@((item.Product.Price * item.Quantity)) AZN</div>
+
+                <a asp-action="Remove" asp-route-id="@item.Id" class="text-danger" title="Sil">✕</a>
+            </div>
+        }
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+        <h5 class="mb-0">Yekun: @total AZN</h5>
+        <a asp-controller="Order" asp-action="Checkout" class="btn-deal">Sifarişi tamamla</a>
+    </div>
+}
+else
+{
+    <div class="text-center py-5">
+        <p class="text-muted mb-3">Səbətiniz boşdur.</p>
+        <a asp-controller="Product" asp-action="Index" class="btn-deal">Kitablara bax</a>
+    </div>
+}

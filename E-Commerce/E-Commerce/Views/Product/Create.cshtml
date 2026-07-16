@@ -1,0 +1,108 @@
+@model E_Commerce.Models.Product
+
+@{
+    ViewData["Title"] = "Yeni Kitab";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="mb-0">Yeni Kitab Əlavə Et</h4>
+    <a asp-action="Index" class="text-muted">← Siyahıya qayıt</a>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <form asp-action="Create" class="form-card">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <h6 class="section-title">Əsas məlumat</h6>
+            <div class="row g-3 mb-2">
+                <div class="col-md-8">
+                    <label asp-for="Title" class="form-label">Kitabın adı</label>
+                    <input asp-for="Title" class="form-control" placeholder="Məs: Atom Vərdişlər" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+                <div class="col-md-4">
+                    <label asp-for="CategoryId" class="form-label">Kateqoriya</label>
+                    <select asp-for="CategoryId" asp-items="ViewBag.Categories" class="form-select">
+                        <option value="">— Seçin —</option>
+                    </select>
+                    <span asp-validation-for="CategoryId" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Description" class="form-label">Təsvir</label>
+                <textarea asp-for="Description" class="form-control" rows="3" placeholder="Kitab haqqında qısa məlumat"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <div class="row g-3 mb-4">
+                <div class="col-md-4">
+                    <label asp-for="Price" class="form-label">Qiymət (AZN)</label>
+                    <input asp-for="Price" class="form-control" placeholder="0.00" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+                <div class="col-md-4">
+                    <label asp-for="StockCount" class="form-label">Stok sayı</label>
+                    <input asp-for="StockCount" class="form-control" placeholder="0" />
+                    <span asp-validation-for="StockCount" class="text-danger"></span>
+                </div>
+                <div class="col-md-4">
+                    <label asp-for="Rating" class="form-label">Reytinq</label>
+                    <input asp-for="Rating" class="form-control" placeholder="0.0" />
+                    <span asp-validation-for="Rating" class="text-danger"></span>
+                </div>
+            </div>
+
+            <h6 class="section-title">Kitabın növü</h6>
+            <div class="row g-3 mb-4">
+                <div class="col-md-4">
+                    <div class="form-check form-switch type-switch">
+                        <input asp-for="IsDigital" class="form-check-input" role="switch" />
+                        <label asp-for="IsDigital" class="form-check-label">E-Kitab</label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-check form-switch type-switch">
+                        <input asp-for="IsAudio" class="form-check-input" role="switch" />
+                        <label asp-for="IsAudio" class="form-check-label">Səsli kitab</label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-check form-switch type-switch">
+                        <input asp-for="IsSecondHand" class="form-check-input" role="switch" />
+                        <label asp-for="IsSecondHand" class="form-check-label">İkinci əl</label>
+                    </div>
+                </div>
+            </div>
+
+            <h6 class="section-title">Media linkləri</h6>
+            <div class="row g-3 mb-4">
+                <div class="col-md-4">
+                    <label asp-for="ImageUrl" class="form-label">Şəkil linki</label>
+                    <input asp-for="ImageUrl" class="form-control" placeholder="https://..." />
+                    <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                </div>
+                <div class="col-md-4">
+                    <label asp-for="PdfUrl" class="form-label">PDF linki</label>
+                    <input asp-for="PdfUrl" class="form-control" placeholder="Yalnız e-kitab üçün" />
+                    <span asp-validation-for="PdfUrl" class="text-danger"></span>
+                </div>
+                <div class="col-md-4">
+                    <label asp-for="AudioUrl" class="form-label">Audio linki</label>
+                    <input asp-for="AudioUrl" class="form-control" placeholder="Yalnız səsli kitab üçün" />
+                    <span asp-validation-for="AudioUrl" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-end gap-2">
+                <a asp-action="Index" class="btn btn-outline-secondary">Ləğv et</a>
+                <button type="submit" class="btn-deal">Kitabı Əlavə Et</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

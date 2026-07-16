@@ -1,0 +1,35 @@
+@model IEnumerable<E_Commerce.Models.Product>
+
+@{
+    ViewData["Title"] = "Kitablar";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="mb-0">@(ViewData["CategoryName"] as string ?? "Bütün Kitablar")</h4>
+    <a asp-controller="Product" asp-action="Create" class="btn-deal">+ Yeni Kitab</a>
+</div>
+
+<div class="row g-4">
+    @if (Model != null && Model.Any())
+    {
+        @foreach (var item in Model)
+        {
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="product-card">
+                    <img src="@item.ImageUrl" alt="@item.Title" />
+                    <h6>@item.Title</h6>
+                    <div class="author">@item.Category?.Name</div>
+                    <div class="price">@item.Price AZN</div>
+                    <form asp-controller="Cart" asp-action="AddToCart" method="post">
+                        <input type="hidden" name="productId" value="@item.Id" />
+                        <button type="submit" class="add-cart-btn">🛒 Səbətə əlavə et</button>
+                    </form>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <p class="text-muted text-center">Hazırda məhsul yoxdur.</p>
+    }
+</div>

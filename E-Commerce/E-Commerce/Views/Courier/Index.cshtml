@@ -1,0 +1,50 @@
+@model IEnumerable<E_Commerce.Models.CourierProfile>
+
+@{
+    ViewData["Title"] = "Kuryerlər";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="mb-0">Kuryerlər</h4>
+    <a asp-action="Create" class="btn-deal">+ Yeni Kuryer</a>
+</div>
+
+@if (Model != null && Model.Any())
+{
+    <div class="simple-table">
+        <table class="table align-middle">
+            <thead>
+                <tr>
+                    <th>Kuryer ID</th>
+                    <th>Nəqliyyat növü</th>
+                    <th>Vəziyyət</th>
+                    <th>Balans</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var courier in Model)
+                {
+                    <tr>
+                        <td>@courier.CourierId</td>
+                        <td>@courier.VehicleType</td>
+                        <td>
+                            @if (courier.IsAvailable)
+                            {
+                                <span class="status-badge">Boşdadır</span>
+                            }
+                            else
+                            {
+                                <span class="status-badge" style="background:#fdeaea;color:#e63946;">Məşğuldur</span>
+                            }
+                        </td>
+                        <td>@courier.CurrentBalance AZN</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <p class="text-muted text-center py-5">Hələ heç bir kuryer qeydiyyatdan keçməyib.</p>
+}

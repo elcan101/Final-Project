@@ -1,0 +1,70 @@
+﻿@model IEnumerable<E_Commerce.Models.Product>
+
+@{
+    ViewData["Title"] = "Ana Səhifə";
+}
+
+<!-- hero banner -->
+<div class="hero mb-5">
+    <div class="col-md-7">
+        <div class="tagline">MƏKTƏBƏ HAZIRLIQ</div>
+        <h1>XÜSUSİ <span>50% ENDİRİM</span></h1>
+        <p class="text-muted">TƏLƏBƏ İCTİMAİYYƏTİMİZ ÜÇÜN</p>
+        <a href="/Product" class="btn-deal">ENDİRİMDƏN YARARLAN</a>
+    </div>
+</div>
+
+<!-- xüsusiyyət ikonları -->
+<div class="row mb-5">
+    <div class="col-6 col-md-3 feature-box">
+        <div class="emoji">🚚</div>
+        <h6>Sürətli Çatdırılma</h6>
+        <small class="text-muted">Sifariş 2-3 gün ərzində çatdırılır</small>
+    </div>
+    <div class="col-6 col-md-3 feature-box">
+        <div class="emoji">💳</div>
+        <h6>Rahat Ödəniş</h6>
+        <small class="text-muted">Kart və ya nağd ödəniş</small>
+    </div>
+    <div class="col-6 col-md-3 feature-box">
+        <div class="emoji">🏷️</div>
+        <h6>Ən Sərfəli Təklif</h6>
+        <small class="text-muted">Ən sərfəli qiymətlər</small>
+    </div>
+    <div class="col-6 col-md-3 feature-box">
+        <div class="emoji">🔒</div>
+        <h6>Təhlükəsiz Ödəniş</h6>
+        <small class="text-muted">100% təhlükəsiz ödəniş</small>
+    </div>
+</div>
+
+<!-- bestsellers -->
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h4 class="mb-0">Ən Çox Satılanlar</h4>
+    <a href="/Product">Hamısına bax</a>
+</div>
+
+<div class="row g-4">
+    @if (Model != null && Model.Any())
+    {
+        @foreach (var item in Model.Take(6))
+        {
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="product-card">
+                    <img src="@item.ImageUrl" alt="@item.Title" />
+                    <h6>@item.Title</h6>
+                    <div class="author">@item.Category?.Name</div>
+                    <div class="price">@item.Price AZN</div>
+                    <form asp-controller="Cart" asp-action="AddToCart" method="post">
+                        <input type="hidden" name="productId" value="@item.Id" />
+                        <button type="submit" class="add-cart-btn">🛒 Səbətə əlavə et</button>
+                    </form>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <p class="text-muted text-center">Hazırda məhsul yoxdur.</p>
+    }
+</div>
