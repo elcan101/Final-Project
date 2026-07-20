@@ -1,0 +1,60 @@
+@model E_Commerce.Models.Listing
+@{
+    ViewData["Title"] = "Elan Ver";
+    var categories = ViewBag.Categories as List<E_Commerce.Models.Category>;
+}
+
+<h4 class="mb-4">📝 Elan Ver</h4>
+<p class="text-muted small mb-4">Elanınız aktiv qaldığı hər gün üçün balansınızdan <b>0.10 AZN</b> elan haqqı avtomatik tutulur.</p>
+
+<div class="filter-panel" style="max-width:560px;">
+    <form asp-action="Create" method="post">
+        <div class="mb-3">
+            <label class="form-label small">Kitabın adı</label>
+            <input asp-for="Title" class="form-control" required />
+        </div>
+        <div class="mb-3">
+            <label class="form-label small">Müəllif</label>
+            <input asp-for="Author" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label small">Təsvir</label>
+            <textarea asp-for="Description" class="form-control" rows="3" required></textarea>
+        </div>
+        <div class="row">
+            <div class="col-6 mb-3">
+                <label class="form-label small">Qiymət (AZN)</label>
+                <input asp-for="Price" type="number" step="0.01" class="form-control" required />
+            </div>
+            <div class="col-6 mb-3">
+                <label class="form-label small">Kateqoriya</label>
+                <select asp-for="CategoryId" class="form-select">
+                    <option value="">Seçilməyib</option>
+                    @if (categories != null)
+                    {
+                        foreach (var c in categories)
+                        {
+                            <option value="@c.Id">@c.Name</option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label small">Şəkil linki</label>
+            <input asp-for="ImageUrl" class="form-control" placeholder="https://..." />
+        </div>
+        <div class="mb-3">
+            <label class="form-label small d-block">Cild növü</label>
+            <div class="form-check form-check-inline">
+                <input type="radio" asp-for="IsHardcover" value="true" class="form-check-input" id="listingCoverHard" checked="checked" />
+                <label class="form-check-label" for="listingCoverHard">📕 Cildli</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input type="radio" asp-for="IsHardcover" value="false" class="form-check-input" id="listingCoverSoft" />
+                <label class="form-check-label" for="listingCoverSoft">📗 Cildsiz</label>
+            </div>
+        </div>
+        <button type="submit" class="btn-deal w-100">Elanı yerləşdir</button>
+    </form>
+</div>

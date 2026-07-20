@@ -20,9 +20,11 @@
                     <th>Sifariş №</th>
                     <th>Tarix</th>
                     <th>Məbləğ</th>
+                    <th>Endirim</th>
                     <th>Keşbek</th>
                     <th>Vəziyyət</th>
                     <th>Kuryer</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -32,9 +34,19 @@
                         <td>#@order.Id</td>
                         <td>@order.CreatedDate.ToString("dd.MM.yyyy HH:mm")</td>
                         <td>@order.TotalAmount AZN</td>
+                        <td>@(order.DiscountAmount > 0 ? $"-{order.DiscountAmount} AZN" : "—")</td>
                         <td>@order.CashbackAmount AZN</td>
                         <td><span class="status-badge">@order.Status</span></td>
-                        <td>@(order.Courier?.CourierId ?? "—")</td>
+                        <td>@(order.Courier?.FullName ?? "—")</td>
+                        <td class="d-flex gap-2">
+                            <a asp-action="Track" asp-route-id="@order.Id" class="btn btn-sm btn-outline-dark">📍 İzlə</a>
+                            @if (order.Status == "Hazırlanır")
+                            {
+                                <form asp-action="MarkReady" asp-route-id="@order.Id" method="post">
+                                    <button type="submit" class="btn btn-sm btn-outline-success">Hazırdır elan et</button>
+                                </form>
+                            }
+                        </td>
                     </tr>
                 }
             </tbody>

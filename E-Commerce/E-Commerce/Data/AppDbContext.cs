@@ -20,6 +20,11 @@ namespace E_Commerce.Data
         public DbSet<CourierProfile> CourierProfiles { get; set; } = null!;
         public DbSet<Order> Orders { get; set; } = null!;
         public DbSet<Coupon> Coupons { get; set; } = null!;
+        public DbSet<UserSubscription> UserSubscriptions { get; set; } = null!;
+        public DbSet<BookRental> BookRentals { get; set; } = null!;
+        public DbSet<Listing> Listings { get; set; } = null!;
+        public DbSet<ChatMessage> ChatMessages { get; set; } = null!;
+        public DbSet<PaymentMethod> PaymentMethods { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -53,6 +58,31 @@ namespace E_Commerce.Data
             modelBuilder.Entity<Coupon>()
                 .Property(c => c.DiscountAmount)
                 .HasColumnType("decimal(18,2)");
+
+            modelBuilder.Entity<Order>()
+                .Property(o => o.DiscountAmount)
+                .HasColumnType("decimal(18,2)");
+
+            modelBuilder.Entity<UserSubscription>()
+                .Property(s => s.PricePaid)
+                .HasColumnType("decimal(18,2)");
+
+            modelBuilder.Entity<BookRental>(b =>
+            {
+                b.Property(r => r.DailyRate).HasColumnType("decimal(18,2)");
+                b.Property(r => r.PenaltyRatePerDay).HasColumnType("decimal(18,2)");
+                b.Property(r => r.BaseCost).HasColumnType("decimal(18,2)");
+                b.Property(r => r.PenaltyAmount).HasColumnType("decimal(18,2)");
+            });
+
+            modelBuilder.Entity<Listing>(l =>
+            {
+                l.Property(x => x.Price).HasColumnType("decimal(18,2)");
+                l.Property(x => x.DailyListingFee).HasColumnType("decimal(18,2)");
+                l.Property(x => x.AccruedFees).HasColumnType("decimal(18,2)");
+                l.Property(x => x.PlatformCommissionRate).HasColumnType("decimal(18,2)");
+                l.HasOne(x => x.Category).WithMany().HasForeignKey(x => x.CategoryId).OnDelete(DeleteBehavior.SetNull);
+            });
         }
     }
 }

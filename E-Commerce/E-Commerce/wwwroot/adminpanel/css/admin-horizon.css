@@ -1,0 +1,266 @@
+/* =========================================================
+   ADMIN PANEL — Horizon UI görünüşü
+   Bu fayl YALNIZ admin panel səhifələrində (Layout=_AdminLayout
+   istifadə edən .cshtml-lərdə) yüklənir, saytın qalan hissəsinə
+   təsir etmir — hər şey .admin-horizon-wrap içində scope olunub.
+   ========================================================= */
+
+.admin-horizon-wrap {
+    --ah-purple: #422AFB;
+    --ah-purple-dark: #3311DB;
+    --ah-navy-900: #0b1437;
+    --ah-navy-800: #111c44;
+    --ah-navy-700: #1B254B;
+    --ah-green: #01B574;
+    --ah-green-bg: #E1FFF4;
+    --ah-red: #e63946;
+    --ah-red-bg: #fdeaea;
+    --ah-orange: #FFB547;
+    --ah-gray-bg: #F4F7FE;
+    --ah-text-muted: #A3AED0;
+
+    font-family: 'Segoe UI', 'DM Sans', Arial, sans-serif;
+    background: var(--ah-gray-bg);
+    min-height: 100vh;
+    display: flex;
+    color: #1B2559;
+}
+
+/* ---------- Sidebar ---------- */
+.ah-sidebar {
+    width: 280px;
+    flex-shrink: 0;
+    background: var(--ah-navy-900);
+    color: #fff;
+    min-height: 100vh;
+    padding: 28px 20px;
+    position: sticky;
+    top: 0;
+}
+
+.ah-sidebar-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 800;
+    font-size: 18px;
+    letter-spacing: 0.5px;
+    margin-bottom: 40px;
+    padding: 0 8px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.ah-sidebar-logo span {
+    color: var(--ah-purple);
+}
+
+.ah-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.ah-nav li {
+    margin-bottom: 4px;
+}
+
+.ah-nav a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    color: #A3AED0;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.15s ease;
+}
+
+.ah-nav a:hover {
+    background: rgba(255,255,255,0.06);
+    color: #fff;
+}
+
+.ah-nav a.active {
+    background: var(--ah-purple);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(66,42,251,0.35);
+}
+
+.ah-nav-icon {
+    font-size: 16px;
+    width: 20px;
+    text-align: center;
+}
+
+.ah-sidebar-divider {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    margin: 20px 0;
+}
+
+/* ---------- Main area ---------- */
+.ah-main {
+    flex: 1;
+    min-width: 0;
+}
+
+.ah-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    padding: 18px 32px;
+    border-bottom: 1px solid #eef1f8;
+}
+
+.ah-topbar h1 {
+    font-size: 20px;
+    font-weight: 800;
+    margin: 0;
+    color: #1B2559;
+}
+
+.ah-topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.ah-topbar-user {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1B2559;
+}
+
+.ah-back-to-site {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ah-purple);
+    text-decoration: none;
+    padding: 8px 14px;
+    border: 1px solid var(--ah-purple);
+    border-radius: 8px;
+}
+
+.ah-back-to-site:hover {
+    background: var(--ah-purple);
+    color: #fff;
+}
+
+.ah-content {
+    padding: 28px 32px 60px;
+}
+
+/* ---------- Stat / action cards (Horizon-style) ---------- */
+.admin-horizon-wrap .admin-stat-card {
+    background: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 22px 20px;
+    text-align: left;
+    box-shadow: 0 6px 20px rgba(112,144,176,0.10);
+    position: relative;
+}
+
+.admin-horizon-wrap .admin-stat-num {
+    font-size: 28px;
+    font-weight: 800;
+    color: #1B2559;
+}
+
+.admin-horizon-wrap .admin-stat-label {
+    color: var(--ah-text-muted);
+    font-size: 13px;
+    font-weight: 600;
+    margin-top: 4px;
+}
+
+.admin-horizon-wrap .admin-action-card {
+    background: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 26px 22px;
+    box-shadow: 0 6px 20px rgba(112,144,176,0.10);
+    text-align: left;
+}
+
+.admin-horizon-wrap .admin-action-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(112,144,176,0.18);
+}
+
+.admin-horizon-wrap .admin-action-emoji {
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--ah-gray-bg);
+    border-radius: 12px;
+    font-size: 22px;
+    margin-bottom: 14px;
+}
+
+/* ---------- Tables ---------- */
+.admin-horizon-wrap .simple-table {
+    background: #fff;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 6px 20px rgba(112,144,176,0.10);
+    overflow: hidden;
+}
+
+.admin-horizon-wrap .simple-table th {
+    background: #F4F7FE;
+    color: var(--ah-text-muted);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: none;
+    padding: 14px 20px;
+}
+
+.admin-horizon-wrap .simple-table td {
+    padding: 14px 20px;
+    border-color: #F4F7FE;
+    vertical-align: middle;
+}
+
+/* ---------- Badges & buttons ---------- */
+.admin-horizon-wrap .status-badge {
+    background: var(--ah-green-bg);
+    color: var(--ah-green);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.admin-horizon-wrap .btn-deal {
+    background: var(--ah-purple);
+    border-radius: 10px;
+    font-weight: 700;
+    padding: 10px 22px;
+}
+
+.admin-horizon-wrap .btn-deal:hover {
+    background: var(--ah-purple-dark);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+    .admin-horizon-wrap {
+        flex-direction: column;
+    }
+    .ah-sidebar {
+        width: 100%;
+        min-height: auto;
+        position: relative;
+        padding: 16px;
+    }
+    .ah-content {
+        padding: 20px;
+    }
+}

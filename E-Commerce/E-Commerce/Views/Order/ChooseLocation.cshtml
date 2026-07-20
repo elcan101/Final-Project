@@ -1,0 +1,82 @@
+@{
+    ViewData["Title"] = "Çatdırılma ünvanı";
+}
+
+<h4 class="mb-1">📍 Çatdırılma ünvanını seçin</h4>
+<p class="text-muted mb-3">Xəritədə istədiyiniz nöqtəyə klikləyin — kuryer sifarişi qəbul etməzdən əvvəl bu yeri görəcək.</p>
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-warning">@TempData["Error"]</div>
+}
+
+<div id="locationMap" class="tracking-map mb-3"></div>
+
+<form asp-controller="Order" asp-action="Checkout" method="post" id="locationForm" class="filter-panel" style="max-width:420px;">
+    <input type="hidden" name="lat" id="latInput" />
+    <input type="hidden" name="lng" id="lngInput" />
+
+    <div class="mb-3">
+        <label class="form-label small">Ünvan qeydi (könüllü)</label>
+        <input type="text" name="addressText" class="form-control" placeholder="Məs: Nərimanov r., 3-cü mərtəbə, qapı 12" />
+    </div>
+
+    <p class="small text-muted mb-2" id="pickedLabel">Hələ xəritədən nöqtə seçilməyib.</p>
+
+    <button type="submit" class="btn-deal w-100" id="confirmBtn" disabled>Sifarişi təsdiqlə</button>
+</form>
+
+@section Scripts {
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        (function () {
+            const BAKU = [40.4093, 49.8671];
+            const map = L.map("locationMap").setView(BAKU, 12);
+
+            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+                maxZoom: 19,
+                attribution: "&copy; OpenStreetMap",
+            }).addTo(map);
+
+            const pinIcon = L.divIcon({ html: "📍", className: "map-emoji-icon", iconSize: [32, 32] });
+            let marker = null;
+
+            const latInput = document.getElementById("latInput");
+            const lngInput = document.getElementById("lngInput");
+            const pickedLabel = document.getElementById("pickedLabel");
+            const confirmBtn = document.getElementById("confirmBtn");
+
+            map.on("click", (e) => {
+                const { lat, lng } = e.latlng;
+
+                if (!marker) {
+                    marker = L.marker([lat, lng], { icon: pinIcon, draggable: true }).addTo(map);
+                    marker.on("dragend", () => {
+                        const pos = marker.getLatLng();
+                        setPicked(pos.lat, pos.lng);
+                    });
+                } else {
+                    marker.setLatLng([lat, lng]);
+                }
+
+                setPicked(lat, lng);
+            });
+
+            function setPicked(lat, lng) {
+                latInput.value = lat;
+                lngInput.value = lng;
+                pickedLabel.textContent = `Seçilmiş nöqtə: ${lat.toFixed(5)}, ${lng.toFixed(5)}`;
+                confirmBtn.disabled = false;
+            }
+
+            // İstifadəçinin öz məkanını izin versə xəritəni ora mərkəzləşdiririk (ilkin rahatlıq üçün)
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (pos) => map.setView([pos.coords.latitude, pos.coords.longitude], 14),
+                    () => { /* icazə verilmədi - Bakı mərkəzində qalır */ }
+                );
+            }
+        })();
+    </script>
+}

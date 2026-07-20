@@ -2,12 +2,18 @@
 
 @{
     ViewData["Title"] = "Kuponlar";
+    Layout = "_AdminLayout";
 }
 
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h4 class="mb-0">Endirim Kuponları</h4>
     <a asp-action="Create" class="btn-deal">+ Yeni Kupon</a>
 </div>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
 
 @if (Model != null && Model.Any())
 {
@@ -18,6 +24,7 @@
                     <th>Kod</th>
                     <th>Endirim</th>
                     <th>Vəziyyət</th>
+                    <th class="text-end">Əməliyyat</th>
                 </tr>
             </thead>
             <tbody>
@@ -27,14 +34,21 @@
                         <td class="fw-bold">@coupon.Code</td>
                         <td>@coupon.DiscountAmount AZN</td>
                         <td>
-                            @if (coupon.IsActive)
-                            {
-                                <span class="status-badge">Aktiv</span>
-                            }
-                            else
-                            {
-                                <span class="status-badge" style="background:#fdeaea;color:#e63946;">Deaktiv</span>
-                            }
+                            <form asp-action="ToggleStatus" asp-route-id="@coupon.Id" method="post" class="d-inline">
+                                @if (coupon.IsActive)
+                                {
+                                    <button type="submit" class="status-badge" style="border:none;cursor:pointer;">Aktiv</button>
+                                }
+                                else
+                                {
+                                    <button type="submit" class="status-badge" style="border:none;cursor:pointer;background:#fdeaea;color:#e63946;">Deaktiv</button>
+                                }
+                            </form>
+                        </td>
+                        <td class="text-end">
+                            <form asp-action="Delete" asp-route-id="@coupon.Id" method="post" class="d-inline" onsubmit="return confirm('Bu kuponu silmək istədiyinizə əminsiniz?');">
+                                <button type="submit" class="btn btn-sm btn-outline-danger">Sil</button>
+                            </form>
                         </td>
                     </tr>
                 }

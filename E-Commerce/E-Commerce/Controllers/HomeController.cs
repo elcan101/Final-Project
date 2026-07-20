@@ -10,6 +10,7 @@ namespace E_Commerce.Controllers
     {
         private readonly AppDbContext _context;
 
+        // Bura vasitəsilə bazanı kontrollerə "daxil edirik"
         public HomeController(AppDbContext context)
         {
             _context = context;
@@ -17,11 +18,13 @@ namespace E_Commerce.Controllers
 
         public IActionResult Index()
         {
+            // Bazadakı məhsulları kateqoriya ilə birlikdə çəkirik
             var products = _context.Products
                 .Include(p => p.Category)
                 .Where(p => !p.IsDeleted)
                 .ToList();
 
+            // Məhsulları View-ə göndəririk
             return View(products);
         }
     }

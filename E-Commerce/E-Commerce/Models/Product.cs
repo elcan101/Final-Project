@@ -10,6 +10,9 @@ namespace E_Commerce.Models
         [StringLength(150)]
         public string Title { get; set; } = null!;
 
+        [StringLength(150)]
+        public string? Author { get; set; }
+
         [Required]
         public string Description { get; set; } = null!;
 
@@ -19,10 +22,15 @@ namespace E_Commerce.Models
 
         public int StockCount { get; set; }
 
+        // Kitabı əlavə edən admin (idarəetmə panelində "Kitablarım" siyahısı üçün)
+        public string? AddedByUserId { get; set; }
+
         // Turbo.az tipli filtrasiya və fərqli kitab növləri üçün statuslar
         public bool IsDigital { get; set; } = false; // E-Kitabdır?
         public bool IsAudio { get; set; } = false;   // Səsli kitabdır?
         public bool IsSecondHand { get; set; } = false; // İkinci əldir?
+
+        public bool IsHardcover { get; set; } = true; // Cildli (true) / Cildsiz (false)
 
         // Rəqəmsal kitabların fayl yolları
         public string? PdfUrl { get; set; }

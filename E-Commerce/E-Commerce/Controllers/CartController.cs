@@ -98,6 +98,27 @@ namespace E_Commerce.Controllers
             return RedirectToAction("Index");
         }
 
+        // Səbətə promokod tətbiqi (Trendyol tipli dinamik endirim)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult ApplyCoupon(string code)
+        {
+            var coupon = _context.Coupons.FirstOrDefault(c => c.Code == code && c.IsActive && !c.IsDeleted);
+            if (coupon == null)
+            {
+                TempData["Error"] = "Promokod etibarsızdır.";
+                HttpContext.Session.Remove("AppliedCouponCode");
+                HttpContext.Session.Remove("AppliedCouponDiscount");
+                return RedirectToAction("Index");
+            }
+
+            HttpContext.Session.SetString("AppliedCouponCode", coupon.Code);
+            HttpContext.Session.SetString("AppliedCouponDiscount", coupon.DiscountAmount.ToString(System.Globalization.CultureInfo.InvariantCulture));
+
+            TempData["Success"] = $"'{coupon.Code}' promokodu tətbiq olundu: -{coupon.DiscountAmount} AZN";
+            return RedirectToAction("Index");
+        }
+
         // Səbətdəki miqdarı dəyiş
         [HttpPost]
         [ValidateAntiForgeryToken]

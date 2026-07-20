@@ -1,0 +1,86 @@
+@{
+    ViewData["Title"] = "Admin Panel";
+}
+
+<div class="mb-4">
+    <h4 class="mb-1">🛠️ Admin Panel</h4>
+    <p class="text-muted mb-0">Okean Kitabevi idarəetmə paneli</p>
+</div>
+
+<div class="row g-3 mb-5">
+    <div class="col-6 col-md-3">
+        <div class="admin-stat-card">
+            <div class="admin-stat-num">@ViewBag.ProductCount</div>
+            <div class="admin-stat-label">Kitab</div>
+        </div>
+    </div>
+    <div class="col-6 col-md-3">
+        <div class="admin-stat-card">
+            <div class="admin-stat-num">@ViewBag.CategoryCount</div>
+            <div class="admin-stat-label">Kateqoriya</div>
+        </div>
+    </div>
+    <div class="col-6 col-md-3">
+        <div class="admin-stat-card">
+            <div class="admin-stat-num">@ViewBag.CouponCount</div>
+            <div class="admin-stat-label">Kupon</div>
+        </div>
+    </div>
+    <div class="col-6 col-md-3">
+        <div class="admin-stat-card">
+            <div class="admin-stat-num">@ViewBag.OrderCount</div>
+            <div class="admin-stat-label">Sifariş</div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4">
+    <div class="col-md-4">
+        <div class="admin-action-card">
+            <div class="admin-action-emoji">📚</div>
+            <h6>Kitablar</h6>
+            <p class="text-muted small">Kitab əlavə et, redaktə et, sil.</p>
+            <a asp-area="" asp-controller="Product" asp-action="Manage" class="btn-deal w-100">Kitablarım</a>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="admin-action-card">
+            <div class="admin-action-emoji">🏷️</div>
+            <h6>Kateqoriyalar</h6>
+            <p class="text-muted small">Kateqoriya siyahısını idarə et.</p>
+            <a asp-area="" asp-controller="Category" asp-action="Index" class="btn-deal w-100">Kateqoriyalar</a>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="admin-action-card">
+            <div class="admin-action-emoji">🎟️</div>
+            <h6>Kuponlar</h6>
+            <p class="text-muted small">Endirim kuponu yarat və idarə et.</p>
+            <a asp-area="" asp-controller="Coupon" asp-action="Index" class="btn-deal w-100">Kuponlar</a>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="admin-action-card">
+            <div class="admin-action-emoji">👤</div>
+            <h6>Adminlər</h6>
+            <p class="text-muted small">Yeni admin əlavə et / sil.</p>
+            <a asp-controller="Admin" asp-action="Admins" class="btn-deal w-100">Adminləri idarə et</a>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="admin-action-card">
+            <div class="admin-action-emoji">📦</div>
+            <h6>Sifarişlər</h6>
+            <p class="text-muted small">Bütün sifarişlərə bax.</p>
+            <a asp-area="" asp-controller="Order" asp-action="Index" class="btn-deal w-100">Sifarişlər</a>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="admin-action-card">
+            <div class="admin-action-emoji">🛵</div>
+            <h6>Kuryerlər</h6>
+            <p class="text-muted small">Kuryer panelinə keç.</p>
+            <a asp-area="" asp-controller="Courier" asp-action="Index" class="btn-deal w-100">Kuryerlər</a>
+        </div>
+    </div>
+</div>

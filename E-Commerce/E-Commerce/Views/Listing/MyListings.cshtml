@@ -1,0 +1,58 @@
+@model IEnumerable<E_Commerce.Models.Listing>
+@{
+    ViewData["Title"] = "Mənim Elanlarım";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="mb-0">Mənim Elanlarım</h4>
+    <a asp-action="Create" class="btn-deal">+ Yeni Elan</a>
+</div>
+
+@if (Model != null && Model.Any())
+{
+    <div class="simple-table">
+        <table class="table align-middle">
+            <thead>
+                <tr>
+                    <th>Kitab</th>
+                    <th>Qiymət</th>
+                    <th>Vəziyyət</th>
+                    <th>Toplanmış elan haqqı</th>
+                    <th>Satış tarixi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var l in Model)
+                {
+                    <tr>
+                        <td>@l.Title</td>
+                        <td>@l.Price AZN</td>
+                        <td>
+                            @switch (l.Status)
+                            {
+                                case E_Commerce.Models.ListingStatus.Active:
+                                    <span class="status-badge">Aktiv</span>
+                                    break;
+                                case E_Commerce.Models.ListingStatus.Sold:
+                                    <span class="status-badge" style="background:#e6f4ea;color:#1e7d3c;">Satılıb</span>
+                                    break;
+                                default:
+                                    <span class="status-badge">Deaktiv</span>
+                                    break;
+                            }
+                        </td>
+                        <td>@l.AccruedFees AZN</td>
+                        <td>@(l.SoldDate?.ToString("dd.MM.yyyy") ?? "—")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <div class="text-center py-5">
+        <p class="text-muted mb-3">Hələ heç bir elanınız yoxdur.</p>
+        <a asp-action="Create" class="btn-deal">İlk elanınızı verin</a>
+    </div>
+}

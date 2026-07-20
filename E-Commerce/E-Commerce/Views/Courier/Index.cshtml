@@ -15,6 +15,7 @@
         <table class="table align-middle">
             <thead>
                 <tr>
+                    <th>Ad Soyad</th>
                     <th>Kuryer ID</th>
                     <th>Nəqliyyat növü</th>
                     <th>Vəziyyət</th>
@@ -25,6 +26,7 @@
                 @foreach (var courier in Model)
                 {
                     <tr>
+                        <td>@courier.FullName</td>
                         <td>@courier.CourierId</td>
                         <td>@courier.VehicleType</td>
                         <td>

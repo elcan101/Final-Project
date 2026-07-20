@@ -120,15 +120,41 @@ body {
         color: #333;
         font-weight: 500;
         padding: 12px 16px !important;
+        position: relative;
     }
 
         .category-bar .nav-link:hover {
             color: #0b2f6b;
         }
 
+        /* hansı səhifədəyiksə, onun altından göy xətt keçir */
+        .category-bar .nav-link.active {
+            color: #0b2f6b;
+            font-weight: 700;
+        }
+
+            .category-bar .nav-link.active::after {
+                content: "";
+                position: absolute;
+                left: 16px;
+                right: 16px;
+                bottom: 0;
+                height: 3px;
+                border-radius: 3px 3px 0 0;
+                background: #0b2f6b;
+            }
+
     .category-bar .nav-link.sale {
         color: #e63946;
     }
+
+        .category-bar .nav-link.sale.active {
+            color: #e63946;
+        }
+
+            .category-bar .nav-link.sale.active::after {
+                background: #e63946;
+            }
 
 /* --- hero banner --- */
 .hero {
@@ -299,6 +325,33 @@ body {
     width: 60px;
 }
 
+/* --- səbətin altındakı "sifarişi tamamla" bloku --- */
+.checkout-box {
+    background: #fff;
+    border: 1px solid #eaeaea;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.checkout-summary {
+    text-align: right;
+    min-width: 220px;
+}
+
+    .checkout-summary form {
+        display: inline-block;
+    }
+
+    .checkout-summary .btn-deal {
+        border: none;
+        cursor: pointer;
+    }
+
 /* --- sadə cədvəl siyahıları (sifariş, kupon, kuryer, kateqoriya) --- */
 .simple-table {
     background: #fff;
@@ -328,4 +381,405 @@ body {
     font-weight: 600;
     background: #eef3f9;
     color: #0b2f6b;
+}
+
+/* --- 3D virtual kitab rəfi --- */
+.shelf3d-eyebrow {
+    color: #b8863c;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+}
+
+.shelf3d-hint {
+    font-size: 13px;
+    color: #667;
+    font-weight: 600;
+    min-height: 18px;
+}
+
+.shelf3d-wrap {
+    border-radius: 18px;
+    padding: 3px;
+    background: linear-gradient(135deg, #d9a765, #7a4a1f, #d9a765);
+    box-shadow: 0 18px 40px rgba(11, 47, 107, 0.15);
+}
+
+.shelf3d-container {
+    position: relative;
+    width: 100%;
+    height: 420px;
+    border-radius: 16px;
+    overflow: hidden;
+    background: radial-gradient(ellipse at 50% 20%, #2c2015 0%, #14100a 80%);
+    cursor: grab;
+    touch-action: none;
+}
+
+    .shelf3d-container:active {
+        cursor: grabbing;
+    }
+
+    .shelf3d-container canvas {
+        display: block;
+    }
+
+.shelf3d-loading {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: #e9d9bb;
+    font-size: 14px;
+    background: radial-gradient(ellipse at 50% 20%, #2c2015 0%, #14100a 80%);
+    transition: opacity 0.4s ease;
+    z-index: 2;
+}
+
+    .shelf3d-loading.shelf3d-hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+.shelf3d-spinner {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 3px solid rgba(233, 217, 187, 0.25);
+    border-top-color: #d9a765;
+    animation: shelf3d-spin 0.8s linear infinite;
+}
+
+@keyframes shelf3d-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.shelf3d-caption {
+    font-size: 12.5px;
+    margin-top: 8px;
+    margin-bottom: 0;
+}
+
+/* --- 3D rəf yüklənmədikdə görünən sadə şəkil-şəbəkəsi --- */
+.shelf3d-fallback-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 14px;
+    padding: 20px;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.shelf3d-fallback-card {
+    display: block;
+    text-decoration: none;
+    color: #e9d9bb;
+    text-align: center;
+}
+
+    .shelf3d-fallback-card img {
+        width: 100%;
+        height: 140px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-bottom: 6px;
+        transition: transform 0.2s ease;
+    }
+
+    .shelf3d-fallback-card:hover img {
+        transform: translateY(-4px);
+    }
+
+.shelf3d-fallback-title {
+    font-size: 12px;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.shelf3d-fallback-price {
+    font-size: 11px;
+    color: #d9a765;
+}
+
+@media (max-width: 767px) {
+    .shelf3d-container {
+        height: 300px;
+    }
+}
+
+/* --- Footer --- */
+.site-footer {
+    background: #0b1830;
+    color: #cdd6e6;
+}
+
+.site-footer h6 {
+    letter-spacing: 0.5px;
+}
+
+.text-light-50 {
+    color: rgba(255,255,255,0.6) !important;
+}
+
+.footer-contact li {
+    margin-bottom: 8px;
+}
+
+.footer-contact a {
+    color: #cdd6e6;
+    text-decoration: none;
+}
+
+    .footer-contact a:hover {
+        color: #d9a765;
+    }
+
+.footer-social a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+    .footer-social a:hover {
+        background: #d9a765;
+        color: #0b1830;
+        transform: translateY(-2px);
+    }
+
+.footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+}
+
+.whatsapp-float {
+    position: fixed;
+    bottom: 22px;
+    right: 22px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #25D366;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    box-shadow: 0 8px 20px rgba(37, 211, 102, 0.45);
+    z-index: 1000;
+    text-decoration: none;
+}
+
+    .whatsapp-float:hover {
+        color: #fff;
+        transform: scale(1.06);
+    }
+
+.filter-panel {
+    background: #fff;
+    border: 1px solid #eaeef5;
+    border-radius: 12px;
+    padding: 18px;
+    position: sticky;
+    top: 14px;
+}
+
+#productGrid {
+    transition: opacity 0.2s ease;
+}
+
+/* --- Sifariş izləmə (SignalR + Leaflet) --- */
+.tracking-map {
+    height: 380px;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid #eaeef5;
+    background: #dce8f5;
+    z-index: 1;
+}
+
+.map-emoji-icon {
+    font-size: 26px;
+    text-align: center;
+    line-height: 32px;
+    filter: drop-shadow(0 3px 4px rgba(0,0,0,0.35));
+}
+
+.chat-box {
+    border: 1px solid #eaeef5;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    height: 380px;
+    overflow: hidden;
+}
+
+.chat-header {
+    padding: 12px 16px;
+    background: #0b2f6b;
+    color: #fff;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 12px 16px;
+    overflow-y: auto;
+    background: #f9fafc;
+}
+
+.chat-msg {
+    background: #fff;
+    border-radius: 10px;
+    padding: 6px 10px;
+    margin-bottom: 8px;
+    max-width: 80%;
+    font-size: 13.5px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+
+    .chat-msg.me {
+        margin-left: auto;
+        background: #eaf1fb;
+    }
+
+.chat-input {
+    padding: 10px;
+    border-top: 1px solid #eaeef5;
+}
+
+/* --- Abunəlik planları --- */
+.plan-card {
+    background: #fff;
+    border: 1px solid #eaeef5;
+    border-radius: 16px;
+    padding: 28px;
+    height: 100%;
+    position: relative;
+}
+
+.plan-premium {
+    border: 2px solid #d9a765;
+    box-shadow: 0 12px 30px rgba(217, 167, 101, 0.2);
+}
+
+.plan-badge {
+    position: absolute;
+    top: -12px;
+    right: 24px;
+    background: #d9a765;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+}
+
+.plan-price {
+    font-size: 28px;
+    font-weight: 700;
+    color: #0b2f6b;
+    margin: 6px 0 18px;
+}
+
+.plan-features {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 22px;
+}
+
+    .plan-features li {
+        padding: 7px 0;
+        border-bottom: 1px dashed #eee;
+        font-size: 14px;
+    }
+
+/* --- Admin Panel --- */
+.admin-stat-card {
+    background: #fff;
+    border: 1px solid #eaeaea;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+}
+
+.admin-stat-num {
+    font-size: 28px;
+    font-weight: 800;
+    color: #0b2f6b;
+}
+
+.admin-stat-label {
+    color: #667;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 4px;
+}
+
+.admin-action-card {
+    background: #fff;
+    border: 1px solid #eaeaea;
+    border-radius: 12px;
+    padding: 24px;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+    .admin-action-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+
+.admin-action-emoji {
+    font-size: 30px;
+    margin-bottom: 8px;
+}
+
+.admin-action-card h6 {
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+/* --- Saxta ödəniş (kart) formu --- */
+.fake-card-preview {
+    background: linear-gradient(135deg, #0b2f6b, #1a4f9b);
+    border-radius: 16px;
+    padding: 24px;
+    color: #fff;
+    max-width: 380px;
+    margin: 0 auto 24px;
+    font-family: 'Courier New', monospace;
+    box-shadow: 0 12px 30px rgba(11, 47, 107, 0.25);
+}
+
+.fake-card-number {
+    font-size: 20px;
+    letter-spacing: 2px;
+    margin: 24px 0 16px;
+}
+
+.fake-card-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    text-transform: uppercase;
+    opacity: 0.85;
 }

@@ -1,0 +1,90 @@
+@model E_Commerce.Models.Order
+@{
+    ViewData["Title"] = $"Sifariş #{Model.Id} — İzləmə";
+    var chatHistory = ViewBag.ChatHistory as List<E_Commerce.Models.ChatMessage>;
+    var isCourier = ViewBag.IsCourier is bool b && b;
+    var currentUserId = User.Identity != null && User.Identity.IsAuthenticated
+        ? User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value
+        : Context.Session.GetString("UserId");
+    var currentUserName = isCourier ? (Model.Courier?.FullName ?? "Kuryer") : (string)ViewBag.CustomerName;
+}
+
+<h4 class="mb-1">Sifariş #@Model.Id</h4>
+<div class="text-muted mb-4">
+    Vəziyyət: <span id="orderStatus" class="status-badge">@Model.Status</span>
+    @if (isCourier)
+    {
+        <span class="status-badge" style="background:#eaf1fb;">🛵 Siz bu sifarişin kuryerisiniz</span>
+    }
+</div>
+
+@if (isCourier)
+{
+    <div class="filter-panel mb-4" style="max-width:420px;">
+        <h6 class="mb-2">👤 Müştəri məlumatı</h6>
+        <div><b>Ad Soyad:</b> @ViewBag.CustomerName</div>
+        <div><b>E-poçt:</b> @ViewBag.CustomerEmail</div>
+    </div>
+}
+
+<div class="row g-4">
+    <div class="col-lg-7">
+        <div id="leafletMap" class="tracking-map"></div>
+
+        @if (isCourier)
+        {
+            <div class="d-flex gap-2 mt-2 flex-wrap">
+                <button id="shareLocationBtn" class="btn btn-outline-dark btn-sm">📍 Canlı məkanımı paylaş</button>
+                <form asp-action="MarkDelivered" asp-route-id="@Model.Id" method="post">
+                    <button type="submit" class="btn btn-sm btn-deal">✅ Çatdırıldı</button>
+                </form>
+            </div>
+            <p class="text-muted small mt-2" id="shareStatus">Məkan paylaşımı deaktivdir.</p>
+        }
+        else
+        {
+            <p class="text-muted small mt-2">Kuryerin canlı mövqeyi SignalR vasitəsilə anlıq yenilənir.</p>
+        }
+    </div>
+
+    <div class="col-lg-5">
+        <div class="chat-box">
+            <div class="chat-header">💬 @(isCourier ? "Müştəri ilə canlı çat" : "Kuryer ilə canlı çat")</div>
+            <div class="chat-messages" id="chatMessages">
+                @if (chatHistory != null)
+                {
+                    foreach (var m in chatHistory)
+                    {
+                        <div class="chat-msg @(m.SenderId == currentUserId ? "me" : "")">
+                            <b>@m.SenderName</b> <span class="text-muted small">@m.CreatedDate.ToString("HH:mm")</span>
+                            <div>@m.Message</div>
+                        </div>
+                    }
+                }
+            </div>
+            <form id="chatForm" class="chat-input d-flex gap-2">
+                <input type="text" id="chatInput" class="form-control" placeholder="Mesaj yazın..." autocomplete="off" />
+                <button type="submit" class="btn btn-primary">Göndər</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@@microsoft/signalr@@8.0.0/dist/browser/signalr.min.js"></script>
+    <script>
+        window.__orderTrack = {
+            orderId: @Model.Id,
+            userId: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(currentUserId)),
+            userName: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(currentUserName)),
+            isCourier: @isCourier.ToString().ToLower(),
+            lat: @(Model.CourierLatitude?.ToString(System.Globalization.CultureInfo.InvariantCulture) ?? "null"),
+            lng: @(Model.CourierLongitude?.ToString(System.Globalization.CultureInfo.InvariantCulture) ?? "null"),
+            deliveryLat: @(Model.DeliveryLatitude?.ToString(System.Globalization.CultureInfo.InvariantCulture) ?? "null"),
+            deliveryLng: @(Model.DeliveryLongitude?.ToString(System.Globalization.CultureInfo.InvariantCulture) ?? "null")
+        };
+    </script>
+    <script src="~/js/order-track.js"></script>
+}

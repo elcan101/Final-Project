@@ -1,0 +1,54 @@
+@{
+    ViewData["Title"] = "Kitab Pass";
+    var current = ViewBag.CurrentPlan as E_Commerce.Models.UserSubscription;
+}
+
+<h4 class="mb-1">📚 Kitab Pass Abunəlik Planları</h4>
+<p class="text-muted mb-4">E-kitab, səsli kitab və fiziki kitab icarəsini bir abunəlik altında birləşdirin.</p>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-warning">@TempData["Error"]</div>
+}
+
+@if (current != null)
+{
+    <div class="alert alert-info">
+        Aktiv planınız: <b>@current.PlanType</b> — bitmə tarixi: @current.ExpiryDate.ToString("dd.MM.yyyy")
+    </div>
+}
+
+<div class="row g-4">
+    <div class="col-md-6">
+        <div class="plan-card">
+            <h5>Standart</h5>
+            <div class="plan-price">2.99 AZN <span class="text-muted small">/ ay</span></div>
+            <ul class="plan-features">
+                <li>✅ E-kitab oxu — limitsiz giriş</li>
+                <li>❌ Səsli kitab</li>
+                <li>✅ Fiziki kitab icarəsi — 5% endirim</li>
+                <li>❌ Kuryer (prioritet çatdırılma)</li>
+            </ul>
+            <a asp-action="Checkout" asp-route-planType="Standard" class="btn-deal w-100 d-block text-center text-decoration-none">Standart planı seç</a>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="plan-card plan-premium">
+            <div class="plan-badge">Ən çox seçilən</div>
+            <h5>Premium</h5>
+            <div class="plan-price">9.99 AZN <span class="text-muted small">/ ay</span></div>
+            <ul class="plan-features">
+                <li>✅ E-kitab oxu — limitsiz giriş</li>
+                <li>✅ Səsli kitab — audio player daxil</li>
+                <li>✅ Fiziki kitab icarəsi — ayda bir pulsuz (14 günlük müddət)</li>
+                <li>✅ Kuryer — prioritet çatdırılma</li>
+            </ul>
+            <a asp-action="Checkout" asp-route-planType="Premium" class="btn-deal w-100 d-block text-center text-decoration-none">Premium planı seç</a>
+        </div>
+    </div>
+</div>

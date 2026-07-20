@@ -1,9 +1,13 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using E_Commerce.Data;
 using E_Commerce.Models;
 
 namespace E_Commerce.Controllers
 {
+    // Kuponlar yalnız Adminlər tərəfindən yaradıla / idarə oluna bilər.
+    // Müştərilər yalnız checkout zamanı kupon KODUNU daxil edib Validate ilə yoxlaya bilirlər.
+    [Authorize(Roles = "Admin")]
     public class CouponController : Controller
     {
         private readonly AppDbContext _context;
@@ -17,6 +21,7 @@ namespace E_Commerce.Controllers
         {
             var coupons = _context.Coupons
                 .Where(c => !c.IsDeleted)
+                .OrderByDescending(c => c.CreatedDate)
                 .ToList();
 
             return View(coupons);
@@ -36,13 +41,47 @@ namespace E_Commerce.Controllers
             {
                 _context.Coupons.Add(coupon);
                 _context.SaveChanges();
+                TempData["Success"] = "Kupon yaradıldı.";
                 return RedirectToAction("Index");
             }
 
             return View(coupon);
         }
 
-        // Checkout zamanı kupon kodunun doğruluğunu yoxlamaq üçün (AJAX)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult ToggleStatus(int id)
+        {
+            var coupon = _context.Coupons.FirstOrDefault(c => c.Id == id && !c.IsDeleted);
+            if (coupon != null)
+            {
+                coupon.IsActive = !coupon.IsActive;
+                coupon.UpdatedDate = DateTime.Now;
+                _context.SaveChanges();
+                TempData["Success"] = coupon.IsActive
+                    ? "Kupon aktivləşdirildi."
+                    : "Kupon deaktiv edildi.";
+            }
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Delete(int id)
+        {
+            var coupon = _context.Coupons.FirstOrDefault(c => c.Id == id && !c.IsDeleted);
+            if (coupon != null)
+            {
+                coupon.IsDeleted = true;
+                coupon.UpdatedDate = DateTime.Now;
+                _context.SaveChanges();
+                TempData["Success"] = "Kupon silindi.";
+            }
+            return RedirectToAction("Index");
+        }
+
+        // Checkout zamanı kupon kodunun doğruluğunu yoxlamaq üçün (AJAX) — HAMI istifadə edə bilər
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult Validate(string code)
         {

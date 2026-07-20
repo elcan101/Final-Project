@@ -7,9 +7,9 @@
 <!-- hero banner -->
 <div class="hero mb-5">
     <div class="col-md-7">
-        <div class="tagline">MƏKTƏBƏ HAZIRLIQ</div>
-        <h1>XÜSUSİ <span>50% ENDİRİM</span></h1>
-        <p class="text-muted">TƏLƏBƏ İCTİMAİYYƏTİMİZ ÜÇÜN</p>
+        <div class="tagline">TƏLƏBƏLƏRƏ ÖZƏL</div>
+        <h1>XÜSUSİ <span>ENDİRİMLƏR</span></h1>
+        <p class="text-muted">Bütün tələbələr üçün sərfəli qiymətlər</p>
         <a href="/Product" class="btn-deal">ENDİRİMDƏN YARARLAN</a>
     </div>
 </div>
@@ -38,6 +38,8 @@
     </div>
 </div>
 
+@await Html.PartialAsync("_Bookshelf3D", Model)
+
 <!-- bestsellers -->
 <div class="d-flex justify-content-between align-items-center mb-3">
     <h4 class="mb-0">Ən Çox Satılanlar</h4>
@@ -51,10 +53,12 @@
         {
             <div class="col-lg-2 col-md-4 col-sm-6">
                 <div class="product-card">
-                    <img src="@item.ImageUrl" alt="@item.Title" />
-                    <h6>@item.Title</h6>
-                    <div class="author">@item.Category?.Name</div>
-                    <div class="price">@item.Price AZN</div>
+                    <a asp-controller="Product" asp-action="Details" asp-route-id="@item.Id" class="text-decoration-none text-dark">
+                        <img src="@item.ImageUrl" alt="@item.Title" />
+                        <h6>@item.Title</h6>
+                        <div class="author">@item.Category?.Name</div>
+                        <div class="price">@item.Price AZN</div>
+                    </a>
                     <form asp-controller="Cart" asp-action="AddToCart" method="post">
                         <input type="hidden" name="productId" value="@item.Id" />
                         <button type="submit" class="add-cart-btn">🛒 Səbətə əlavə et</button>

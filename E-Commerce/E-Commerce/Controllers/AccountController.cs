@@ -95,10 +95,20 @@ namespace E_Commerce.Controllers
 
             if (result.Succeeded)
             {
+                var user = await _userManager.FindByEmailAsync(model.Email);
+                var roles = user != null ? await _userManager.GetRolesAsync(user) : new List<string>();
+
                 if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
                 {
                     return Redirect(model.ReturnUrl);
                 }
+
+                // Admin isə birbaşa admin panelinə (/AdminPanel/Admin), digərləri ana səhifəyə yönləndirilir
+                if (user != null && roles.Contains("Admin"))
+                {
+                    return RedirectToAction("Index", "Admin", new { area = "AdminPanel" });
+                }
+
                 return RedirectToAction("Index", "Home");
             }
 

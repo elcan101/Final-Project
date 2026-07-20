@@ -1,0 +1,61 @@
+@model IEnumerable<E_Commerce.Models.AppUser>
+
+@{
+    ViewData["Title"] = "Adminlər";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="mb-0">👤 Adminlər</h4>
+    <a asp-controller="Admin" asp-action="Index" class="text-muted">← Panelə qayıt</a>
+</div>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-warning">@TempData["Error"]</div>
+}
+
+<div class="row g-4">
+    <div class="col-lg-5">
+        <div class="form-card">
+            <h6 class="section-title">Yeni Admin Əlavə Et</h6>
+            <p class="text-muted small">Yalnız saytda artıq qeydiyyatdan keçmiş bir istifadəçinin e-poçtunu daxil edin — həmin şəxs Admin roluna yüksəldiləcək.</p>
+            <form asp-controller="Admin" asp-action="AddAdmin" method="post" class="d-flex gap-2">
+                <input type="email" name="email" class="form-control" placeholder="istifadeci@example.com" required />
+                <button type="submit" class="btn-deal text-nowrap">Admin et</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="col-lg-7">
+        <div class="simple-table">
+            <table class="table align-middle">
+                <thead>
+                    <tr>
+                        <th>Ad Soyad</th>
+                        <th>E-poçt</th>
+                        <th class="text-end">Əməliyyat</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var admin in Model)
+                    {
+                        <tr>
+                            <td>@admin.FullName</td>
+                            <td>@admin.Email</td>
+                            <td class="text-end">
+                                <form asp-controller="Admin" asp-action="RemoveAdmin" method="post" class="d-inline" onsubmit="return confirm('Bu istifadəçidən admin səlahiyyətini almaq istədiyinizə əminsiniz?');">
+                                    <input type="hidden" name="userId" value="@admin.Id" />
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">Admin səlahiyyətini al</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

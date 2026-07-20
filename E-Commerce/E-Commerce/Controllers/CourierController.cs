@@ -1,4 +1,6 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using E_Commerce.Data;
 using E_Commerce.Models;
 
@@ -40,6 +42,62 @@ namespace E_Commerce.Controllers
             }
 
             return View(courier);
+        }
+
+        // Kuryerin canlı iş paneli: "Hazır" sifarişlərin broadcast siqnalını qəbul edir,
+        // ilk basan kuryer sifarişi öz üzərinə götürür (SignalR)
+        [Authorize]
+        public IActionResult Dashboard()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier)!;
+            var profile = _context.CourierProfiles.FirstOrDefault(c => c.CourierId == userId && !c.IsDeleted);
+
+            if (profile != null)
+            {
+                var activeOrder = _context.Orders
+                    .Where(o => !o.IsDeleted && o.CourierProfileId == profile.Id && o.Status == "Kuryerdədir")
+                    .OrderByDescending(o => o.CreatedDate)
+                    .FirstOrDefault();
+                ViewBag.ActiveOrder = activeOrder;
+
+                // Kuryer online olanda broadcast anını qaçırmış ola bilər —
+                // ona görə hazırda gözləyən (sahibsiz) "Hazırdır" sifarişləri də birbaşa göstəririk
+                var pendingOrders = _context.Orders
+                    .Where(o => !o.IsDeleted && o.Status == "Hazırdır" && o.CourierProfileId == null)
+                    .OrderBy(o => o.CreatedDate)
+                    .ToList();
+                ViewBag.PendingOrders = pendingOrders;
+            }
+
+            return View(profile);
+        }
+
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult BecomeCourier(string fullName, string vehicleType)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier)!;
+            var existing = _context.CourierProfiles.FirstOrDefault(c => c.CourierId == userId && !c.IsDeleted);
+
+            if (string.IsNullOrWhiteSpace(fullName))
+            {
+                TempData["Error"] = "Ad Soyad mütləq daxil edilməlidir.";
+                return RedirectToAction("Dashboard");
+            }
+
+            if (existing == null)
+            {
+                _context.CourierProfiles.Add(new CourierProfile
+                {
+                    CourierId = userId,
+                    FullName = fullName.Trim(),
+                    VehicleType = string.IsNullOrWhiteSpace(vehicleType) ? "Piyada" : vehicleType,
+                    IsAvailable = false,
+                });
+                _context.SaveChanges();
+            }
+            return RedirectToAction("Dashboard");
         }
     }
 }

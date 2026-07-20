@@ -2,6 +2,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using E_Commerce.Data;
 using E_Commerce.Models;
+using E_Commerce.Services;
+using E_Commerce.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +11,15 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
+
+// Real-time: kuryer izləmə + canlı çat (SignalR Hubs)
+builder.Services.AddSignalR();
+
+// Ödəniş: test rejimində mock Stripe (bax Services/MockStripePaymentService.cs)
+builder.Services.AddScoped<IPaymentService, MockStripePaymentService>();
+
+// Gündəlik hesablaşma: C2C elan haqqı + icarə gecikmə cərimələri avtomatik balansdan tutulur
+builder.Services.AddHostedService<DailyBillingService>();
 
 // Login / Qeydiyyat sistemi (ASP.NET Core Identity)
 builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
@@ -50,8 +61,21 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
+    name: "areas",
+    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-// SeedData-nı burdan silirik, layihə run olsun
+app.MapHub<CourierTrackingHub>("/hubs/courier-tracking");
+app.MapHub<ChatHub>("/hubs/chat");
+
+// Rolları (Admin/Customer), ilk admin hesabını və baza kateqoriyaları yaradır.
+// Hər şey "yalnız yoxdursa" yaradılır — bazanı silmir, mövcud datanı pozmur.
+using (var scope = app.Services.CreateScope())
+{
+    await E_Commerce.Data.IdentitySeeder.SeedAsync(scope.ServiceProvider);
+}
+
 app.Run();

@@ -2,34 +2,83 @@
 
 @{
     ViewData["Title"] = "Kitablar";
+    var categories = ViewBag.Categories as List<E_Commerce.Models.Category>;
+    var authors = ViewBag.Authors as List<string>;
 }
 
 <div class="d-flex justify-content-between align-items-center mb-4">
-    <h4 class="mb-0">@(ViewData["CategoryName"] as string ?? "Bütün Kitablar")</h4>
-    <a asp-controller="Product" asp-action="Create" class="btn-deal">+ Yeni Kitab</a>
+    <h4 class="mb-0">Bütün Kitablar</h4>
+    @if (User.IsInRole("Admin"))
+    {
+        <a asp-controller="Product" asp-action="Manage" class="btn-deal">📚 Kitablarım</a>
+    }
 </div>
 
-<div class="row g-4">
-    @if (Model != null && Model.Any())
-    {
-        @foreach (var item in Model)
-        {
-            <div class="col-lg-2 col-md-4 col-sm-6">
-                <div class="product-card">
-                    <img src="@item.ImageUrl" alt="@item.Title" />
-                    <h6>@item.Title</h6>
-                    <div class="author">@item.Category?.Name</div>
-                    <div class="price">@item.Price AZN</div>
-                    <form asp-controller="Cart" asp-action="AddToCart" method="post">
-                        <input type="hidden" name="productId" value="@item.Id" />
-                        <button type="submit" class="add-cart-btn">🛒 Səbətə əlavə et</button>
-                    </form>
+<div class="row">
+    <div class="col-lg-3 mb-4">
+        <div class="filter-panel" id="filterForm">
+            <h6 class="mb-3">🔎 Filtrlər</h6>
+
+            <div class="mb-3">
+                <label class="form-label small">Axtarış</label>
+                <input type="text" id="f-q" class="form-control" value="@ViewBag.Q" placeholder="Ad və ya müəllif" />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label small">Kateqoriya</label>
+                <select id="f-category" class="form-select">
+                    <option value="">Hamısı</option>
+                    @if (categories != null)
+                    {
+                        foreach (var c in categories)
+                        {
+                            <option value="@c.Id" selected="@(ViewBag.CategoryId != null && (int)ViewBag.CategoryId == c.Id)">@c.Name</option>
+                        }
+                    }
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label small">Müəllif</label>
+                <select id="f-author" class="form-select">
+                    <option value="">Hamısı</option>
+                    @if (authors != null)
+                    {
+                        foreach (var a in authors)
+                        {
+                            <option value="@a" selected="@(ViewBag.Author != null && (string)ViewBag.Author == a)">@a</option>
+                        }
+                    }
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label small">Qiymət aralığı (AZN)</label>
+                <div class="d-flex gap-2">
+                    <input type="number" id="f-min" class="form-control" placeholder="Min" value="@ViewBag.MinPrice" />
+                    <input type="number" id="f-max" class="form-control" placeholder="Max" value="@ViewBag.MaxPrice" />
                 </div>
             </div>
-        }
-    }
-    else
-    {
-        <p class="text-muted text-center">Hazırda məhsul yoxdur.</p>
-    }
+
+            <div class="mb-3">
+                <label class="form-label small">Sırala</label>
+                <select id="f-sort" class="form-select">
+                    <option value="newest">Ən yeni</option>
+                    <option value="price_asc">Qiymət: ucuzdan bahaya</option>
+                    <option value="price_desc">Qiymət: bahadan ucuza</option>
+                    <option value="rating">Reytinq</option>
+                </select>
+            </div>
+
+            <button type="button" id="f-reset" class="btn btn-outline-secondary btn-sm w-100">Filtrləri sıfırla</button>
+        </div>
+    </div>
+
+    <div class="col-lg-9" id="productGrid">
+        @await Html.PartialAsync("_ProductGrid", Model)
+    </div>
 </div>
+
+@section Scripts {
+    <script src="~/js/product-filter.js"></script>
+}

@@ -21,8 +21,24 @@ namespace E_Commerce.Models
         [ForeignKey("CourierProfileId")]
         public CourierProfile? Courier { get; set; }
 
-        // Sifarişin vəziyyəti: Hazırlanır, Kuryerdədir, Çatdırıldı
+        // Sifarişin vəziyyəti: Hazırlanır, Hazırdır, Kuryerdədir, Çatdırıldı
         [Required]
         public string Status { get; set; } = "Hazırlanır";
+
+        // Tətbiq olunan promokod və endirim (Trendyol tipli kupon sistemi)
+        public string? CouponCode { get; set; }
+
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal DiscountAmount { get; set; } = 0.00m;
+
+        // SignalR ilə canlı izlənən kuryer koordinatları
+        public double? CourierLatitude { get; set; }
+        public double? CourierLongitude { get; set; }
+        public DateTime? LastLocationUpdate { get; set; }
+
+        // Müştərinin sifariş zamanı xəritədən seçdiyi çatdırılma nöqtəsi
+        public double? DeliveryLatitude { get; set; }
+        public double? DeliveryLongitude { get; set; }
+        public string? DeliveryAddressText { get; set; }
     }
 }
