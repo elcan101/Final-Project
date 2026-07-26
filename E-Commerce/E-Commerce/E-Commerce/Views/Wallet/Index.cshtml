@@ -1,0 +1,37 @@
+@model E_Commerce.Models.Wallet
+
+@{
+    ViewData["Title"] = "Balansım";
+}
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-warning">@TempData["Error"]</div>
+}
+
+<div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-4">
+    <h4 class="mb-0">Balansım</h4>
+    <div class="d-flex gap-2">
+        <a asp-action="Withdraw" class="btn-nav btn-nav-outline">💸 Balansdan çıxar</a>
+        <a asp-action="TopUp" class="btn-deal">💳 Kartla balansı artır</a>
+    </div>
+</div>
+
+<div class="row g-3">
+    <div class="col-md-6">
+        <div class="product-card text-start">
+            <small class="text-muted">Cari Balans</small>
+            <h3 class="mt-1" style="color:#0b2f6b;">@Model.Balance AZN</h3>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="product-card text-start">
+            <small class="text-muted">Ümumi Qazanılan Keşbek</small>
+            <h3 class="mt-1" style="color:#0b2f6b;">@Model.TotalCashbackEarned AZN</h3>
+        </div>
+    </div>
+</div>

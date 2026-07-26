@@ -1,0 +1,49 @@
+@{
+    ViewData["Title"] = "Ödəniş";
+    var planType = (E_Commerce.Models.SubscriptionPlanType)ViewBag.PlanType;
+    var price = (decimal)ViewBag.Price;
+    var balance = (decimal)ViewBag.Balance;
+    var enough = balance >= price;
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="mb-0">💳 Ödəniş</h4>
+    <a asp-action="Index" class="text-muted">← Geri</a>
+</div>
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-warning">@TempData["Error"]</div>
+}
+
+<p class="text-center text-muted small mb-4">
+    Ödəniş yalnız saytdakı balansınızdan aparılır — kartdan birbaşa tutulmur.
+</p>
+
+<div class="row justify-content-center">
+    <div class="col-lg-5">
+        <div class="form-card">
+            <h6 class="section-title">@planType planı — @price.ToString("0.00") AZN / ay</h6>
+
+            <div class="d-flex align-items-center justify-content-between product-card text-start mb-4">
+                <span class="text-muted">Cari balansınız</span>
+                <span class="fw-bold" style="color:#0b2f6b;">@balance.ToString("0.00") AZN</span>
+            </div>
+
+            @if (enough)
+            {
+                <form asp-action="Subscribe" method="post">
+                    <input type="hidden" name="planType" value="@planType" />
+                    <button type="submit" class="btn-deal w-100">Balansdan @price.ToString("0.00") AZN ödə</button>
+                </form>
+            }
+            else
+            {
+                <div class="alert alert-warning">
+                    Balansınız kifayət etmir (çatışmır: @((price - balance).ToString("0.00")) AZN).
+                </div>
+                <a asp-controller="Wallet" asp-action="TopUp" class="btn-deal w-100 d-block text-center">💳 Balansı kartla artır</a>
+            }
+        </div>
+    </div>
+</div>

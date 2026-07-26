@@ -1,0 +1,94 @@
+@model IEnumerable<E_Commerce.Models.Product>
+
+@{
+    ViewData["Title"] = "Kitablar";
+    var categories = ViewBag.Categories as List<E_Commerce.Models.Category>;
+    var authors = ViewBag.Authors as List<string>;
+    var categoryName = ViewData["CategoryName"] as string;
+}
+
+@if (!string.IsNullOrEmpty(categoryName))
+{
+    <nav class="mb-2 small">
+        <a asp-controller="Category" asp-action="Index" class="text-decoration-none">Kateqoriyalar</a>
+        <span class="text-muted mx-1">/</span>
+        <span class="text-muted">@categoryName</span>
+    </nav>
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="mb-0">@(string.IsNullOrEmpty(categoryName) ? "Bütün Kitablar" : categoryName)</h4>
+    @if (User.IsInRole("Admin"))
+    {
+        <a asp-controller="Product" asp-action="Manage" class="btn-deal">📚 Kitablarım</a>
+    }
+</div>
+
+<div class="row">
+    <div class="col-lg-3 mb-4">
+        <div class="filter-panel" id="filterForm">
+            <h6 class="mb-3">🔎 Filtrlər</h6>
+
+            <div class="mb-3">
+                <label class="form-label small">Axtarış</label>
+                <input type="text" id="f-q" class="form-control" value="@ViewBag.Q" placeholder="Ad və ya müəllif" />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label small">Kateqoriya</label>
+                <select id="f-category" class="form-select">
+                    <option value="">Hamısı</option>
+                    @if (categories != null)
+                    {
+                        foreach (var c in categories)
+                        {
+                            <option value="@c.Id" selected="@(ViewBag.CategoryId != null && (int)ViewBag.CategoryId == c.Id)">@c.Name</option>
+                        }
+                    }
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label small">Müəllif</label>
+                <select id="f-author" class="form-select">
+                    <option value="">Hamısı</option>
+                    @if (authors != null)
+                    {
+                        foreach (var a in authors)
+                        {
+                            <option value="@a" selected="@(ViewBag.Author != null && (string)ViewBag.Author == a)">@a</option>
+                        }
+                    }
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label small">Qiymət aralığı (AZN)</label>
+                <div class="d-flex gap-2">
+                    <input type="number" id="f-min" class="form-control" placeholder="Min" value="@ViewBag.MinPrice" />
+                    <input type="number" id="f-max" class="form-control" placeholder="Max" value="@ViewBag.MaxPrice" />
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label small">Sırala</label>
+                <select id="f-sort" class="form-select">
+                    <option value="newest">Ən yeni</option>
+                    <option value="price_asc">Qiymət: ucuzdan bahaya</option>
+                    <option value="price_desc">Qiymət: bahadan ucuza</option>
+                    <option value="rating">Reytinq</option>
+                </select>
+            </div>
+
+            <button type="button" id="f-reset" class="btn btn-outline-secondary btn-sm w-100">Filtrləri sıfırla</button>
+        </div>
+    </div>
+
+    <div class="col-lg-9" id="productGrid">
+        @await Html.PartialAsync("~/Views/Product/_ProductGrid.cshtml", Model)
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/product-filter.js"></script>
+}

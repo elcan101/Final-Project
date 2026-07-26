@@ -1,0 +1,86 @@
+@{
+    ViewData["Title"] = "Balansdan pul çıxar";
+    var balance = (decimal)ViewBag.Balance;
+    var minWithdraw = (decimal)ViewBag.MinWithdraw;
+}
+
+<h4 class="mb-1">Balansdan pul çıxar</h4>
+<p class="text-muted mb-4">Məs. C2C bazarında kitab satışından qazandığınız pulu kartınıza köçürə bilərsiniz. Minimum çıxarma məbləği: <b>@minWithdraw.ToString("0.00") AZN</b>.</p>
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-warning">@TempData["Error"]</div>
+}
+
+<div class="payment-card mx-auto">
+    <div class="d-flex align-items-center justify-content-between product-card text-start mb-3">
+        <span class="text-muted">Cari balansınız</span>
+        <span class="fw-bold" style="color:#0b2f6b;">@balance.ToString("0.00") AZN</span>
+    </div>
+
+    @if (balance < minWithdraw)
+    {
+        <div class="alert alert-info small mb-0">Pul çıxarmaq üçün balansınızda ən azı @minWithdraw.ToString("0.00") AZN olmalıdır.</div>
+    }
+    else
+    {
+        <form asp-controller="Wallet" asp-action="Withdraw" method="post" id="withdrawForm">
+            <div class="mb-3">
+                <label class="form-label small">Çıxarılacaq məbləğ (AZN)</label>
+                <input type="number" name="amount" id="withdrawAmount" step="0.01" min="@minWithdraw" max="@balance" class="form-control" placeholder="Məs: 15" required />
+                <div class="form-text" id="withdrawAmountError" style="color:#b42318;display:none;"></div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label small">Pulun göndəriləcəyi kart nömrəsi</label>
+                <input type="text" name="destinationCard" id="destinationCard" class="form-control" placeholder="0000 0000 0000 0000" maxlength="19" inputmode="numeric" required />
+                <div class="form-text" id="destinationCardError" style="color:#b42318;display:none;"></div>
+            </div>
+
+            <button type="submit" class="btn-deal w-100">Balansdan çıxar</button>
+        </form>
+    }
+</div>
+
+@section Scripts {
+    <script>
+        (function () {
+            const cardInput = document.querySelector('input[name="destinationCard"]');
+            cardInput?.addEventListener('input', () => {
+                let digits = cardInput.value.replace(/\D/g, '').slice(0, 16);
+                cardInput.value = digits.replace(/(.{4})/g, '$1 ').trim();
+            });
+
+            const form = document.getElementById('withdrawForm');
+            const amountInput = document.getElementById('withdrawAmount');
+            const amountError = document.getElementById('withdrawAmountError');
+            const destinationCardError = document.getElementById('destinationCardError');
+            const minWithdraw = @minWithdraw.ToString(System.Globalization.CultureInfo.InvariantCulture);
+            const maxBalance = @balance.ToString(System.Globalization.CultureInfo.InvariantCulture);
+
+            form?.addEventListener('submit', (e) => {
+                let ok = true;
+
+                const val = parseFloat(amountInput.value);
+                if (isNaN(val) || val < minWithdraw || val > maxBalance) {
+                    amountError.style.display = 'block';
+                    amountError.textContent = `Məbləğ ${minWithdraw.toFixed(2)} AZN ilə ${maxBalance.toFixed(2)} AZN arasında olmalıdır.`;
+                    ok = false;
+                } else {
+                    amountError.style.display = 'none';
+                }
+
+                const cardDigits = cardInput.value.replace(/\D/g, '');
+                if (cardDigits.length !== 16) {
+                    destinationCardError.style.display = 'block';
+                    destinationCardError.textContent = 'Kart nömrəsi mütləq 16 rəqəmdən ibarət olmalıdır.';
+                    ok = false;
+                } else {
+                    destinationCardError.style.display = 'none';
+                }
+
+                if (!ok) e.preventDefault();
+            });
+        })();
+    </script>
+}

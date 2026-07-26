@@ -1,0 +1,32 @@
+@model IEnumerable<E_Commerce.Models.Notification>
+@{
+    ViewData["Title"] = "Bildirişlər";
+}
+
+<h4 class="mb-4">🔔 Bildirişlər</h4>
+
+@if (Model != null && Model.Any())
+{
+    <div class="d-flex flex-column gap-2">
+        @foreach (var n in Model)
+        {
+            <a href="@(string.IsNullOrEmpty(n.Url) ? "#" : n.Url)" class="notif-page-item @(n.IsRead ? "" : "unread")">
+                <div class="notif-page-icon">🔔</div>
+                <div class="notif-page-body">
+                    <div class="notif-page-top">
+                        <span class="notif-page-title">@n.Title</span>
+                        <span class="notif-page-date">@n.CreatedDate.ToString("dd.MM.yyyy HH:mm")</span>
+                    </div>
+                    <div class="notif-page-msg">@n.Message</div>
+                </div>
+            </a>
+        }
+    </div>
+}
+else
+{
+    <div class="notif-page-empty">
+        <span class="notif-page-empty-icon">🔔</span>
+        <p>Hələ heç bir bildirişiniz yoxdur.</p>
+    </div>
+}

@@ -1,0 +1,151 @@
+@{
+    ViewData["Title"] = "Balansı artır";
+}
+
+<h4 class="mb-1">Balansı kartla artır</h4>
+<p class="text-muted mb-4">Kart məlumatlarınız təhlükəsizdir — bazada saxlanılmır, yalnız tokenləşdirilir.</p>
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-warning">@TempData["Error"]</div>
+}
+
+<div class="payment-card mx-auto">
+    <div class="payment-card-header d-flex align-items-center justify-content-between">
+        <span class="fw-bold" style="color:#0b2f6b;">Kart məlumatları</span>
+        <div class="d-flex align-items-center gap-2">
+            <!-- Visa loqosu -->
+            <svg width="42" height="26" viewBox="0 0 48 32" xmlns="http://www.w3.org/2000/svg">
+                <rect width="48" height="32" rx="5" fill="#1434CB"/>
+                <path d="M20.5 21.5h-3l1.9-11.5h3l-1.9 11.5Z" fill="#fff"/>
+                <path d="M31.8 10.3c-.6-.2-1.5-.5-2.7-.5-3 0-5.1 1.5-5.1 3.7 0 1.6 1.5 2.5 2.7 3 1.2.6 1.6 1 1.6 1.5 0 .8-1 1.1-1.9 1.1-1.3 0-2-.2-3-.6l-.4-.2-.5 2.9c.7.3 2 .6 3.4.6 3.2 0 5.3-1.5 5.3-3.9 0-1.3-.8-2.3-2.6-3.1-1.1-.5-1.7-.9-1.7-1.4 0-.5.6-1 1.8-1 1 0 1.8.2 2.3.4l.3.1.5-2.6Z" fill="#fff"/>
+                <path d="M38.6 10h-2.3c-.7 0-1.3.2-1.6 1l-4.5 10.5h3.2l.6-1.8h3.9l.4 1.8h2.9L38.6 10Zm-3.7 7.4 1.2-3.2c0 .1.3-.8.5-1.3l.2 1.2.7 3.3h-2.6Z" fill="#fff"/>
+                <path d="M17.6 10 14.5 18l-.3-1.7c-.6-2-2.4-4.1-4.5-5.2l2.9 10.4h3.2L20.8 10h-3.2Z" fill="#fff"/>
+                <path d="M11.7 10H6.8l-.1.3c3.8 1 6.3 3.3 7.3 6.1l-1-5.4c-.2-.8-.7-1-1.3-1Z" fill="#F7B600"/>
+            </svg>
+            <!-- Mastercard loqosu -->
+            <svg width="42" height="26" viewBox="0 0 48 32" xmlns="http://www.w3.org/2000/svg">
+                <rect width="48" height="32" rx="5" fill="#fff" stroke="#e5e5e5"/>
+                <circle cx="19" cy="16" r="9" fill="#EB001B"/>
+                <circle cx="29" cy="16" r="9" fill="#F79E1B"/>
+                <path d="M24 9.5a9 9 0 0 1 0 13 9 9 0 0 1 0-13Z" fill="#FF5F00"/>
+            </svg>
+        </div>
+    </div>
+
+    <form asp-controller="Wallet" asp-action="TopUp" method="post" id="topUpForm">
+        <div class="mb-3">
+            <label class="form-label small">Artırılacaq məbləğ (AZN)</label>
+            <input type="number" name="amount" id="topUpAmount" step="0.01" min="5" class="form-control" placeholder="Məs: 20 (minimum 5 AZN)" required />
+            <div class="form-text" id="amountError" style="color:#b42318;display:none;"></div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label small">Kart sahibinin adı</label>
+            <input type="text" name="cardHolder" class="form-control" placeholder="AD SOYAD" required />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label small">Kart nömrəsi</label>
+            <input type="text" name="cardNumber" id="cardNumber" class="form-control" placeholder="0000 0000 0000 0000" maxlength="19" inputmode="numeric" required />
+            <div class="form-text" id="cardNumberError" style="color:#b42318;display:none;"></div>
+        </div>
+
+        <div class="row g-3">
+            <div class="col-6">
+                <label class="form-label small">Son istifadə tarixi</label>
+                <input type="text" name="expiry" id="expiryInput" class="form-control" placeholder="AA/İİ" maxlength="5" required />
+                <div class="form-text" id="expiryError" style="color:#b42318;display:none;"></div>
+            </div>
+            <div class="col-6">
+                <label class="form-label small">CVC</label>
+                <input type="text" name="cvc" id="cvcInput" class="form-control" placeholder="***" maxlength="4" inputmode="numeric" required />
+                <div class="form-text" id="cvcError" style="color:#b42318;display:none;"></div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn-deal w-100 mt-4">Balansı artır</button>
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        (function () {
+            const amountInput = document.getElementById('topUpAmount');
+            const amountError = document.getElementById('amountError');
+            const cardInput = document.getElementById('cardNumber');
+            const cardNumberError = document.getElementById('cardNumberError');
+            const expiryInput = document.getElementById('expiryInput');
+            const expiryError = document.getElementById('expiryError');
+            const cvcInput = document.getElementById('cvcInput');
+            const cvcError = document.getElementById('cvcError');
+            const form = document.getElementById('topUpForm');
+
+            cardInput?.addEventListener('input', () => {
+                let digits = cardInput.value.replace(/\D/g, '').slice(0, 16);
+                cardInput.value = digits.replace(/(.{4})/g, '$1 ').trim();
+            });
+
+            expiryInput?.addEventListener('input', () => {
+                let digits = expiryInput.value.replace(/\D/g, '').slice(0, 4);
+                expiryInput.value = digits.length > 2 ? digits.slice(0, 2) + '/' + digits.slice(2) : digits;
+            });
+
+            cvcInput?.addEventListener('input', () => {
+                cvcInput.value = cvcInput.value.replace(/\D/g, '').slice(0, 4);
+            });
+
+            function showError(el, msg) { el.style.display = 'block'; el.textContent = msg; }
+            function hideError(el) { el.style.display = 'none'; }
+
+            function validate() {
+                let ok = true;
+
+                const amount = parseFloat(amountInput.value);
+                if (isNaN(amount) || amount < 5) {
+                    showError(amountError, 'Minimum artırma məbləği 5 AZN-dir.');
+                    ok = false;
+                } else hideError(amountError);
+
+                const cardDigits = cardInput.value.replace(/\D/g, '');
+                if (cardDigits.length !== 16) {
+                    showError(cardNumberError, 'Kart nömrəsi mütləq 16 rəqəmdən ibarət olmalıdır.');
+                    ok = false;
+                } else hideError(cardNumberError);
+
+                const expiryDigits = expiryInput.value.replace(/\D/g, '');
+                if (expiryDigits.length !== 4) {
+                    showError(expiryError, 'AA/İİ formatında daxil edin (məs: 09/28).');
+                    ok = false;
+                } else {
+                    const month = parseInt(expiryDigits.slice(0, 2), 10);
+                    const year = 2000 + parseInt(expiryDigits.slice(2, 4), 10);
+                    const now = new Date();
+                    const lastDayOfExpiry = new Date(year, month, 0);
+                    if (month < 1 || month > 12) {
+                        showError(expiryError, 'Ay 01 ilə 12 arasında olmalıdır.');
+                        ok = false;
+                    } else if (lastDayOfExpiry < now) {
+                        showError(expiryError, 'Kartın son istifadə tarixi keçib.');
+                        ok = false;
+                    } else if (year > now.getFullYear() + 15) {
+                        showError(expiryError, 'Tarix düzgün görünmür.');
+                        ok = false;
+                    } else hideError(expiryError);
+                }
+
+                const cvcDigits = cvcInput.value.replace(/\D/g, '');
+                if (cvcDigits.length < 3 || cvcDigits.length > 4) {
+                    showError(cvcError, 'CVV 3 və ya 4 rəqəm olmalıdır.');
+                    ok = false;
+                } else hideError(cvcError);
+
+                return ok;
+            }
+
+            form?.addEventListener('submit', (e) => {
+                if (!validate()) e.preventDefault();
+            });
+        })();
+    </script>
+}
