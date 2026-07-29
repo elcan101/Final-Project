@@ -45,6 +45,10 @@ namespace E_Commerce.Data
                 .Property(w => w.TotalCashbackEarned)
                 .HasColumnType("decimal(18,2)");
 
+            modelBuilder.Entity<Wallet>()
+                .Property(w => w.PendingCashback)
+                .HasColumnType("decimal(18,2)");
+
             modelBuilder.Entity<CourierProfile>()
                 .Property(c => c.CurrentBalance)
                 .HasColumnType("decimal(18,2)");

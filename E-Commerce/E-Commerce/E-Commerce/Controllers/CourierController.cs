@@ -79,7 +79,7 @@ namespace E_Commerce.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult BecomeCourier(string fullName, string vehicleType)
+        public IActionResult BecomeCourier(string fullName, string vehicleType, string phoneNumber)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier)!;
             var existing = _context.CourierProfiles.FirstOrDefault(c => c.CourierId == userId && !c.IsDeleted);
@@ -90,6 +90,12 @@ namespace E_Commerce.Controllers
                 return RedirectToAction("Dashboard");
             }
 
+            if (string.IsNullOrWhiteSpace(phoneNumber))
+            {
+                TempData["Error"] = "Əlaqə nömrəsi mütləq daxil edilməlidir.";
+                return RedirectToAction("Dashboard");
+            }
+
             if (existing == null)
             {
                 _context.CourierProfiles.Add(new CourierProfile
@@ -97,10 +103,42 @@ namespace E_Commerce.Controllers
                     CourierId = userId,
                     FullName = fullName.Trim(),
                     VehicleType = string.IsNullOrWhiteSpace(vehicleType) ? "Piyada" : vehicleType,
+                    PhoneNumber = phoneNumber.Trim(),
                     IsAvailable = false,
                 });
                 _context.SaveChanges();
             }
+            return RedirectToAction("Dashboard");
+        }
+
+        // Əvvəllər (əlaqə nömrəsi tələb olunmadan) profil yaratmış kuryerlər üçün —
+        // qeydiyyat forması artıq görünmür (profil mövcuddur), ona görə nömrəni sonradan
+        // əlavə/yeniləmək üçün ayrıca əməliyyat.
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult UpdatePhoneNumber(string phoneNumber)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier)!;
+            var existing = _context.CourierProfiles.FirstOrDefault(c => c.CourierId == userId && !c.IsDeleted);
+
+            if (existing == null)
+            {
+                TempData["Error"] = "Kuryer profili tapılmadı.";
+                return RedirectToAction("Dashboard");
+            }
+
+            if (string.IsNullOrWhiteSpace(phoneNumber))
+            {
+                TempData["Error"] = "Əlaqə nömrəsi mütləq daxil edilməlidir.";
+                return RedirectToAction("Dashboard");
+            }
+
+            existing.PhoneNumber = phoneNumber.Trim();
+            existing.UpdatedDate = DateTime.Now;
+            _context.SaveChanges();
+
+            TempData["Success"] = "Əlaqə nömrəniz yeniləndi.";
             return RedirectToAction("Dashboard");
         }
     }

@@ -24,6 +24,10 @@
         <h6 class="mb-2">👤 Müştəri məlumatı</h6>
         <div><b>Ad Soyad:</b> @ViewBag.CustomerName</div>
         <div><b>E-poçt:</b> @ViewBag.CustomerEmail</div>
+        @if (!string.IsNullOrWhiteSpace(Model.PhoneNumber))
+        {
+            <div><b>Əlaqə nömrəsi:</b> <a href="tel:@Model.PhoneNumber">@Model.PhoneNumber</a></div>
+        }
     </div>
 
     <div class="filter-panel mb-4" style="max-width:420px;">
@@ -34,6 +38,18 @@
             <div><b>Məsafə:</b> @Model.DeliveryDistanceKm.Value.ToString("0.0") km</div>
         }
         <div><b>Çatdırılma haqqınız (70%):</b> <span style="color:#0b2f6b;font-weight:700;">@Model.CourierEarning.ToString("0.00") AZN</span></div>
+    </div>
+}
+else if (Model.Courier != null)
+{
+    <div class="filter-panel mb-4" style="max-width:420px;">
+        <h6 class="mb-2">🛵 Kuryer məlumatı</h6>
+        <div><b>Ad Soyad:</b> @Model.Courier.FullName</div>
+        <div><b>Nəqliyyat növü:</b> @Model.Courier.VehicleType</div>
+        @if (!string.IsNullOrWhiteSpace(Model.Courier.PhoneNumber))
+        {
+            <div><b>Əlaqə nömrəsi:</b> <a href="tel:@Model.Courier.PhoneNumber">@Model.Courier.PhoneNumber</a></div>
+        }
     </div>
 }
 

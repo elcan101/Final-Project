@@ -11,10 +11,63 @@ namespace E_Commerce.Controllers
     public class ProductController : Controller
     {
         private readonly AppDbContext _context;
+        private readonly IWebHostEnvironment _env;
 
-        public ProductController(AppDbContext context)
+        // Yalnız bu uzantılara icazə verilir (təhlükəsizlik: icra oluna bilən fayllar qadağandır)
+        private static readonly string[] AllowedPdfExtensions = { ".pdf" };
+        private static readonly string[] AllowedAudioExtensions = { ".mp3", ".wav", ".m4a", ".ogg", ".aac" };
+        private const long MaxUploadBytes = 500L * 1024 * 1024; // 500 MB (bax Program.cs — Kestrel limiti ilə eynidir)
+
+        public ProductController(AppDbContext context, IWebHostEnvironment env)
         {
             _context = context;
+            _env = env;
+        }
+
+        // Yüklənən PDF/audio faylını wwwroot/uploads altına yazır və sayta əlçatan nisbi linki qaytarır.
+        // Fayl seçilməyibsə (dəyişiklik yoxdursa) null qaytarır — köhnə fayl linki toxunulmaz qalır.
+        private async Task<(string? url, string? error)> SaveUploadedFileAsync(IFormFile? file, string subFolder, string[] allowedExtensions)
+        {
+            if (file == null || file.Length == 0)
+                return (null, null);
+
+            if (file.Length > MaxUploadBytes)
+                return (null, $"Fayl həcmi {MaxUploadBytes / (1024 * 1024)} MB-dan çox ola bilməz.");
+
+            var ext = Path.GetExtension(file.FileName).ToLowerInvariant();
+            if (!allowedExtensions.Contains(ext))
+                return (null, $"Bu fayl növünə icazə verilmir. İcazəli formatlar: {string.Join(", ", allowedExtensions)}");
+
+            // Fayl sistemi ilə bağlı gözlənilməz xətalar (icazə, disk yeri, yol problemi və s.)
+            // düşsə, tətbiqi çökdürüb "ağ ekran" göstərmək əvəzinə, admin panelinə anlaşılan
+            // xəta mesajı ilə qayıdırıq — bu, "fayl əlavə edəndə yadda saxlanmır" problemi üçün
+            // əsas səbəb idi (unhandled exception → boş/xəta səhifəsi).
+            try
+            {
+                var webRoot = _env.WebRootPath;
+                if (string.IsNullOrEmpty(webRoot))
+                {
+                    // Bəzi hosting mühitlərində wwwroot avtomatik təyin olunmaya bilər
+                    webRoot = Path.Combine(_env.ContentRootPath, "wwwroot");
+                }
+
+                var uploadsRoot = Path.Combine(webRoot, "uploads", subFolder);
+                Directory.CreateDirectory(uploadsRoot);
+
+                var fileName = $"{Guid.NewGuid()}{ext}";
+                var filePath = Path.Combine(uploadsRoot, fileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+
+                return ($"/uploads/{subFolder}/{fileName}", null);
+            }
+            catch (Exception ex)
+            {
+                return (null, $"Fayl yadda saxlanarkən xəta baş verdi: {ex.Message}");
+            }
         }
 
         private string GetUserId() => User.FindFirstValue(ClaimTypes.NameIdentifier) ?? "";
@@ -34,17 +87,38 @@ namespace E_Commerce.Controllers
         [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Product product)
+        public async Task<IActionResult> Create(Product product, IFormFile? pdfFile, IFormFile? audioFile)
         {
+            // Fayl sahələri modeldə deyil, ayrıca parametr kimi gəldiyi üçün onlara görə validasiya xətasını təmizləyirik
+            ModelState.Remove(nameof(Product.PdfUrl));
+            ModelState.Remove(nameof(Product.AudioUrl));
+
             if (ModelState.IsValid)
             {
-                product.AddedByUserId = GetUserId();
-                _context.Products.Add(product);
-                await _context.SaveChangesAsync();
+                var (pdfUrl, pdfError) = await SaveUploadedFileAsync(pdfFile, "pdf", AllowedPdfExtensions);
+                if (pdfError != null)
+                {
+                    ModelState.AddModelError(string.Empty, pdfError);
+                }
 
-                TempData["Success"] = "Kitab uğurla əlavə olundu!";
-                // Əlavə etdikdən sonra idarəetmə (Kitablarım) siyahısına yönləndiririk
-                return RedirectToAction("Manage");
+                var (audioUrl, audioError) = await SaveUploadedFileAsync(audioFile, "audio", AllowedAudioExtensions);
+                if (audioError != null)
+                {
+                    ModelState.AddModelError(string.Empty, audioError);
+                }
+
+                if (pdfError == null && audioError == null)
+                {
+                    product.PdfUrl = pdfUrl;
+                    product.AudioUrl = audioUrl;
+                    product.AddedByUserId = GetUserId();
+                    _context.Products.Add(product);
+                    await _context.SaveChangesAsync();
+
+                    TempData["Success"] = "Kitab uğurla əlavə olundu!";
+                    // Əlavə etdikdən sonra idarəetmə (Kitablarım) siyahısına yönləndiririk
+                    return RedirectToAction("Manage");
+                }
             }
 
             ViewBag.Categories = new SelectList(
@@ -82,7 +156,7 @@ namespace E_Commerce.Controllers
         [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Product product)
+        public async Task<IActionResult> Edit(int id, Product product, IFormFile? pdfFile, IFormFile? audioFile)
         {
             if (id != product.Id) return NotFound();
 
@@ -90,8 +164,37 @@ namespace E_Commerce.Controllers
             if (existing == null) return NotFound();
 
             ModelState.Remove(nameof(Product.AddedByUserId));
+            ModelState.Remove(nameof(Product.PdfUrl));
+            ModelState.Remove(nameof(Product.AudioUrl));
             if (!ModelState.IsValid)
             {
+                // Formda PDF/audio üçün gizli sahə yoxdur, ona görə bağlanan "product"
+                // obyektində bu linklər həmişə boş gəlir — səhifə yenidən göstəriləndə
+                // mövcud faylın itdiyi təəssüratını yaratmamaq üçün DB-dəki cari linkləri qoruyuruq.
+                product.PdfUrl = existing.PdfUrl;
+                product.AudioUrl = existing.AudioUrl;
+                ViewBag.Categories = new SelectList(
+                    _context.Categories.Where(c => !c.IsDeleted).OrderBy(c => c.Name),
+                    "Id", "Name", product.CategoryId);
+                return View(product);
+            }
+
+            var (pdfUrl, pdfError) = await SaveUploadedFileAsync(pdfFile, "pdf", AllowedPdfExtensions);
+            if (pdfError != null)
+            {
+                ModelState.AddModelError(string.Empty, pdfError);
+            }
+
+            var (audioUrl, audioError) = await SaveUploadedFileAsync(audioFile, "audio", AllowedAudioExtensions);
+            if (audioError != null)
+            {
+                ModelState.AddModelError(string.Empty, audioError);
+            }
+
+            if (pdfError != null || audioError != null)
+            {
+                product.PdfUrl = pdfUrl ?? existing.PdfUrl;
+                product.AudioUrl = audioUrl ?? existing.AudioUrl;
                 ViewBag.Categories = new SelectList(
                     _context.Categories.Where(c => !c.IsDeleted).OrderBy(c => c.Name),
                     "Id", "Name", product.CategoryId);
@@ -111,8 +214,9 @@ namespace E_Commerce.Controllers
             existing.IsSecondHand = product.IsSecondHand;
             existing.IsHardcover = product.IsHardcover;
             existing.ImageUrl = product.ImageUrl;
-            existing.PdfUrl = product.PdfUrl;
-            existing.AudioUrl = product.AudioUrl;
+            // Yalnız yeni fayl yüklənibsə mövcud PDF/audio linkini əvəz et — əks halda toxunma
+            if (pdfUrl != null) existing.PdfUrl = pdfUrl;
+            if (audioUrl != null) existing.AudioUrl = audioUrl;
             existing.CategoryId = product.CategoryId;
             existing.UpdatedDate = DateTime.Now;
 
@@ -208,6 +312,31 @@ namespace E_Commerce.Controllers
                 .Where(r => r.ProductId == id && !r.IsDeleted)
                 .OrderByDescending(r => r.CreatedDate)
                 .ToListAsync();
+
+            // E-kitab (PDF) və səsli kitab girişi yalnız aktiv abunəliyə görə verilir:
+            // Standard planı → yalnız e-kitab, Premium planı → e-kitab + səsli kitab.
+            // Giriş etməmiş və ya abunəliyi olmayan istifadəçiyə məzmun göstərilmir —
+            // əvəzinə abunəlik səhifəsinə yönləndirən dəvət göstərilir.
+            bool hasEbookAccess = false;
+            bool hasAudioAccess = false;
+
+            if (User.Identity != null && User.Identity.IsAuthenticated)
+            {
+                var userId = GetUserId();
+                var activeSub = await _context.UserSubscriptions
+                    .Where(s => s.UserId == userId && !s.IsDeleted && s.IsActive && s.ExpiryDate > DateTime.Now)
+                    .OrderByDescending(s => s.ExpiryDate)
+                    .FirstOrDefaultAsync();
+
+                if (activeSub != null)
+                {
+                    hasEbookAccess = true; // Standard və Premium — hər ikisi e-kitaba icazə verir
+                    hasAudioAccess = activeSub.PlanType == SubscriptionPlanType.Premium;
+                }
+            }
+
+            ViewBag.HasEbookAccess = hasEbookAccess;
+            ViewBag.HasAudioAccess = hasAudioAccess;
 
             return View(product);
         }

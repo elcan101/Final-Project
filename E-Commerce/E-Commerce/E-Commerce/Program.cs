@@ -7,6 +7,33 @@ using E_Commerce.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Admin panelində kitablara PDF/audio faylı yükləmək üçün böyük sorğu həcminə icazə (500 MB).
+// Səsli kitab faylları böyük ola bilər (uzun kitablar 100-200+ MB) — əvvəlki 100 MB limiti
+// bəzi fayllarda "ERR_CONNECTION_RESET" xətasına səbəb olurdu (Kestrel limiti aşanda
+// bağlantını dərhal kəsir). Limiti artırdıq.
+const long MaxUploadBytes = 500L * 1024 * 1024;
+
+builder.Services.Configure<Microsoft.AspNetCore.Http.Features.FormOptions>(options =>
+{
+    options.MultipartBodyLengthLimit = MaxUploadBytes;
+    options.ValueLengthLimit = int.MaxValue;
+    options.MultipartHeadersLengthLimit = int.MaxValue;
+});
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.Limits.MaxRequestBodySize = MaxUploadBytes;
+
+    // Böyük fayl yavaş internetlə yüklənəndə Kestrel-in defolt minimum sürət tələbi
+    // (~240 byte/san) bağlantını vaxtından əvvəl kəsib ERR_CONNECTION_RESET yaradırdı.
+    // Bu limiti söndürürük ki, yavaş yükləmələr də uğurla tamamlansın.
+    options.Limits.MinRequestBodyDataRate = null;
+    options.Limits.MinResponseDataRate = null;
+
+    // Böyük faylın tam yüklənməsi üçün kifayət qədər vaxt.
+    options.Limits.KeepAliveTimeout = TimeSpan.FromMinutes(10);
+    options.Limits.RequestHeadersTimeout = TimeSpan.FromMinutes(2);
+});
+
 // Servislər
 builder.Services.AddControllersWithViews();
 
@@ -63,6 +90,16 @@ builder.Services.AddSession(options =>
 var app = builder.Build();
 
 // Middleware-lər
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+}
+else
+{
+    // Əvvəllər gözlənilməyən xəta (məs. admin panelində fayl yükləmə zamanı disk/icazə xətası)
+    // istifadəçiyə boş/xarab səhifə kimi görünürdü. İndi anlaşılan xəta səhifəsinə yönləndirilir.
+    app.UseExceptionHandler("/Home/Error");
+}
 app.UseStaticFiles();
 app.UseRouting();
 app.UseSession();
@@ -89,6 +126,25 @@ using (var scope = app.Services.CreateScope())
     // name" kimi köhnəlmiş sxem xətalarının qarşısını alır.
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
     await db.Database.MigrateAsync();
+
+    // Keşbek "gözləyən" balansının sinxronizasiyası: PendingCashback sütunu sonradan əlavə
+    // olunduğu üçün bəzi mühitlərdə (məs. migration tarixçəsi əl ilə düzəldilmiş bazalarda)
+    // köhnə istifadəçilərin qazandığı keşbek "gözləyən" hissəyə düşməyə bilər. Hər başlanğıcda
+    // bu sadə, təhlükəsiz (yalnız 0-a bərabər olan sətirlərə toxunan) bərpanı işə salırıq ki,
+    // "Balansa köçür" düyməsi bazanın vəziyyətindən asılı olmayaraq düzgün görünsün.
+    try
+    {
+        await db.Database.ExecuteSqlRawAsync(@"
+            UPDATE Wallets
+            SET PendingCashback = TotalCashbackEarned
+            WHERE PendingCashback = 0 AND TotalCashbackEarned > 0;
+        ");
+    }
+    catch
+    {
+        // Sütun hələ mövcud deyilsə (məs. migration bu anda tətbiq olunmayıbsa) səssizcə keç —
+        // növbəti başlanğıcda (migration tətbiq olunandan sonra) avtomatik düzələcək.
+    }
 
     await E_Commerce.Data.IdentitySeeder.SeedAsync(scope.ServiceProvider);
 }

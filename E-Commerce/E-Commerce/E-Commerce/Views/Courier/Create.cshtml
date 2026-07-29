@@ -27,6 +27,12 @@
             </div>
 
             <div class="mb-3">
+                <label asp-for="PhoneNumber" class="form-label">Əlaqə nömrəsi</label>
+                <input asp-for="PhoneNumber" class="form-control" placeholder="Məs: 050 123 45 67" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
                 <label asp-for="VehicleType" class="form-label">Nəqliyyat növü</label>
                 <select asp-for="VehicleType" class="form-select">
                     <option value="">— Seçin —</option>

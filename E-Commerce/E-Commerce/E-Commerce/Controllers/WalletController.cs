@@ -96,6 +96,30 @@ namespace E_Commerce.Controllers
             return RedirectToAction("Index");
         }
 
+        // Gözləyən keşbeki balansa köçürmə — minimum 5 AZN toplananda aktiv olur
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult TransferCashback()
+        {
+            var userId = GetUserId();
+            var wallet = _context.Wallets.FirstOrDefault(w => w.UserId == userId && !w.IsDeleted);
+
+            if (wallet == null || wallet.PendingCashback < Wallet.MinCashbackTransfer)
+            {
+                TempData["Error"] = $"Balansa köçürmək üçün gözləyən keşbekiniz minimum {Wallet.MinCashbackTransfer:0.00} AZN olmalıdır.";
+                return RedirectToAction("Index");
+            }
+
+            var amount = wallet.PendingCashback;
+            wallet.Balance += amount;
+            wallet.PendingCashback = 0.00m;
+            _context.SaveChanges();
+
+            TempData["Success"] = $"{amount:0.00} AZN keşbek balansınıza köçürüldü.";
+            return RedirectToAction("Index");
+        }
+
         // Balansdan pul çıxarma (məs. C2C bazarında kitab satışından qazanılan pulu geri almaq üçün)
         [Authorize]
         [HttpGet]

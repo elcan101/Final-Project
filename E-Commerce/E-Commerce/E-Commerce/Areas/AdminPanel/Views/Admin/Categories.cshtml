@@ -1,0 +1,55 @@
+@model List<E_Commerce.Models.Category>
+@{
+    ViewData["Title"] = "Kateqoriyalar";
+}
+
+<div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-4">
+    <h4 class="mb-0">🏷️ Kateqoriyalar</h4>
+    <span class="text-muted small">Cəmi: @Model.Count kateqoriya</span>
+</div>
+
+<div class="admin-action-card mb-4" style="max-width:480px;">
+    <h6 class="mb-3">+ Yeni kateqoriya</h6>
+    <form asp-action="CreateCategory" method="post" class="d-flex gap-2">
+        <input type="text" name="Name" class="form-control" placeholder="Məs: Bədii Ədəbiyyat" required />
+        <button type="submit" class="btn-deal" style="white-space:nowrap;">Əlavə et</button>
+    </form>
+</div>
+
+@if (Model.Any())
+{
+    <div class="simple-table">
+        <table class="table align-middle">
+            <thead>
+                <tr>
+                    <th>Ad</th>
+                    <th>Kitab sayı</th>
+                    <th>Yaradılma tarixi</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var category in Model)
+                {
+                    <tr>
+                        <td>@category.Name</td>
+                        <td>@category.Products.Count(p => !p.IsDeleted)</td>
+                        <td>@category.CreatedDate.ToString("dd.MM.yyyy HH:mm")</td>
+                        <td class="text-end">
+                            <form asp-action="DeleteCategory" asp-route-id="@category.Id" method="post"
+                                  onsubmit="return confirm('Bu kateqoriyanı silmək istədiyinizə əminsiniz?');">
+                                <button type="submit" class="btn btn-sm btn-outline-danger">🗑️ Sil</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <div class="text-center py-5">
+        <p class="text-muted mb-0">Hələ heç bir kateqoriya yoxdur.</p>
+    </div>
+}

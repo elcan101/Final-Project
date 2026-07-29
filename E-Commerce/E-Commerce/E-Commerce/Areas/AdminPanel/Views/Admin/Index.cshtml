@@ -1,5 +1,8 @@
+@using System.Text.Json
 @{
     ViewData["Title"] = "Admin Panel";
+    var chartLabels = ViewBag.ChartLabels as List<string> ?? new List<string>();
+    var chartValues = ViewBag.ChartValues as List<decimal> ?? new List<decimal>();
 }
 
 <div class="mb-4">
@@ -7,7 +10,7 @@
     <p class="text-muted mb-0">Okean Kitabevi idarəetmə paneli</p>
 </div>
 
-<div class="row g-3 mb-5">
+<div class="row g-3 mb-4">
     <div class="col-6 col-md-3">
         <div class="admin-stat-card">
             <div class="admin-stat-num">@ViewBag.ProductCount</div>
@@ -34,6 +37,39 @@
     </div>
 </div>
 
+<h6 class="mb-3">💰 Satış və gəlir dövriyyəsi</h6>
+<div class="row g-3 mb-4">
+    <div class="col-6 col-md-3">
+        <div class="admin-stat-card">
+            <div class="admin-stat-num">@(((decimal)ViewBag.TotalBookSales).ToString("0.00"))</div>
+            <div class="admin-stat-label">Kitabların ödənişi (AZN)</div>
+        </div>
+    </div>
+    <div class="col-6 col-md-3">
+        <div class="admin-stat-card">
+            <div class="admin-stat-num">@(((decimal)ViewBag.TotalDeliveryFee).ToString("0.00"))</div>
+            <div class="admin-stat-label">Çatdırılma haqqı (AZN)</div>
+        </div>
+    </div>
+    <div class="col-6 col-md-3">
+        <div class="admin-stat-card">
+            <div class="admin-stat-num">@(((decimal)ViewBag.PlatformDeliveryShare).ToString("0.00"))</div>
+            <div class="admin-stat-label">Platforma payı — 30% (AZN)</div>
+        </div>
+    </div>
+    <div class="col-6 col-md-3">
+        <div class="admin-stat-card">
+            <div class="admin-stat-num">@(((decimal)ViewBag.TotalTurnover).ToString("0.00"))</div>
+            <div class="admin-stat-label">Ümumi gəlir dövriyyəsi (AZN)</div>
+        </div>
+    </div>
+</div>
+
+<div class="admin-action-card mb-5">
+    <h6 class="mb-3">📈 Son 14 günün dövriyyəsi</h6>
+    <canvas id="revenueChart" height="90"></canvas>
+</div>
+
 <div class="row g-4">
     <div class="col-md-4">
         <div class="admin-action-card">
@@ -48,7 +84,7 @@
             <div class="admin-action-emoji">🏷️</div>
             <h6>Kateqoriyalar</h6>
             <p class="text-muted small">Kateqoriya siyahısını idarə et.</p>
-            <a asp-area="" asp-controller="Category" asp-action="Index" class="btn-deal w-100">Kateqoriyalar</a>
+            <a asp-controller="Admin" asp-action="Categories" class="btn-deal w-100">Kateqoriyalar</a>
         </div>
     </div>
     <div class="col-md-4">
@@ -71,16 +107,74 @@
         <div class="admin-action-card">
             <div class="admin-action-emoji">📦</div>
             <h6>Sifarişlər</h6>
-            <p class="text-muted small">Bütün sifarişlərə bax.</p>
-            <a asp-area="" asp-controller="Order" asp-action="Index" class="btn-deal w-100">Sifarişlər</a>
+            <p class="text-muted small">Bütün sifarişlərin ödənişi, tarixi, ünvanı və statusuna bax.</p>
+            <a asp-controller="Admin" asp-action="Orders" class="btn-deal w-100">Sifarişlər</a>
         </div>
     </div>
     <div class="col-md-4">
         <div class="admin-action-card">
             <div class="admin-action-emoji">🛵</div>
             <h6>Kuryerlər</h6>
-            <p class="text-muted small">Kuryer panelinə keç.</p>
-            <a asp-area="" asp-controller="Courier" asp-action="Index" class="btn-deal w-100">Kuryerlər</a>
+            <p class="text-muted small">Qeydiyyatdan keçən kuryerlər haqqında məlumat.</p>
+            <a asp-controller="Admin" asp-action="Couriers" class="btn-deal w-100">Kuryerlər</a>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="admin-action-card">
+            <div class="admin-action-emoji">📖</div>
+            <h6>Abunəliklər</h6>
+            <p class="text-muted small">Kim, nə vaxt abunə olub, nə vaxt qurtarır və ödəniş.</p>
+            <a asp-controller="Admin" asp-action="Subscriptions" class="btn-deal w-100">Abunəliklər</a>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="admin-action-card">
+            <div class="admin-action-emoji">📚</div>
+            <h6>İcarələr</h6>
+            <p class="text-muted small">İcarəyə götürülən kitablar haqqında məlumat.</p>
+            <a asp-controller="Admin" asp-action="Rentals" class="btn-deal w-100">İcarələr</a>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="admin-action-card">
+            <div class="admin-action-emoji">🔁</div>
+            <h6>C2C Bazar</h6>
+            <p class="text-muted small">İstifadəçi elanları — satış, komissiya, status.</p>
+            <a asp-controller="Admin" asp-action="Listings" class="btn-deal w-100">C2C Bazar</a>
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+    <script>
+        (function () {
+            const ctx = document.getElementById('revenueChart');
+            if (!ctx) return;
+
+            const labels = @Html.Raw(JsonSerializer.Serialize(chartLabels));
+            const values = @Html.Raw(JsonSerializer.Serialize(chartValues));
+
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Gündəlik dövriyyə (AZN)',
+                        data: values,
+                        borderColor: '#0b2f6b',
+                        backgroundColor: 'rgba(11,47,107,0.12)',
+                        fill: true,
+                        tension: 0.3,
+                        pointRadius: 3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: { legend: { display: false } },
+                    scales: { y: { beginAtZero: true } }
+                }
+            });
+        })();
+    </script>
+}

@@ -1,0 +1,60 @@
+@model List<E_Commerce.Models.Order>
+@{
+    ViewData["Title"] = "Bütün sifarişlər";
+    var userEmails = ViewBag.UserEmails as Dictionary<string, string> ?? new Dictionary<string, string>();
+}
+
+<div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-4">
+    <h4 class="mb-0">📦 Bütün sifarişlər</h4>
+    <span class="text-muted small">Cəmi: @Model.Count sifariş</span>
+</div>
+
+@if (Model.Any())
+{
+    <div class="simple-table" style="overflow-x:auto;">
+        <table class="table align-middle">
+            <thead>
+                <tr>
+                    <th>Sifariş №</th>
+                    <th>Tarix</th>
+                    <th>Müştəri</th>
+                    <th>Ünvan</th>
+                    <th>Kitablar (AZN)</th>
+                    <th>Çatdırılma (AZN)</th>
+                    <th>Endirim</th>
+                    <th>Keşbek</th>
+                    <th>Yekun ödəniş</th>
+                    <th>Status</th>
+                    <th>Kuryer</th>
+                    <th>Kuryer qazancı</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var order in Model)
+                {
+                    var bookAmount = order.TotalAmount - order.DeliveryFee;
+                    <tr>
+                        <td>#@order.Id</td>
+                        <td>@order.CreatedDate.ToString("dd.MM.yyyy HH:mm")</td>
+                        <td>@(userEmails.TryGetValue(order.UserId, out var email) ? email : order.UserId)</td>
+                        <td class="small">@(order.DeliveryAddressText ?? "—")</td>
+                        <td>@bookAmount.ToString("0.00")</td>
+                        <td>@order.DeliveryFee.ToString("0.00")</td>
+                        <td>@(order.DiscountAmount > 0 ? $"-{order.DiscountAmount:0.00}" : "—")</td>
+                        <td>@order.CashbackAmount.ToString("0.00")</td>
+                        <td><b>@order.TotalAmount.ToString("0.00")</b></td>
+                        <td><span class="status-badge">@order.Status</span></td>
+                        <td>@(order.Courier?.FullName ?? "—")</td>
+                        <td>@(order.Courier != null ? order.CourierEarning.ToString("0.00") : "—")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <div class="text-center py-5">
+        <p class="text-muted mb-0">Hələ heç bir sifariş yoxdur.</p>
+    </div>
+}

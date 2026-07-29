@@ -6,7 +6,9 @@ using E_Commerce.Models;
 
 namespace E_Commerce.Controllers
 {
-    [Authorize]
+    // Qeyd: bu controller-in tamamı üçün giriş TƏLƏB OLUNMUR — abunəlik planlarına
+    // istənilən qonaq (giriş etməmiş) istifadəçi baxa bilsin deyə. Giriş yalnız
+    // ödəniş mərhələsində (Checkout / Subscribe) tələb olunur — bax aşağıdakı [Authorize].
     public class SubscriptionController : Controller
     {
         private readonly AppDbContext _context;
@@ -16,26 +18,34 @@ namespace E_Commerce.Controllers
             _context = context;
         }
 
-        private string GetUserId() => User.FindFirstValue(ClaimTypes.NameIdentifier)!;
+        private string? GetUserId() => User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-        // Planların müqayisə cədvəli (Standard vs Premium)
+        // Planların müqayisə cədvəli (Standard vs Premium) — giriş etmədən də görünür
         public IActionResult Index()
         {
-            var userId = GetUserId();
-            var current = _context.UserSubscriptions
-                .Where(s => s.UserId == userId && !s.IsDeleted && s.IsActive && s.ExpiryDate > DateTime.Now)
-                .OrderByDescending(s => s.ExpiryDate)
-                .FirstOrDefault();
+            UserSubscription? current = null;
+
+            if (User.Identity != null && User.Identity.IsAuthenticated)
+            {
+                var userId = GetUserId();
+                current = _context.UserSubscriptions
+                    .Where(s => s.UserId == userId && !s.IsDeleted && s.IsActive && s.ExpiryDate > DateTime.Now)
+                    .OrderByDescending(s => s.ExpiryDate)
+                    .FirstOrDefault();
+            }
 
             ViewBag.CurrentPlan = current;
             return View();
         }
 
-        // Planı seçəndə ödəniş təsdiq səhifəsinə keçirik — ödəniş yalnız saytdakı balansdan aparılır
+        // Planı seçəndə ödəniş təsdiq səhifəsinə keçirik — ödəniş yalnız saytdakı balansdan aparılır.
+        // Buradan etibarən giriş tələb olunur (qonaq istifadəçi bura çatanda avtomatik
+        // Login səhifəsinə yönləndirilir, giriş edən kimi elə bu səhifəyə geri qayıdır).
+        [Authorize]
         [HttpGet]
         public IActionResult Checkout(SubscriptionPlanType planType)
         {
-            var userId = GetUserId();
+            var userId = GetUserId()!;
             var wallet = _context.Wallets.FirstOrDefault(w => w.UserId == userId && !w.IsDeleted);
 
             ViewBag.PlanType = planType;
@@ -44,11 +54,12 @@ namespace E_Commerce.Controllers
             return View();
         }
 
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Subscribe(SubscriptionPlanType planType)
         {
-            var userId = GetUserId();
+            var userId = GetUserId()!;
             var price = UserSubscription.MonthlyPrice(planType);
 
             // Ödəniş yalnız saytdakı balansdan tutulur — kartdan birbaşa tutulmur.

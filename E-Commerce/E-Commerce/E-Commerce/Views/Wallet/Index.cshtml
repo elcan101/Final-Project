@@ -30,8 +30,17 @@
     </div>
     <div class="col-md-6">
         <div class="product-card text-start">
-            <small class="text-muted">Ümumi Qazanılan Keşbek</small>
-            <h3 class="mt-1" style="color:#0b2f6b;">@Model.TotalCashbackEarned AZN</h3>
+            <small class="text-muted">Keşbek</small>
+            <h3 class="mt-1" style="color:#0b2f6b;">@Model.TotalCashbackEarned.ToString("0.00") AZN</h3>
+            <div class="small text-muted mt-1">
+                Gözləyən: @Model.PendingCashback.ToString("0.00") AZN
+                @if (Model.PendingCashback >= E_Commerce.Models.Wallet.MinCashbackTransfer)
+                {
+                    <form asp-action="TransferCashback" method="post" class="d-inline ms-2">
+                        <button type="submit" class="btn btn-sm btn-outline-dark">Çıxar</button>
+                    </form>
+                }
+            </div>
         </div>
     </div>
 </div>

@@ -1,0 +1,55 @@
+@model List<E_Commerce.Models.CourierProfile>
+@{
+    ViewData["Title"] = "Kuryerlər";
+}
+
+<div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-4">
+    <h4 class="mb-0">🛵 Qeydiyyatdan keçən kuryerlər</h4>
+    <span class="text-muted small">Cəmi: @Model.Count kuryer</span>
+</div>
+
+@if (Model.Any())
+{
+    <div class="simple-table">
+        <table class="table align-middle">
+            <thead>
+                <tr>
+                    <th>Ad Soyad</th>
+                    <th>Kuryer ID</th>
+                    <th>Nəqliyyat növü</th>
+                    <th>Qeydiyyat tarixi</th>
+                    <th>Vəziyyət</th>
+                    <th>Balans</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var courier in Model)
+                {
+                    <tr>
+                        <td>@courier.FullName</td>
+                        <td class="small text-muted">@courier.CourierId</td>
+                        <td>@courier.VehicleType</td>
+                        <td>@courier.CreatedDate.ToString("dd.MM.yyyy HH:mm")</td>
+                        <td>
+                            @if (courier.IsAvailable)
+                            {
+                                <span class="status-badge">Boşdadır</span>
+                            }
+                            else
+                            {
+                                <span class="status-badge" style="background:#fdeaea;color:#e63946;">Məşğuldur</span>
+                            }
+                        </td>
+                        <td><b>@courier.CurrentBalance.ToString("0.00") AZN</b></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <div class="text-center py-5">
+        <p class="text-muted mb-0">Hələ heç bir kuryer qeydiyyatdan keçməyib.</p>
+    </div>
+}

@@ -1,0 +1,66 @@
+@model List<E_Commerce.Models.Listing>
+@{
+    ViewData["Title"] = "C2C Bazar";
+    var userEmails = ViewBag.UserEmails as Dictionary<string, string> ?? new Dictionary<string, string>();
+}
+
+<div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-4">
+    <h4 class="mb-0">🔁 C2C Bazar (istifadəçi elanları)</h4>
+    <span class="text-muted small">Cəmi: @Model.Count elan</span>
+</div>
+
+@if (Model.Any())
+{
+    <div class="simple-table" style="overflow-x:auto;">
+        <table class="table align-middle">
+            <thead>
+                <tr>
+                    <th>Başlıq</th>
+                    <th>Satıcı</th>
+                    <th>Qiymət</th>
+                    <th>Kateqoriya</th>
+                    <th>Elan tarixi</th>
+                    <th>Toplanan haqq</th>
+                    <th>Status</th>
+                    <th>Alıcı</th>
+                    <th>Satılma tarixi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var listing in Model)
+                {
+                    <tr>
+                        <td>@listing.Title</td>
+                        <td>@(userEmails.TryGetValue(listing.SellerId, out var sellerEmail) ? sellerEmail : listing.SellerId)</td>
+                        <td><b>@listing.Price.ToString("0.00") AZN</b></td>
+                        <td>@(listing.Category?.Name ?? "—")</td>
+                        <td>@listing.CreatedDate.ToString("dd.MM.yyyy HH:mm")</td>
+                        <td>@listing.AccruedFees.ToString("0.00") AZN</td>
+                        <td>
+                            @switch (listing.Status)
+                            {
+                                case E_Commerce.Models.ListingStatus.Active:
+                                    <span class="status-badge">Aktiv</span>
+                                    break;
+                                case E_Commerce.Models.ListingStatus.Sold:
+                                    <span class="status-badge" style="background:#eaf2fd;color:#0b2f6b;">Satılıb</span>
+                                    break;
+                                default:
+                                    <span class="status-badge" style="background:#fdeaea;color:#e63946;">Deaktiv edilib</span>
+                                    break;
+                            }
+                        </td>
+                        <td>@(listing.BuyerId != null && userEmails.TryGetValue(listing.BuyerId, out var buyerEmail) ? buyerEmail : "—")</td>
+                        <td>@(listing.SoldDate?.ToString("dd.MM.yyyy HH:mm") ?? "—")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <div class="text-center py-5">
+        <p class="text-muted mb-0">Hələ heç bir elan yoxdur.</p>
+    </div>
+}

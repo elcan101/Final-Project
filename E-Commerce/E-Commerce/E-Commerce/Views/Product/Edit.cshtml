@@ -12,7 +12,7 @@
 
 <div class="row justify-content-center">
     <div class="col-lg-8">
-        <form asp-action="Edit" asp-route-id="@Model.Id" class="form-card">
+        <form asp-action="Edit" asp-route-id="@Model.Id" class="form-card" enctype="multipart/form-data">
             <input type="hidden" asp-for="Id" />
             <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
 
@@ -110,7 +110,7 @@
                 </div>
             </div>
 
-            <h6 class="section-title">Media linkləri</h6>
+            <h6 class="section-title">Media</h6>
             <div class="row g-3 mb-4">
                 <div class="col-md-4">
                     <label asp-for="ImageUrl" class="form-label">Şəkil linki</label>
@@ -118,12 +118,32 @@
                     <span asp-validation-for="ImageUrl" class="text-danger"></span>
                 </div>
                 <div class="col-md-4">
-                    <label asp-for="PdfUrl" class="form-label">PDF linki</label>
-                    <input asp-for="PdfUrl" class="form-control" />
+                    <label for="pdfFile" class="form-label">PDF faylı</label>
+                    <input type="file" id="pdfFile" name="pdfFile" class="form-control" accept=".pdf" />
+                    <div class="form-text">
+                        @if (!string.IsNullOrWhiteSpace(Model.PdfUrl))
+                        {
+                            <span>Cari fayl: <a href="@Model.PdfUrl" target="_blank">bax</a> — yalnız yeni fayl seçsəniz dəyişir</span>
+                        }
+                        else
+                        {
+                            <span>Yalnız e-kitab üçün — .pdf, maks. 100 MB</span>
+                        }
+                    </div>
                 </div>
                 <div class="col-md-4">
-                    <label asp-for="AudioUrl" class="form-label">Audio linki</label>
-                    <input asp-for="AudioUrl" class="form-control" />
+                    <label for="audioFile" class="form-label">Audio faylı</label>
+                    <input type="file" id="audioFile" name="audioFile" class="form-control" accept=".mp3,.wav,.m4a,.ogg,.aac" />
+                    <div class="form-text">
+                        @if (!string.IsNullOrWhiteSpace(Model.AudioUrl))
+                        {
+                            <span>Cari fayl: <a href="@Model.AudioUrl" target="_blank">bax</a> — yalnız yeni fayl seçsəniz dəyişir</span>
+                        }
+                        else
+                        {
+                            <span>Yalnız səsli kitab üçün — mp3/wav/m4a/ogg/aac, maks. 100 MB</span>
+                        }
+                    </div>
                 </div>
             </div>
 

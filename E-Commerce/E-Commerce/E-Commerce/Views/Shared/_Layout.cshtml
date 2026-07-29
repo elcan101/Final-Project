@@ -57,7 +57,11 @@
 
             <div class="d-flex align-items-center gap-2 auth-actions">
                 <a href="/Cart" class="icon-link" title="Səbət">🛒</a>
-                <a href="/Order" class="icon-link" title="Sifarişlərim">👤</a>
+                <a href="/Order" class="icon-link" title="Sifarişlərim">📦</a>
+                @if (User.Identity != null && User.Identity.IsAuthenticated)
+                {
+                    <a href="/Account/Profile" class="icon-link" title="Profilim">👤</a>
+                }
 
                 @if (headerWalletBalance.HasValue)
                 {

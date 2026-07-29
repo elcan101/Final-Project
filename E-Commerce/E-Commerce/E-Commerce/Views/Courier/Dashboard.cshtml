@@ -28,6 +28,10 @@
                 <input type="text" name="fullName" class="form-control" placeholder="Məs: Elvin Məmmədov" required />
             </div>
             <div class="mb-3">
+                <label class="form-label small">Əlaqə nömrəsi</label>
+                <input type="tel" name="phoneNumber" class="form-control" placeholder="Məs: 050 123 45 67" required />
+            </div>
+            <div class="mb-3">
                 <label class="form-label small">Nəqliyyat növü</label>
                 <select name="vehicleType" class="form-select">
                     <option>Piyada</option>
@@ -53,12 +57,27 @@ else
         <div class="col-lg-4">
             <div class="filter-panel">
                 <div class="mb-2"><b>Ad Soyad:</b> @Model.FullName</div>
+                <div class="mb-2">
+                    <b>Əlaqə nömrəsi:</b>
+                    @(string.IsNullOrWhiteSpace(Model.PhoneNumber) ? "— qeyd olunmayıb" : Model.PhoneNumber)
+                </div>
                 <div class="mb-2"><b>Nəqliyyat:</b> @Model.VehicleType</div>
                 <div class="mb-3"><b>Balans:</b> @Model.CurrentBalance AZN</div>
                 <button id="toggleAvailability" class="btn w-100" data-courier-id="@Model.Id" data-available="@Model.IsAvailable.ToString().ToLower()">
                     <span id="toggleLabel">@(Model.IsAvailable ? "🟢 Boşam (Offline et)" : "⚪ Offline (Online ol)")</span>
                 </button>
             </div>
+
+            @if (string.IsNullOrWhiteSpace(Model.PhoneNumber))
+            {
+                <div class="filter-panel mt-3">
+                    <p class="small text-muted mb-2">Müştərilər çatdırılma zamanı sizinlə əlaqə saxlaya bilsin deyə əlaqə nömrənizi əlavə edin.</p>
+                    <form asp-action="UpdatePhoneNumber" method="post" class="d-flex gap-2">
+                        <input type="tel" name="phoneNumber" class="form-control" placeholder="Məs: 050 123 45 67" required />
+                        <button type="submit" class="btn-deal">Yadda saxla</button>
+                    </form>
+                </div>
+            }
         </div>
 
         <div class="col-lg-8">

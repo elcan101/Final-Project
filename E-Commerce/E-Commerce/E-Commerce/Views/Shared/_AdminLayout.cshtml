@@ -23,10 +23,13 @@
             <ul class="ah-nav">
                 <li><a asp-area="AdminPanel" asp-controller="Admin" asp-action="Index" class="@ahActive("Admin")"><span class="ah-nav-icon">📊</span> Dashboard</a></li>
                 <li><a asp-area="" asp-controller="Product" asp-action="Manage" class="@ahActive("Product")"><span class="ah-nav-icon">📚</span> Kitablar</a></li>
-                <li><a asp-area="" asp-controller="Category" asp-action="Index" class="@ahActive("Category")"><span class="ah-nav-icon">🏷️</span> Kateqoriyalar</a></li>
+                <li><a asp-area="AdminPanel" asp-controller="Admin" asp-action="Categories" class="@ahActive("Admin")"><span class="ah-nav-icon">🏷️</span> Kateqoriyalar</a></li>
                 <li><a asp-area="" asp-controller="Coupon" asp-action="Index" class="@ahActive("Coupon")"><span class="ah-nav-icon">🎟️</span> Kuponlar</a></li>
-                <li><a asp-area="" asp-controller="Order" asp-action="Index" class="@ahActive("Order")"><span class="ah-nav-icon">📦</span> Sifarişlər</a></li>
-                <li><a asp-area="" asp-controller="Courier" asp-action="Index" class="@ahActive("Courier")"><span class="ah-nav-icon">🛵</span> Kuryerlər</a></li>
+                <li><a asp-area="AdminPanel" asp-controller="Admin" asp-action="Orders" class="@ahActive("Admin")"><span class="ah-nav-icon">📦</span> Sifarişlər</a></li>
+                <li><a asp-area="AdminPanel" asp-controller="Admin" asp-action="Couriers" class="@ahActive("Admin")"><span class="ah-nav-icon">🛵</span> Kuryerlər</a></li>
+                <li><a asp-area="AdminPanel" asp-controller="Admin" asp-action="Subscriptions" class="@ahActive("Admin")"><span class="ah-nav-icon">📖</span> Abunəliklər</a></li>
+                <li><a asp-area="AdminPanel" asp-controller="Admin" asp-action="Rentals" class="@ahActive("Admin")"><span class="ah-nav-icon">📚</span> İcarələr</a></li>
+                <li><a asp-area="AdminPanel" asp-controller="Admin" asp-action="Listings" class="@ahActive("Admin")"><span class="ah-nav-icon">🔁</span> C2C Bazar</a></li>
 
                 <div class="ah-sidebar-divider"></div>
 

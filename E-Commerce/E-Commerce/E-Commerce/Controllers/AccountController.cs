@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using E_Commerce.Data;
 using E_Commerce.Models;
 using E_Commerce.ViewModels;
 
@@ -10,11 +12,13 @@ namespace E_Commerce.Controllers
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
+        private readonly AppDbContext _context;
 
-        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
+        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, AppDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _context = context;
         }
 
         // ---------- QEYDİYYAT ----------
@@ -124,6 +128,34 @@ namespace E_Commerce.Controllers
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
+        }
+
+        // ---------- PROFİL ----------
+        // Mailinə giriş edən istənilən istifadəçi (müştəri, kuryer və s.) üçün ortaq profil
+        // səhifəsi: şəxsi məlumatlar + kuryer profili (varsa) + abunəlik tarixçəsi.
+        [Authorize]
+        [HttpGet]
+        public async Task<IActionResult> Profile()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null) return NotFound();
+
+            var roles = await _userManager.GetRolesAsync(user);
+
+            var courierProfile = await _context.CourierProfiles
+                .FirstOrDefaultAsync(c => c.CourierId == user.Id && !c.IsDeleted);
+
+            var subscriptions = await _context.UserSubscriptions
+                .Where(s => s.UserId == user.Id && !s.IsDeleted)
+                .OrderByDescending(s => s.StartDate)
+                .ToListAsync();
+
+            ViewBag.User = user;
+            ViewBag.Roles = roles;
+            ViewBag.CourierProfile = courierProfile;
+            ViewBag.Subscriptions = subscriptions;
+
+            return View();
         }
 
         [HttpGet]

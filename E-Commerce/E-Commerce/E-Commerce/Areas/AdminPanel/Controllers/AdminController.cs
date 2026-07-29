@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using E_Commerce.Data;
 using E_Commerce.Models;
 
@@ -27,8 +28,178 @@ namespace E_Commerce.Areas.AdminPanel.Controllers
             ViewBag.CategoryCount = _context.Categories.Count(c => !c.IsDeleted);
             ViewBag.CouponCount = _context.Coupons.Count(c => !c.IsDeleted);
             ViewBag.ListingCount = _context.Listings.Count(l => !l.IsDeleted);
-            ViewBag.OrderCount = _context.Orders.Count(o => !o.IsDeleted);
+
+            var allOrders = _context.Orders.Where(o => !o.IsDeleted).ToList();
+            ViewBag.OrderCount = allOrders.Count;
+
+            // Satış/gəlir dövriyyəsi: kitabların ödənişi, çatdırılma gəliri və ümumi dövriyyə
+            var totalTurnover = allOrders.Sum(o => o.TotalAmount);           // Ümumi gəlir dövriyyəsi
+            var totalDeliveryFee = allOrders.Sum(o => o.DeliveryFee);        // Çatdırılma haqqı (cəmi)
+            var totalBookSales = totalTurnover - totalDeliveryFee;           // Kitabların ödənişi (satış dövriyyəsi)
+            var platformDeliveryShare = Math.Round(totalDeliveryFee * (1 - Order.CourierShareRate), 2); // Platformanın 30%-i
+
+            ViewBag.TotalTurnover = totalTurnover;
+            ViewBag.TotalBookSales = totalBookSales;
+            ViewBag.TotalDeliveryFee = totalDeliveryFee;
+            ViewBag.PlatformDeliveryShare = platformDeliveryShare;
+
+            // Son 14 günün gündəlik dövriyyə diaqramı üçün data
+            var since = DateTime.Now.Date.AddDays(-13);
+            var dailyTotals = allOrders
+                .Where(o => o.CreatedDate.Date >= since)
+                .GroupBy(o => o.CreatedDate.Date)
+                .ToDictionary(g => g.Key, g => g.Sum(o => o.TotalAmount));
+
+            var chartLabels = new List<string>();
+            var chartValues = new List<decimal>();
+            for (var d = since; d <= DateTime.Now.Date; d = d.AddDays(1))
+            {
+                chartLabels.Add(d.ToString("dd.MM"));
+                chartValues.Add(dailyTotals.TryGetValue(d, out var v) ? v : 0.00m);
+            }
+            ViewBag.ChartLabels = chartLabels;
+            ViewBag.ChartValues = chartValues;
+
             return View();
+        }
+
+        // Bütün sifarişlərə tam baxış: ödəniş, tarix, ünvan, status, kuryer, keşbek və s.
+        public async Task<IActionResult> Orders()
+        {
+            var orders = await _context.Orders
+                .Include(o => o.Courier)
+                .Where(o => !o.IsDeleted)
+                .OrderByDescending(o => o.CreatedDate)
+                .ToListAsync();
+
+            var userIds = orders.Select(o => o.UserId).Distinct().ToList();
+            var users = await _context.Users
+                .Where(u => userIds.Contains(u.Id))
+                .ToDictionaryAsync(u => u.Id, u => u.Email ?? u.UserName ?? u.Id);
+            ViewBag.UserEmails = users;
+
+            return View(orders);
+        }
+
+        // ---------- Kateqoriyalar (admin panel daxilində, sayta keçmədən) ----------
+
+        public IActionResult Categories()
+        {
+            var categories = _context.Categories
+                .Include(c => c.Products)
+                .Where(c => !c.IsDeleted)
+                .OrderBy(c => c.Name)
+                .ToList();
+
+            return View(categories);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult CreateCategory(Category category)
+        {
+            if (string.IsNullOrWhiteSpace(category?.Name))
+            {
+                TempData["Error"] = "Kateqoriyanın adı boş ola bilməz.";
+                return RedirectToAction("Categories");
+            }
+
+            _context.Categories.Add(new Category { Name = category.Name.Trim() });
+            _context.SaveChanges();
+
+            TempData["Success"] = "Kateqoriya əlavə olundu.";
+            return RedirectToAction("Categories");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteCategory(int id)
+        {
+            var category = _context.Categories.FirstOrDefault(c => c.Id == id && !c.IsDeleted);
+            if (category == null)
+            {
+                TempData["Error"] = "Kateqoriya tapılmadı.";
+                return RedirectToAction("Categories");
+            }
+
+            // Soft delete: kateqoriyaya bağlı kitablar silinmir, sadəcə kateqoriya siyahıdan gizlənir
+            category.IsDeleted = true;
+            category.UpdatedDate = DateTime.Now;
+            _context.SaveChanges();
+
+            TempData["Success"] = $"\"{category.Name}\" kateqoriyası silindi.";
+            return RedirectToAction("Categories");
+        }
+
+        // ---------- Kuryerlər (admin panel daxilində, sayta keçmədən) ----------
+
+        public IActionResult Couriers()
+        {
+            var couriers = _context.CourierProfiles
+                .Where(c => !c.IsDeleted)
+                .OrderByDescending(c => c.CreatedDate)
+                .ToList();
+
+            return View(couriers);
+        }
+
+        // ---------- Abunəliklər (Kitab Pass) ----------
+
+        public async Task<IActionResult> Subscriptions()
+        {
+            var subscriptions = await _context.UserSubscriptions
+                .Where(s => !s.IsDeleted)
+                .OrderByDescending(s => s.StartDate)
+                .ToListAsync();
+
+            var userIds = subscriptions.Select(s => s.UserId).Distinct().ToList();
+            var users = await _context.Users
+                .Where(u => userIds.Contains(u.Id))
+                .ToDictionaryAsync(u => u.Id, u => u.Email ?? u.UserName ?? u.Id);
+            ViewBag.UserEmails = users;
+
+            return View(subscriptions);
+        }
+
+        // ---------- İcarəyə götürülən kitablar ----------
+
+        public async Task<IActionResult> Rentals()
+        {
+            var rentals = await _context.BookRentals
+                .Include(r => r.Product)
+                .Where(r => !r.IsDeleted)
+                .OrderByDescending(r => r.RentedDate)
+                .ToListAsync();
+
+            var userIds = rentals.Select(r => r.UserId).Distinct().ToList();
+            var users = await _context.Users
+                .Where(u => userIds.Contains(u.Id))
+                .ToDictionaryAsync(u => u.Id, u => u.Email ?? u.UserName ?? u.Id);
+            ViewBag.UserEmails = users;
+
+            return View(rentals);
+        }
+
+        // ---------- C2C bazar (istifadəçilər arası ikinci əl kitab elanları) ----------
+
+        public async Task<IActionResult> Listings()
+        {
+            var listings = await _context.Listings
+                .Include(l => l.Category)
+                .Where(l => !l.IsDeleted)
+                .OrderByDescending(l => l.CreatedDate)
+                .ToListAsync();
+
+            var userIds = listings.Select(l => l.SellerId)
+                .Concat(listings.Where(l => l.BuyerId != null).Select(l => l.BuyerId!))
+                .Distinct()
+                .ToList();
+            var users = await _context.Users
+                .Where(u => userIds.Contains(u.Id))
+                .ToDictionaryAsync(u => u.Id, u => u.Email ?? u.UserName ?? u.Id);
+            ViewBag.UserEmails = users;
+
+            return View(listings);
         }
 
         // ---------- Adminlərin idarə olunması ----------

@@ -1,0 +1,57 @@
+@model List<E_Commerce.Models.UserSubscription>
+@{
+    ViewData["Title"] = "Abunəliklər";
+    var userEmails = ViewBag.UserEmails as Dictionary<string, string> ?? new Dictionary<string, string>();
+}
+
+<div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-4">
+    <h4 class="mb-0">📖 Kitab Pass abunəlikləri</h4>
+    <span class="text-muted small">Cəmi: @Model.Count abunəlik</span>
+</div>
+
+@if (Model.Any())
+{
+    <div class="simple-table" style="overflow-x:auto;">
+        <table class="table align-middle">
+            <thead>
+                <tr>
+                    <th>Mail</th>
+                    <th>Plan</th>
+                    <th>Abunə olma tarixi</th>
+                    <th>Qurtarma tarixi</th>
+                    <th>Ödəniş</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var sub in Model)
+                {
+                    var expired = sub.ExpiryDate <= DateTime.Now;
+                    <tr>
+                        <td>@(userEmails.TryGetValue(sub.UserId, out var email) ? email : sub.UserId)</td>
+                        <td>@(sub.PlanType == E_Commerce.Models.SubscriptionPlanType.Premium ? "Premium" : "Standard")</td>
+                        <td>@sub.StartDate.ToString("dd.MM.yyyy HH:mm")</td>
+                        <td>@sub.ExpiryDate.ToString("dd.MM.yyyy HH:mm")</td>
+                        <td><b>@sub.PricePaid.ToString("0.00") AZN</b></td>
+                        <td>
+                            @if (sub.IsActive && !expired)
+                            {
+                                <span class="status-badge">Aktiv</span>
+                            }
+                            else
+                            {
+                                <span class="status-badge" style="background:#fdeaea;color:#e63946;">Bitib</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <div class="text-center py-5">
+        <p class="text-muted mb-0">Hələ heç bir abunəlik yoxdur.</p>
+    </div>
+}

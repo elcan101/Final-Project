@@ -18,6 +18,11 @@ namespace E_Commerce.Models
         [StringLength(50)]
         public string VehicleType { get; set; } = null!;
 
+        // Kuryer qeydiyyatı zamanı tələb olunan əlaqə nömrəsi
+        [Required]
+        [StringLength(30)]
+        public string PhoneNumber { get; set; } = null!;
+
         // Kuryer hazırda sifariş qəbul edə bilərmi? (Boşdadır/Məşğuldur)
         public bool IsAvailable { get; set; } = true;
 

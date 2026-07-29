@@ -1,0 +1,64 @@
+@model List<E_Commerce.Models.BookRental>
+@{
+    ViewData["Title"] = "İcarəyə götürülən kitablar";
+    var userEmails = ViewBag.UserEmails as Dictionary<string, string> ?? new Dictionary<string, string>();
+}
+
+<div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-4">
+    <h4 class="mb-0">📚 İcarəyə götürülən kitablar</h4>
+    <span class="text-muted small">Cəmi: @Model.Count icarə</span>
+</div>
+
+@if (Model.Any())
+{
+    <div class="simple-table" style="overflow-x:auto;">
+        <table class="table align-middle">
+            <thead>
+                <tr>
+                    <th>Mail</th>
+                    <th>Kitab</th>
+                    <th>İcarəyə götürülmə tarixi</th>
+                    <th>Qaytarılmalı tarix</th>
+                    <th>Qaytarılma tarixi</th>
+                    <th>Əsas haqq</th>
+                    <th>Cərimə</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var rental in Model)
+                {
+                    <tr>
+                        <td>@(userEmails.TryGetValue(rental.UserId, out var email) ? email : rental.UserId)</td>
+                        <td>@(rental.Product?.Title ?? "—")</td>
+                        <td>@rental.RentedDate.ToString("dd.MM.yyyy HH:mm")</td>
+                        <td>@rental.DueDate.ToString("dd.MM.yyyy HH:mm")</td>
+                        <td>@(rental.ReturnedDate?.ToString("dd.MM.yyyy HH:mm") ?? "—")</td>
+                        <td>@(rental.IsFreePremiumRental ? "Pulsuz (Premium)" : rental.BaseCost.ToString("0.00") + " AZN")</td>
+                        <td>@(rental.PenaltyAmount > 0 ? rental.PenaltyAmount.ToString("0.00") + " AZN" : "—")</td>
+                        <td>
+                            @if (rental.IsReturned)
+                            {
+                                <span class="status-badge">Qaytarılıb</span>
+                            }
+                            else if (rental.LateDays() > 0)
+                            {
+                                <span class="status-badge" style="background:#fdeaea;color:#e63946;">Gecikib (@rental.LateDays() gün)</span>
+                            }
+                            else
+                            {
+                                <span class="status-badge" style="background:#eaf2fd;color:#0b2f6b;">Davam edir</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <div class="text-center py-5">
+        <p class="text-muted mb-0">Hələ heç bir icarə yoxdur.</p>
+    </div>
+}

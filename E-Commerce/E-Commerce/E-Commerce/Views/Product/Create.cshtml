@@ -12,7 +12,7 @@
 
 <div class="row justify-content-center">
     <div class="col-lg-8">
-        <form asp-action="Create" class="form-card">
+        <form asp-action="Create" class="form-card" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
 
             <h6 class="section-title">Əsas məlumat</h6>
@@ -109,7 +109,7 @@
                 </div>
             </div>
 
-            <h6 class="section-title">Media linkləri</h6>
+            <h6 class="section-title">Media</h6>
             <div class="row g-3 mb-4">
                 <div class="col-md-4">
                     <label asp-for="ImageUrl" class="form-label">Şəkil linki</label>
@@ -117,14 +117,14 @@
                     <span asp-validation-for="ImageUrl" class="text-danger"></span>
                 </div>
                 <div class="col-md-4">
-                    <label asp-for="PdfUrl" class="form-label">PDF linki</label>
-                    <input asp-for="PdfUrl" class="form-control" placeholder="Yalnız e-kitab üçün" />
-                    <span asp-validation-for="PdfUrl" class="text-danger"></span>
+                    <label for="pdfFile" class="form-label">PDF faylı</label>
+                    <input type="file" id="pdfFile" name="pdfFile" class="form-control" accept=".pdf" />
+                    <div class="form-text">Yalnız e-kitab üçün — .pdf, maks. 100 MB</div>
                 </div>
                 <div class="col-md-4">
-                    <label asp-for="AudioUrl" class="form-label">Audio linki</label>
-                    <input asp-for="AudioUrl" class="form-control" placeholder="Yalnız səsli kitab üçün" />
-                    <span asp-validation-for="AudioUrl" class="text-danger"></span>
+                    <label for="audioFile" class="form-label">Audio faylı</label>
+                    <input type="file" id="audioFile" name="audioFile" class="form-control" accept=".mp3,.wav,.m4a,.ogg,.aac" />
+                    <div class="form-text">Yalnız səsli kitab üçün — mp3/wav/m4a/ogg/aac, maks. 100 MB</div>
                 </div>
             </div>
 

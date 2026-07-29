@@ -41,6 +41,10 @@ namespace E_Commerce.Models
         public double? DeliveryLongitude { get; set; }
         public string? DeliveryAddressText { get; set; }
 
+        // Kuryerin çatdırılma zamanı müştəri ilə əlaqə saxlaması üçün tələb olunan əlaqə nömrəsi
+        [StringLength(30)]
+        public string? PhoneNumber { get; set; }
+
         // Depodan çatdırılma ünvanına məsafəyə görə hesablanan çatdırılma haqqı —
         // bu məbləğ müştəridən tutulur (sifariş yekun məbləğinə daxildir)
         [Column(TypeName = "decimal(18,2)")]

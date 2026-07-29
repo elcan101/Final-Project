@@ -70,12 +70,19 @@ namespace E_Commerce.Controllers
         // Səbətdəki kitablardan sifariş yaradır, kuponu tətbiq edir, keşbek balansa yazılır
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Checkout(double? lat, double? lng, string? addressText)
+        public IActionResult Checkout(double? lat, double? lng, string? addressText, string? phoneNumber)
         {
             // Çatdırılma nöqtəsi seçilməyibsə, geri "xəritədən seç" səhifəsinə qaytarırıq
             if (lat == null || lng == null)
             {
                 TempData["Error"] = "Zəhmət olmasa çatdırılma ünvanını xəritədən seçin.";
+                return RedirectToAction("ChooseLocation");
+            }
+
+            // Kuryerin müştəri ilə əlaqə saxlaya bilməsi üçün əlaqə nömrəsi mütləqdir
+            if (string.IsNullOrWhiteSpace(phoneNumber))
+            {
+                TempData["Error"] = "Zəhmət olmasa əlaqə nömrənizi daxil edin.";
                 return RedirectToAction("ChooseLocation");
             }
 
@@ -149,14 +156,16 @@ namespace E_Commerce.Controllers
                     DeliveryLongitude = lng,
                     DeliveryAddressText = string.IsNullOrWhiteSpace(addressText) ? null : addressText.Trim(),
                     DeliveryFee = deliveryFee,
-                    DeliveryDistanceKm = distanceKm
+                    DeliveryDistanceKm = distanceKm,
+                    PhoneNumber = phoneNumber.Trim()
                 };
 
                 _context.Orders.Add(order);
                 _context.CartItems.RemoveRange(validItems);
 
-                // Loyallıq Sistemi: hər alış-verişdən sonra istifadəçinin balansına avtomatik cashback oturur
-                wallet.Balance += cashback;
+                // Loyallıq Sistemi: hər alış-verişdən sonra qazanılan keşbek "gözləyən" kimi yazılır —
+                // balansa avtomatik keçmir, minimum 5 AZN-ə çatanda istifadəçi özü "Balansa köçür" ilə köçürür.
+                wallet.PendingCashback += cashback;
                 wallet.TotalCashbackEarned += cashback;
 
                 _context.SaveChanges();
@@ -164,7 +173,7 @@ namespace E_Commerce.Controllers
                 HttpContext.Session.Remove("AppliedCouponCode");
                 HttpContext.Session.Remove("AppliedCouponDiscount");
 
-                TempData["Success"] = $"Sifarişiniz qəbul olundu! {total:0.00} AZN balansınızdan tutuldu (kitablar: {productTotal:0.00} AZN + çatdırılma: {deliveryFee:0.00} AZN), {cashback:0.00} AZN keşbek geri əlavə olundu.";
+                TempData["Success"] = $"Sifarişiniz qəbul olundu! {total:0.00} AZN balansınızdan tutuldu (kitablar: {productTotal:0.00} AZN + çatdırılma: {deliveryFee:0.00} AZN), {cashback:0.00} AZN keşbek qazandınız (gözləyən keşbekə əlavə olundu).";
                 return RedirectToAction("Index");
             }
             catch
