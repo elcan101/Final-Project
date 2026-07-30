@@ -24,6 +24,7 @@
                     <th>Keşbek</th>
                     <th>Vəziyyət</th>
                     <th>Kuryer</th>
+                    <th>Kuryer əlaqə</th>
                     <th></th>
                 </tr>
             </thead>
@@ -38,6 +39,16 @@
                         <td>@order.CashbackAmount AZN</td>
                         <td><span class="status-badge">@order.Status</span></td>
                         <td>@(order.Courier?.FullName ?? "—")</td>
+                        <td>
+                            @if (order.Courier != null && !string.IsNullOrWhiteSpace(order.Courier.PhoneNumber))
+                            {
+                                <a href="tel:@order.Courier.PhoneNumber">@order.Courier.PhoneNumber</a>
+                            }
+                            else
+                            {
+                                <span>—</span>
+                            }
+                        </td>
                         <td class="d-flex gap-2">
                             <a asp-action="Track" asp-route-id="@order.Id" class="btn btn-sm btn-outline-dark">📍 İzlə</a>
                             @if (order.Status == "Hazırlanır")

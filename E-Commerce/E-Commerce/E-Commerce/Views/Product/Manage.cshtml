@@ -27,6 +27,7 @@
                     <th>Qiymət</th>
                     <th>Stok</th>
                     <th>Cild</th>
+                    <th>Fayllar</th>
                     <th class="text-end">Əməliyyat</th>
                 </tr>
             </thead>
@@ -45,6 +46,20 @@
                         <td>@p.Price AZN</td>
                         <td>@p.StockCount</td>
                         <td>@(p.IsHardcover ? "Cildli" : "Cildsiz")</td>
+                        <td>
+                            @if (!string.IsNullOrWhiteSpace(p.PdfUrl))
+                            {
+                                <a href="@p.PdfUrl" target="_blank" class="badge bg-secondary text-decoration-none">PDF</a>
+                            }
+                            @if (!string.IsNullOrWhiteSpace(p.AudioUrl))
+                            {
+                                <a href="@p.AudioUrl" target="_blank" class="badge bg-secondary text-decoration-none">🎧 Audio</a>
+                            }
+                            @if (string.IsNullOrWhiteSpace(p.PdfUrl) && string.IsNullOrWhiteSpace(p.AudioUrl))
+                            {
+                                <span class="text-muted small">—</span>
+                            }
+                        </td>
                         <td class="text-end">
                             <a asp-action="Edit" asp-route-id="@p.Id" class="btn btn-sm btn-outline-secondary">Redaktə</a>
                             <form asp-action="Delete" asp-route-id="@p.Id" method="post" class="d-inline" onsubmit="return confirm('Bu kitabı silmək istədiyinizə əminsiniz?');">

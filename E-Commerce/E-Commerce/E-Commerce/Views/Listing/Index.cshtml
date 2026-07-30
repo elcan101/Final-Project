@@ -6,7 +6,7 @@
 <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
     <div>
         <h4 class="mb-1">♻️ İkinci Əl Kitab Bazarı</h4>
-        <p class="text-muted mb-0 small">Vətəndaşlar arası birbaşa alqı-satqı — Elan Ver → Alıcı Tap → Qazanc Əldə Et</p>
+        <p class="text-muted mb-0 small">Vətəndaşlar arası birbaşa alqı-satqı — Elan Ver → Alıcı Tap → Əlaqə Saxla. Sayt ödənişə vasitəçilik etmir, tərəflər öz aralarında razılaşır.</p>
     </div>
     <a asp-action="Create" class="btn-deal">+ Elan Ver</a>
     <a asp-action="MyListings" class="btn btn-outline-dark">Mənim elanlarım</a>
@@ -35,23 +35,23 @@
         {
             <div class="col-lg-3 col-md-4 col-sm-6">
                 <div class="product-card">
-                    @if (!string.IsNullOrEmpty(l.ImageUrl) && l.ImageUrl.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase))
-                    {
-                        <a href="@l.ImageUrl" target="_blank" rel="noopener" class="d-flex flex-column align-items-center justify-content-center text-decoration-none" style="height:180px;background:#f1f4f9;border-radius:8px;color:#0b2f6b;">
-                            <span style="font-size:2.5rem;">📄</span>
-                            <span class="small">PDF sənədinə bax</span>
-                        </a>
-                    }
-                    else
-                    {
-                        <img src="@(l.ImageUrl ?? "/images/no-cover.png")" alt="@l.Title" />
-                    }
-                    <h6>@l.Title</h6>
-                    <div class="author">@(l.Author ?? l.Category?.Name)</div>
-                    <div class="price">@l.Price AZN</div>
-                    <form asp-action="Buy" asp-route-id="@l.Id" method="post">
-                        <button type="submit" class="add-cart-btn">🤝 Al (Qazanc Əldə Et)</button>
-                    </form>
+                    <a asp-action="Details" asp-route-id="@l.Id" class="text-decoration-none" style="color:inherit;">
+                        @if (!string.IsNullOrEmpty(l.ImageUrl) && l.ImageUrl.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase))
+                        {
+                            <div class="d-flex flex-column align-items-center justify-content-center" style="height:180px;background:#f1f4f9;border-radius:8px;color:#0b2f6b;">
+                                <span style="font-size:2.5rem;">📄</span>
+                                <span class="small">PDF sənədinə bax</span>
+                            </div>
+                        }
+                        else
+                        {
+                            <img src="@(l.ImageUrl ?? "/images/no-cover.png")" alt="@l.Title" />
+                        }
+                        <h6>@l.Title</h6>
+                        <div class="author">@(l.Author ?? l.Category?.Name)</div>
+                        <div class="price">@l.Price AZN</div>
+                    </a>
+                    <a asp-action="Details" asp-route-id="@l.Id" class="add-cart-btn d-block text-center text-decoration-none">📞 Ətraflı bax / Əlaqə</a>
                 </div>
             </div>
         }

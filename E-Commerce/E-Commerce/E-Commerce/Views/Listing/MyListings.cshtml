@@ -19,13 +19,14 @@
                     <th>Vəziyyət</th>
                     <th>Toplanmış elan haqqı</th>
                     <th>Satış tarixi</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var l in Model)
                 {
                     <tr>
-                        <td>@l.Title</td>
+                        <td><a asp-action="Details" asp-route-id="@l.Id">@l.Title</a></td>
                         <td>@l.Price AZN</td>
                         <td>
                             @switch (l.Status)
@@ -37,12 +38,20 @@
                                     <span class="status-badge" style="background:#e6f4ea;color:#1e7d3c;">Satılıb</span>
                                     break;
                                 default:
-                                    <span class="status-badge">Deaktiv</span>
+                                    <span class="status-badge">Saytdan çıxarılıb</span>
                                     break;
                             }
                         </td>
                         <td>@l.AccruedFees AZN</td>
                         <td>@(l.SoldDate?.ToString("dd.MM.yyyy") ?? "—")</td>
+                        <td>
+                            @if (l.Status == E_Commerce.Models.ListingStatus.Active)
+                            {
+                                <form asp-action="Deactivate" asp-route-id="@l.Id" method="post" onsubmit="return confirm('Elanı saytdan çıxarmaq istədiyinizə əminsiniz?');">
+                                    <button type="submit" class="btn btn-outline-dark btn-sm">Elanı çıxar</button>
+                                </form>
+                            }
+                        </td>
                     </tr>
                 }
             </tbody>

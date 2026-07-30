@@ -27,5 +27,11 @@ namespace E_Commerce.Controllers
             // Məhsulları View-ə göndəririk
             return View(products);
         }
+
+        // Gözlənilməyən xətalar üçün ümumi xəta səhifəsi (bax Program.cs → UseExceptionHandler)
+        public IActionResult Error()
+        {
+            return View();
+        }
     }
 }

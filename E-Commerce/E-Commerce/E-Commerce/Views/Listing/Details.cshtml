@@ -1,0 +1,105 @@
+@model E_Commerce.Models.Listing
+@{
+    ViewData["Title"] = Model.Title;
+    var isOwner = ViewBag.IsOwner is bool ob && ob;
+    var revealedPhone = ViewBag.RevealedPhone as string;
+    var revealedEmail = ViewBag.RevealedEmail as string;
+}
+
+<a asp-action="Index" class="btn btn-outline-dark btn-sm mb-4">← Bazara qayıt</a>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-warning">@TempData["Error"]</div>
+}
+
+<div class="row g-4">
+    <div class="col-md-5">
+        @if (!string.IsNullOrEmpty(Model.ImageUrl) && Model.ImageUrl.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase))
+        {
+            <a href="@Model.ImageUrl" target="_blank" rel="noopener" class="d-flex flex-column align-items-center justify-content-center text-decoration-none" style="height:320px;background:#f1f4f9;border-radius:8px;color:#0b2f6b;">
+                <span style="font-size:3rem;">📄</span>
+                <span>PDF sənədinə bax</span>
+            </a>
+        }
+        else
+        {
+            <img src="@(Model.ImageUrl ?? "/images/no-cover.png")" alt="@Model.Title" class="w-100" style="border-radius:8px;object-fit:cover;max-height:420px;" />
+        }
+    </div>
+
+    <div class="col-md-7">
+        <h4 class="mb-1">@Model.Title</h4>
+        <div class="text-muted mb-2">@(Model.Author ?? Model.Category?.Name)</div>
+        <div class="price fs-4 fw-bold mb-3">@Model.Price AZN</div>
+
+        <div class="form-card mb-3">
+            <h6 class="section-title mb-2">Təsvir / Xüsusiyyətlər</h6>
+            <p class="mb-0" style="white-space:pre-wrap;">@Model.Description</p>
+        </div>
+
+        <div class="row gy-2 mb-3">
+            <div class="col-sm-6">
+                <div class="text-muted small">Kateqoriya</div>
+                <div class="fw-bold">@(Model.Category?.Name ?? "—")</div>
+            </div>
+            <div class="col-sm-6">
+                <div class="text-muted small">Cild növü</div>
+                <div class="fw-bold">@(Model.IsHardcover ? "📕 Cildli" : "📗 Cildsiz")</div>
+            </div>
+            <div class="col-sm-6">
+                <div class="text-muted small">Vəziyyət</div>
+                <div class="fw-bold">
+                    @switch (Model.Status)
+                    {
+                        case E_Commerce.Models.ListingStatus.Active:
+                            <span class="status-badge">Aktiv</span>
+                            break;
+                        case E_Commerce.Models.ListingStatus.Sold:
+                            <span class="status-badge" style="background:#e6f4ea;color:#1e7d3c;">Satılıb</span>
+                            break;
+                        default:
+                            <span class="status-badge">Saytdan çıxarılıb</span>
+                            break;
+                    }
+                </div>
+            </div>
+        </div>
+
+        @if (!string.IsNullOrEmpty(revealedPhone) || !string.IsNullOrEmpty(revealedEmail))
+        {
+            <div class="alert alert-info">
+                @if (!string.IsNullOrEmpty(revealedPhone))
+                {
+                    <div><b>📞 Satıcının əlaqə nömrəsi:</b> @revealedPhone</div>
+                }
+                @if (!string.IsNullOrEmpty(revealedEmail))
+                {
+                    <div><b>✉️ Satıcının e-poçt ünvanı:</b> @revealedEmail</div>
+                }
+                <div class="small mt-1">Alış-verişi satıcı ilə əlaqə quraraq həyata keçirə bilərsiniz — ödəniş burada həyata keçirilmir.</div>
+            </div>
+        }
+
+        @if (isOwner)
+        {
+            <p class="text-muted">Bu sizin elanınızdır. Elanı idarə etmək üçün "Mənim elanlarım" bölməsinə keçin.</p>
+            <a asp-action="MyListings" class="btn btn-outline-dark">Mənim elanlarıma keç</a>
+        }
+        else if (Model.Status == E_Commerce.Models.ListingStatus.Active)
+        {
+            <form asp-action="Contact" asp-route-id="@Model.Id" method="post">
+                <button type="submit" class="btn-deal">📞 Nömrəni göstər / Əlaqə saxla</button>
+            </form>
+            <div class="form-text mt-2">Bu düyməni basdıqda satıcının əlaqə nömrəsi və e-poçt ünvanı göstəriləcək, satıcıya isə yalnız elanı ilə maraqlanan olduğu barədə bildiriş göndəriləcək (sizin əlaqə məlumatlarınız satıcıya göndərilmir). İstəsəniz, satıcının nömrəsinə özünüz zəng edib danışa bilərsiniz. Sayt ödənişə vasitəçilik etmir.</div>
+        }
+        else
+        {
+            <p class="text-muted">Bu elan artıq aktiv deyil.</p>
+        }
+    </div>
+</div>

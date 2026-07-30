@@ -163,6 +163,12 @@ namespace E_Commerce.Controllers
                 _context.Orders.Add(order);
                 _context.CartItems.RemoveRange(validItems);
 
+                // Sifariş verilən hər kitabın stok sayı azaldılır (mənfiyə düşməsin deyə 0-da saxlanılır)
+                foreach (var item in validItems)
+                {
+                    item.Product.StockCount = Math.Max(0, item.Product.StockCount - item.Quantity);
+                }
+
                 // Loyallıq Sistemi: hər alış-verişdən sonra qazanılan keşbek "gözləyən" kimi yazılır —
                 // balansa avtomatik keçmir, minimum 5 AZN-ə çatanda istifadəçi özü "Balansa köçür" ilə köçürür.
                 wallet.PendingCashback += cashback;

@@ -18,8 +18,14 @@
             <input asp-for="Author" class="form-control" />
         </div>
         <div class="mb-3">
-            <label class="form-label small">Təsvir</label>
+            <label class="form-label small">Təsvir / Xüsusiyyətlər</label>
             <textarea asp-for="Description" class="form-control" rows="3" required></textarea>
+            <div class="form-text">Kitabın vəziyyəti, xüsusiyyətləri və digər əlavə məlumatları burada qeyd edin — bu mətn elanın səhifəsində tam göstəriləcək.</div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label small">Əlaqə nömrəsi</label>
+            <input asp-for="ContactPhone" class="form-control" placeholder="+994 XX XXX XX XX" />
+            <div class="form-text">Bu nömrə elanın səhifəsində bildiriş kimi göstəriləcək ki, alıcılar birbaşa sizinlə əlaqə saxlaya bilsin.</div>
         </div>
         <div class="row">
             <div class="col-6 mb-3">

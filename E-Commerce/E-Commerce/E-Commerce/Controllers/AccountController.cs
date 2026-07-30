@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using E_Commerce.Data;
 using E_Commerce.Models;
 using E_Commerce.ViewModels;
 
@@ -10,11 +12,13 @@ namespace E_Commerce.Controllers
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
+        private readonly AppDbContext _context;
 
-        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
+        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, AppDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _context = context;
         }
 
         // ---------- QEYDİYYAT ----------
@@ -124,6 +128,103 @@ namespace E_Commerce.Controllers
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
+        }
+
+        // ---------- PROFİL ----------
+        // Mailinə giriş edən istənilən istifadəçi (müştəri, kuryer və s.) üçün ortaq profil
+        // səhifəsi: şəxsi məlumatlar + kuryer profili (varsa) + abunəlik tarixçəsi.
+        [Authorize]
+        [HttpGet]
+        public async Task<IActionResult> Profile()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null) return NotFound();
+
+            var roles = await _userManager.GetRolesAsync(user);
+
+            var courierProfile = await _context.CourierProfiles
+                .FirstOrDefaultAsync(c => c.CourierId == user.Id && !c.IsDeleted);
+
+            var subscriptions = await _context.UserSubscriptions
+                .Where(s => s.UserId == user.Id && !s.IsDeleted)
+                .OrderByDescending(s => s.StartDate)
+                .ToListAsync();
+
+            ViewBag.User = user;
+            ViewBag.Roles = roles;
+            ViewBag.CourierProfile = courierProfile;
+            ViewBag.Subscriptions = subscriptions;
+
+            return View();
+        }
+
+        // ---------- PROFİLİ REDAKTƏ ET ----------
+        // Əvvəllər "Profilim" səhifəsindəki şəxsi məlumatlar yalnız statik mətn kimi
+        // göstərilirdi — heç bir redaktə forması/əməliyyatı yox idi. İndi istifadəçi
+        // Ad Soyad, Əlaqə nömrəsi və (istəyə bağlı) şifrəsini dəyişə bilər.
+        [Authorize]
+        [HttpGet]
+        public async Task<IActionResult> EditProfile()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null) return NotFound();
+
+            var model = new EditProfileViewModel
+            {
+                FullName = user.FullName,
+                PhoneNumber = user.PhoneNumber
+            };
+
+            return View(model);
+        }
+
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditProfile(EditProfileViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null) return NotFound();
+
+            user.FullName = model.FullName.Trim();
+            user.PhoneNumber = string.IsNullOrWhiteSpace(model.PhoneNumber) ? null : model.PhoneNumber.Trim();
+
+            var updateResult = await _userManager.UpdateAsync(user);
+            if (!updateResult.Succeeded)
+            {
+                foreach (var error in updateResult.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
+                return View(model);
+            }
+
+            // Şifrə sahələri doldurulubsa, şifrəni də yenilə
+            if (!string.IsNullOrWhiteSpace(model.NewPassword))
+            {
+                var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+                var passwordResult = await _userManager.ResetPasswordAsync(user, token, model.NewPassword);
+                if (!passwordResult.Succeeded)
+                {
+                    foreach (var error in passwordResult.Errors)
+                    {
+                        ModelState.AddModelError(string.Empty, error.Description);
+                    }
+                    return View(model);
+                }
+            }
+
+            // FullName dəyişdiyi üçün cookie-dəki claim-lər təzələnsin ki, dərhal
+            // (səhifəni yenidən açmadan) hər yerdə yeni ad görünsün
+            await _signInManager.RefreshSignInAsync(user);
+
+            TempData["Success"] = "Profiliniz uğurla yeniləndi.";
+            return RedirectToAction("Profile");
         }
 
         [HttpGet]

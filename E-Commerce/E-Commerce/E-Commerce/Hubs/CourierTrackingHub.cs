@@ -95,8 +95,10 @@ namespace E_Commerce.Hubs
             await Clients.Group(IdleCouriersGroup).SendAsync("OrderTaken", orderId);
 
             // Müştəriyə kuryerin təyin olunduğunu bildir
+            // DİQQƏT: əvvəllər burada səhvən kuryerin adı (FullName) əvəzinə nəqliyyat
+            // növü (VehicleType) göndərilirdi — kuryer və müştəri məlumatları qarışırdı.
             await Clients.Group(OrderGroupName(orderId))
-                .SendAsync("CourierAssigned", new { orderId, courierName = courier?.VehicleType ?? "Kuryer" });
+                .SendAsync("CourierAssigned", new { orderId, courierName = courier?.FullName ?? "Kuryer" });
 
             // Götürən kuryerə birbaşa bildir ki, çatdırılma/izləmə səhifəsinə keçsin
             await Clients.Caller.SendAsync("OrderAccepted", new { orderId });

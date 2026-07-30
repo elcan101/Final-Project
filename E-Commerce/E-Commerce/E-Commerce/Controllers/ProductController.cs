@@ -16,7 +16,7 @@ namespace E_Commerce.Controllers
         // Yalnız bu uzantılara icazə verilir (təhlükəsizlik: icra oluna bilən fayllar qadağandır)
         private static readonly string[] AllowedPdfExtensions = { ".pdf" };
         private static readonly string[] AllowedAudioExtensions = { ".mp3", ".wav", ".m4a", ".ogg", ".aac" };
-        private const long MaxUploadBytes = 100 * 1024 * 1024; // 100 MB
+        private const long MaxUploadBytes = 500L * 1024 * 1024; // 500 MB (bax Program.cs — Kestrel limiti ilə eynidir)
 
         public ProductController(AppDbContext context, IWebHostEnvironment env)
         {
@@ -38,18 +38,36 @@ namespace E_Commerce.Controllers
             if (!allowedExtensions.Contains(ext))
                 return (null, $"Bu fayl növünə icazə verilmir. İcazəli formatlar: {string.Join(", ", allowedExtensions)}");
 
-            var uploadsRoot = Path.Combine(_env.WebRootPath, "uploads", subFolder);
-            Directory.CreateDirectory(uploadsRoot);
-
-            var fileName = $"{Guid.NewGuid()}{ext}";
-            var filePath = Path.Combine(uploadsRoot, fileName);
-
-            using (var stream = new FileStream(filePath, FileMode.Create))
+            // Fayl sistemi ilə bağlı gözlənilməz xətalar (icazə, disk yeri, yol problemi və s.)
+            // düşsə, tətbiqi çökdürüb "ağ ekran" göstərmək əvəzinə, admin panelinə anlaşılan
+            // xəta mesajı ilə qayıdırıq — bu, "fayl əlavə edəndə yadda saxlanmır" problemi üçün
+            // əsas səbəb idi (unhandled exception → boş/xəta səhifəsi).
+            try
             {
-                await file.CopyToAsync(stream);
-            }
+                var webRoot = _env.WebRootPath;
+                if (string.IsNullOrEmpty(webRoot))
+                {
+                    // Bəzi hosting mühitlərində wwwroot avtomatik təyin olunmaya bilər
+                    webRoot = Path.Combine(_env.ContentRootPath, "wwwroot");
+                }
 
-            return ($"/uploads/{subFolder}/{fileName}", null);
+                var uploadsRoot = Path.Combine(webRoot, "uploads", subFolder);
+                Directory.CreateDirectory(uploadsRoot);
+
+                var fileName = $"{Guid.NewGuid()}{ext}";
+                var filePath = Path.Combine(uploadsRoot, fileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+
+                return ($"/uploads/{subFolder}/{fileName}", null);
+            }
+            catch (Exception ex)
+            {
+                return (null, $"Fayl yadda saxlanarkən xəta baş verdi: {ex.Message}");
+            }
         }
 
         private string GetUserId() => User.FindFirstValue(ClaimTypes.NameIdentifier) ?? "";
@@ -150,6 +168,11 @@ namespace E_Commerce.Controllers
             ModelState.Remove(nameof(Product.AudioUrl));
             if (!ModelState.IsValid)
             {
+                // Formda PDF/audio üçün gizli sahə yoxdur, ona görə bağlanan "product"
+                // obyektində bu linklər həmişə boş gəlir — səhifə yenidən göstəriləndə
+                // mövcud faylın itdiyi təəssüratını yaratmamaq üçün DB-dəki cari linkləri qoruyuruq.
+                product.PdfUrl = existing.PdfUrl;
+                product.AudioUrl = existing.AudioUrl;
                 ViewBag.Categories = new SelectList(
                     _context.Categories.Where(c => !c.IsDeleted).OrderBy(c => c.Name),
                     "Id", "Name", product.CategoryId);
@@ -170,6 +193,8 @@ namespace E_Commerce.Controllers
 
             if (pdfError != null || audioError != null)
             {
+                product.PdfUrl = pdfUrl ?? existing.PdfUrl;
+                product.AudioUrl = audioUrl ?? existing.AudioUrl;
                 ViewBag.Categories = new SelectList(
                     _context.Categories.Where(c => !c.IsDeleted).OrderBy(c => c.Name),
                     "Id", "Name", product.CategoryId);
@@ -288,7 +313,74 @@ namespace E_Commerce.Controllers
                 .OrderByDescending(r => r.CreatedDate)
                 .ToListAsync();
 
+            // E-kitab (PDF) və səsli kitab girişi yalnız aktiv abunəliyə görə verilir:
+            // Standard planı → yalnız e-kitab, Premium planı → e-kitab + səsli kitab.
+            // Giriş etməmiş və ya abunəliyi olmayan istifadəçiyə məzmun göstərilmir —
+            // əvəzinə abunəlik səhifəsinə yönləndirən dəvət göstərilir.
+            bool hasEbookAccess = false;
+            bool hasAudioAccess = false;
+
+            if (User.Identity != null && User.Identity.IsAuthenticated)
+            {
+                var userId = GetUserId();
+                var activeSub = await _context.UserSubscriptions
+                    .Where(s => s.UserId == userId && !s.IsDeleted && s.IsActive && s.ExpiryDate > DateTime.Now)
+                    .OrderByDescending(s => s.ExpiryDate)
+                    .FirstOrDefaultAsync();
+
+                if (activeSub != null)
+                {
+                    hasEbookAccess = true; // Standard və Premium — hər ikisi e-kitaba icazə verir
+                    hasAudioAccess = activeSub.PlanType == SubscriptionPlanType.Premium;
+                }
+            }
+
+            ViewBag.HasEbookAccess = hasEbookAccess;
+            ViewBag.HasAudioAccess = hasAudioAccess;
+
             return View(product);
+        }
+
+        // PDF-i saytda ("inline") göstərmək üçün ayrıca endpoint.
+        // Əvvəllər səhifə birbaşa /uploads/pdf/xxx.pdf linkinə işarə edirdi — brauzer
+        // uzantıları/yükləmə menecerləri (məs. IDM) bunu "yüklənəcək fayl" kimi tanıyıb
+        // "Aynı indirme bağlantısı" pəncərəsi açırdı və istifadəçini saytdan kənara aparırdı.
+        // Bu endpoint uzantısı .pdf olmayan bir URL-dən faylı "Content-Disposition: inline"
+        // başlığı ilə, "Range" dəstəyi olmadan (EnableRangeProcessing=false) axıdır ki, heç bir
+        // yükləmə meneceri onu tutmasın və fayl birbaşa iframe içində, saytda açılsın.
+        // Giriş icazəsi (abunəlik) bu endpointdə də serverdə təkrar yoxlanılır.
+        [HttpGet]
+        public async Task<IActionResult> ReadPdf(int id)
+        {
+            var product = await _context.Products.FirstOrDefaultAsync(p => p.Id == id && !p.IsDeleted);
+            if (product == null || string.IsNullOrWhiteSpace(product.PdfUrl))
+                return NotFound();
+
+            bool hasAccess = false;
+            if (User.Identity != null && User.Identity.IsAuthenticated)
+            {
+                var userId = GetUserId();
+                hasAccess = await _context.UserSubscriptions
+                    .AnyAsync(s => s.UserId == userId && !s.IsDeleted && s.IsActive && s.ExpiryDate > DateTime.Now);
+            }
+
+            if (!hasAccess)
+                return Forbid();
+
+            var webRoot = _env.WebRootPath;
+            if (string.IsNullOrEmpty(webRoot))
+                webRoot = Path.Combine(_env.ContentRootPath, "wwwroot");
+
+            var relative = product.PdfUrl.TrimStart('/', '\\').Replace('/', Path.DirectorySeparatorChar);
+            var filePath = Path.Combine(webRoot, relative);
+
+            if (!System.IO.File.Exists(filePath))
+                return NotFound();
+
+            var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read);
+            Response.Headers["Content-Disposition"] = "inline; filename=\"kitab.pdf\"";
+            Response.Headers["X-Content-Type-Options"] = "nosniff";
+            return new FileStreamResult(stream, "application/pdf") { EnableRangeProcessing = false };
         }
 
         // Müştəri kitab səhifəsindən şərh/reytinq yazır

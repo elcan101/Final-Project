@@ -7,14 +7,31 @@ using E_Commerce.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Admin panelində kitablara PDF/audio faylı yükləmək üçün böyük sorğu həcminə icazə (100 MB)
+// Admin panelində kitablara PDF/audio faylı yükləmək üçün böyük sorğu həcminə icazə (500 MB).
+// Səsli kitab faylları böyük ola bilər (uzun kitablar 100-200+ MB) — əvvəlki 100 MB limiti
+// bəzi fayllarda "ERR_CONNECTION_RESET" xətasına səbəb olurdu (Kestrel limiti aşanda
+// bağlantını dərhal kəsir). Limiti artırdıq.
+const long MaxUploadBytes = 500L * 1024 * 1024;
+
 builder.Services.Configure<Microsoft.AspNetCore.Http.Features.FormOptions>(options =>
 {
-    options.MultipartBodyLengthLimit = 100 * 1024 * 1024;
+    options.MultipartBodyLengthLimit = MaxUploadBytes;
+    options.ValueLengthLimit = int.MaxValue;
+    options.MultipartHeadersLengthLimit = int.MaxValue;
 });
 builder.WebHost.ConfigureKestrel(options =>
 {
-    options.Limits.MaxRequestBodySize = 100 * 1024 * 1024;
+    options.Limits.MaxRequestBodySize = MaxUploadBytes;
+
+    // Böyük fayl yavaş internetlə yüklənəndə Kestrel-in defolt minimum sürət tələbi
+    // (~240 byte/san) bağlantını vaxtından əvvəl kəsib ERR_CONNECTION_RESET yaradırdı.
+    // Bu limiti söndürürük ki, yavaş yükləmələr də uğurla tamamlansın.
+    options.Limits.MinRequestBodyDataRate = null;
+    options.Limits.MinResponseDataRate = null;
+
+    // Böyük faylın tam yüklənməsi üçün kifayət qədər vaxt.
+    options.Limits.KeepAliveTimeout = TimeSpan.FromMinutes(10);
+    options.Limits.RequestHeadersTimeout = TimeSpan.FromMinutes(2);
 });
 
 // Servislər
@@ -73,7 +90,38 @@ builder.Services.AddSession(options =>
 var app = builder.Build();
 
 // Middleware-lər
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+}
+else
+{
+    // Əvvəllər gözlənilməyən xəta (məs. admin panelində fayl yükləmə zamanı disk/icazə xətası)
+    // istifadəçiyə boş/xarab səhifə kimi görünürdü. İndi anlaşılan xəta səhifəsinə yönləndirilir.
+    app.UseExceptionHandler("/Home/Error");
+}
 app.UseStaticFiles();
+
+// Sayt səhifələri (HTML) heç vaxt brauzer/disk keşində saxlanılmasın.
+// Səbəb: istifadəçi çıxış edib (Logout) fərqli hesabla (və ya yenidən) giriş etdikdə,
+// brauzer əvvəlki (köhnə giriş vəziyyətinə aid) səhifəni keşdən göstərə bilirdi —
+// məsələn, səsli kitab pleyeri (abunəlik yoxlamasına görə göstərilir) və ya profil
+// məlumatları köhnə/yanlış görünürdü, çünki server yenidən sorğulanmırdı.
+// Bu middleware statik fayllardan (şəkil, css, js, pdf, audio) SONRA işə düşür,
+// ona görə onlara toxunmur — yalnız controller/view tərəfindən yaradılan dinamik
+// səhifələrə tətbiq olunur.
+app.Use(async (context, next) =>
+{
+    context.Response.OnStarting(() =>
+    {
+        context.Response.Headers["Cache-Control"] = "no-store, no-cache, must-revalidate";
+        context.Response.Headers["Pragma"] = "no-cache";
+        context.Response.Headers["Expires"] = "-1";
+        return Task.CompletedTask;
+    });
+    await next();
+});
+
 app.UseRouting();
 app.UseSession();
 app.UseAuthentication();

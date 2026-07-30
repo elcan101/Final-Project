@@ -31,6 +31,10 @@ namespace E_Commerce.Models
 
         public string? ImageUrl { get; set; }
 
+        // Alıcının satıcı ilə birbaşa əlaqə saxlaması üçün elanda göstərilən nömrə
+        [StringLength(30)]
+        public string? ContactPhone { get; set; }
+
         public int? CategoryId { get; set; }
 
         [ForeignKey("CategoryId")]
