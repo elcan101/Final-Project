@@ -1,0 +1,124 @@
+@model E_Commerce.Models.CourierProfile
+@{
+    ViewData["Title"] = "Kuryer Panel";
+    var activeOrder = ViewBag.ActiveOrder as E_Commerce.Models.Order;
+    var pendingOrders = ViewBag.PendingOrders as List<E_Commerce.Models.Order>;
+    var depotName = ViewBag.DepotName as string ?? "Kitab Deposu — 28 May, Dilarə Əliyeva küçəsi 329";
+}
+
+<h4 class="mb-4">🛵 Kuryer Panel</h4>
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-warning">@TempData["Error"]</div>
+}
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+
+@if (Model == null)
+{
+    <div class="filter-panel" style="max-width:420px;">
+        <p class="text-muted">Kuryer olmaq üçün qeydiyyatdan keçin.</p>
+        <div class="alert alert-info small">💰 Hər çatdırdığınız sifarişdən çatdırılma haqqının <b>70%-i</b> birbaşa kuryer balansınıza əlavə olunacaq.</div>
+        <form asp-action="BecomeCourier" method="post">
+            <div class="mb-3">
+                <label class="form-label small">Ad Soyad</label>
+                <input type="text" name="fullName" class="form-control" placeholder="Məs: Elvin Məmmədov" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label small">Əlaqə nömrəsi</label>
+                <input type="tel" name="phoneNumber" class="form-control" placeholder="Məs: 050 123 45 67" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label small">Nəqliyyat növü</label>
+                <select name="vehicleType" class="form-select">
+                    <option>Piyada</option>
+                    <option>Velosiped</option>
+                    <option>Skuter</option>
+                    <option>Avtomobil</option>
+                </select>
+            </div>
+            <button type="submit" class="btn-deal w-100">Kuryer profili yarat</button>
+        </form>
+    </div>
+}
+else if (activeOrder != null)
+{
+    <div class="alert alert-info d-flex justify-content-between align-items-center flex-wrap gap-2">
+        <div>🚴 Hazırda <b>Sifariş #@activeOrder.Id</b> çatdırırsınız.</div>
+        <a asp-controller="Order" asp-action="Track" asp-route-id="@activeOrder.Id" class="btn-deal">Çatdırılma səhifəsinə keç →</a>
+    </div>
+}
+else
+{
+    <div class="row g-4">
+        <div class="col-lg-4">
+            <div class="filter-panel">
+                <div class="mb-2"><b>Ad Soyad:</b> @Model.FullName</div>
+                <div class="mb-2"><b>Əlaqə nömrəsi:</b> @Model.PhoneNumber</div>
+                <div class="mb-2"><b>Nəqliyyat:</b> @Model.VehicleType</div>
+                <div class="mb-3"><b>Balans:</b> @Model.CurrentBalance AZN</div>
+                <button id="toggleAvailability" class="btn w-100" data-courier-id="@Model.Id" data-available="@Model.IsAvailable.ToString().ToLower()">
+                    <span id="toggleLabel">@(Model.IsAvailable ? "🟢 Boşam (Offline et)" : "⚪ Offline (Online ol)")</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="col-lg-8">
+            <h6 class="mb-3">📦 Yeni sifariş siqnalları</h6>
+            <div id="incomingOrders" class="d-flex flex-column gap-2">
+                @if (pendingOrders != null && pendingOrders.Any())
+                {
+                    foreach (var o in pendingOrders)
+                    {
+                        <div id="order-card-@o.Id" class="d-flex justify-content-between align-items-center border rounded p-3 flex-wrap gap-2">
+                            <div>
+                                <div><b>Sifariş #@o.Id</b> — @o.TotalAmount AZN</div>
+                                <div class="small text-muted">📦 Götürülmə: <b>@depotName</b></div>
+                                @if (o.DeliveryLatitude != null && o.DeliveryLongitude != null)
+                                {
+                                    var lat = o.DeliveryLatitude.Value.ToString(System.Globalization.CultureInfo.InvariantCulture);
+                                    var lng = o.DeliveryLongitude.Value.ToString(System.Globalization.CultureInfo.InvariantCulture);
+                                    <a href="https://www.openstreetmap.org/?mlat=@lat&mlon=@lng#map=16/@lat/@lng" target="_blank" rel="noopener" class="small">
+                                        📍 Çatdırılma yerinə bax@(string.IsNullOrEmpty(o.DeliveryAddressText) ? "" : $" ({o.DeliveryAddressText})")
+                                    </a>
+                                }
+                                else
+                                {
+                                    <span class="small text-muted">📍 Çatdırılma yeri qeyd olunmayıb</span>
+                                }
+                                <div class="small mt-1">
+                                    @if (o.DeliveryDistanceKm != null)
+                                    {
+                                        <span class="text-muted">📏 @o.DeliveryDistanceKm.Value.ToString("0.0") km &nbsp;•&nbsp;</span>
+                                    }
+                                    <span class="fw-bold" style="color:#0b2f6b;">💰 Çatdırılma haqqınız (70%): @o.CourierEarning.ToString("0.00") AZN</span>
+                                </div>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-sm btn-outline-secondary reject-btn" data-order-id="@o.Id">❌ Rədd et</button>
+                                <button class="btn btn-sm btn-deal accept-btn" data-order-id="@o.Id">✅ Götür</button>
+                            </div>
+                        </div>
+                    }
+                }
+                <div class="text-muted small" id="noOrdersMsg" style="@(pendingOrders != null && pendingOrders.Any() ? "display:none;" : "")">
+                    Hazırda gözləyən sifariş yoxdur — online olduğunuzda avtomatik görünəcək.
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/@@microsoft/signalr@@8.0.0/dist/browser/signalr.min.js"></script>
+    @if (Model != null && activeOrder == null)
+    {
+        <script>
+            window.__courierDashboard = { courierProfileId: @Model.Id, initiallyAvailable: @Model.IsAvailable.ToString().ToLower() };
+        </script>
+        <script src="~/js/courier-dashboard.js"></script>
+    }
+}
