@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using E_Commerce.Data;
 using E_Commerce.Models;
+using E_Commerce.Services;
 
 namespace E_Commerce.Controllers
 {
@@ -11,10 +12,12 @@ namespace E_Commerce.Controllers
     public class RentalController : Controller
     {
         private readonly AppDbContext _context;
+        private readonly DeliveryPricingService _deliveryPricing;
 
-        public RentalController(AppDbContext context)
+        public RentalController(AppDbContext context, DeliveryPricingService deliveryPricing)
         {
             _context = context;
+            _deliveryPricing = deliveryPricing;
         }
 
         private string GetUserId() => User.FindFirstValue(ClaimTypes.NameIdentifier)!;
@@ -24,6 +27,8 @@ namespace E_Commerce.Controllers
             var userId = GetUserId();
             var rentals = _context.BookRentals
                 .Include(r => r.Product)
+                .Include(r => r.Order)
+                    .ThenInclude(o => o!.Courier)
                 .Where(r => r.UserId == userId && !r.IsDeleted)
                 .OrderByDescending(r => r.RentedDate)
                 .ToList();
@@ -31,11 +36,50 @@ namespace E_Commerce.Controllers
             return View(rentals);
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Rent(int productId, int days = 7)
+        // Sifariş kimi icarə də əvvəlcə çatdırılma nöqtəsinin xəritədən seçilməsini tələb edir
+        [HttpGet]
+        public IActionResult ChooseLocation(int productId, int days = 7)
         {
             if (days <= 0) days = 7;
+
+            var product = _context.Products.FirstOrDefault(p => p.Id == productId && !p.IsDeleted);
+            if (product == null) return NotFound();
+
+            ViewBag.ProductId = productId;
+            ViewBag.ProductTitle = product.Title;
+            ViewBag.Days = days;
+
+            var depot = _deliveryPricing.Depot;
+            ViewBag.DepotLat = depot.Latitude;
+            ViewBag.DepotLng = depot.Longitude;
+            ViewBag.BaseFee = depot.BaseFee;
+            ViewBag.PerKmFee = depot.PerKmFee;
+            ViewBag.MinFee = depot.MinFee;
+            ViewBag.MaxFee = depot.MaxFee;
+
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Rent(int productId, int days, double? lat, double? lng, string? addressText, string? phoneNumber)
+        {
+            if (days <= 0) days = 7;
+
+            // Çatdırılma nöqtəsi seçilməyibsə, geri "xəritədən seç" səhifəsinə qaytarırıq —
+            // digər normal sifarişlərdə olduğu kimi
+            if (lat == null || lng == null)
+            {
+                TempData["Error"] = "Zəhmət olmasa çatdırılma ünvanını xəritədən seçin.";
+                return RedirectToAction("ChooseLocation", new { productId, days });
+            }
+
+            if (string.IsNullOrWhiteSpace(phoneNumber))
+            {
+                TempData["Error"] = "Zəhmət olmasa əlaqə nömrənizi daxil edin.";
+                return RedirectToAction("ChooseLocation", new { productId, days });
+            }
+
             var userId = GetUserId();
 
             var product = await _context.Products.FirstOrDefaultAsync(p => p.Id == productId && !p.IsDeleted);
@@ -44,14 +88,14 @@ namespace E_Commerce.Controllers
             var dailyRate = 0.20m;
             var isFree = false;
 
-            // Premium: "fiziki kitab icarəsi — ayda bir pulsuz (14 günlük müddət)"
+            // Standart plan: fiziki kitab icarəsinə 5% endirim.
+            // Premium plan: ayda bir dəfə 14 günlük pulsuz icarə haqqı.
             var subscription = await _context.UserSubscriptions
-                .Where(s => s.UserId == userId && s.IsActive && !s.IsDeleted && s.ExpiryDate > DateTime.Now
-                            && s.PlanType == SubscriptionPlanType.Premium)
+                .Where(s => s.UserId == userId && s.IsActive && !s.IsDeleted && s.ExpiryDate > DateTime.Now)
                 .FirstOrDefaultAsync();
 
             var chargeableDays = days;
-            if (subscription != null &&
+            if (subscription != null && subscription.PlanType == SubscriptionPlanType.Premium &&
                 (subscription.FreeRentalUsedThisMonth == null ||
                  subscription.FreeRentalUsedThisMonth.Value.Month != DateTime.Now.Month))
             {
@@ -61,21 +105,44 @@ namespace E_Commerce.Controllers
             }
             else if (subscription != null)
             {
-                // Premium: fiziki icarəyə 5% endirim (Standard planla eyni endirim şərti tətbiq olunur)
+                // Standart abunəçi hər zaman 5% endirim alır; Premium abunəçi bu ayki pulsuz
+                // haqqını artıq istifadə edibsə, o da eyni 5% endirimdən faydalanır.
                 dailyRate = 0.19m;
             }
 
             var baseCost = chargeableDays * dailyRate;
 
-            if (baseCost > 0)
+            // Digər sifarişlərdə olduğu kimi, depodan çatdırılma ünvanına məsafəyə görə
+            // çatdırılma haqqı hesablanır və kitab haqqı ilə birlikdə balansdan tutulur
+            var deliveryFee = _deliveryPricing.CalculateDeliveryFee(lat, lng, out var distanceKm);
+            var total = baseCost + deliveryFee;
+
+            if (total > 0)
             {
-                var paid = await PayAsync(userId, baseCost, $"'{product.Title}' kitab icarəsi ({days} gün)");
+                var paid = await PayAsync(userId, total, $"'{product.Title}' kitab icarəsi ({days} gün) + çatdırılma");
                 if (!paid)
                 {
                     TempData["Error"] = "Balansınız kifayət etmir. Zəhmət olmasa əvvəlcə balansınızı kartla artırın.";
                     return RedirectToAction("Details", "Product", new { id = productId });
                 }
             }
+
+            // Digər sifarişlər kimi kuryerlə çatdırılsın deyə əlaqəli Order yaradılır —
+            // depo "Hazırdır" elan edəndə kuryerlərə bildiriş gedir, ilk qəbul edən kuryer
+            // gedib kitabı müştəriyə çatdırır (Order/Track səhifəsindən eyni canlı izləmə).
+            var order = new Order
+            {
+                UserId = userId,
+                TotalAmount = total,
+                Status = "Hazırlanır",
+                DeliveryLatitude = lat,
+                DeliveryLongitude = lng,
+                DeliveryAddressText = string.IsNullOrWhiteSpace(addressText) ? null : addressText.Trim(),
+                DeliveryFee = deliveryFee,
+                DeliveryDistanceKm = distanceKm,
+                PhoneNumber = phoneNumber.Trim()
+            };
+            _context.Orders.Add(order);
 
             var rental = new BookRental
             {
@@ -86,14 +153,15 @@ namespace E_Commerce.Controllers
                 DailyRate = dailyRate,
                 BaseCost = baseCost,
                 IsFreePremiumRental = isFree,
+                Order = order,
             };
 
             _context.BookRentals.Add(rental);
             _context.SaveChanges();
 
             TempData["Success"] = isFree
-                ? "Kitab premium pulsuz icarə hüququnuzla icarəyə götürüldü!"
-                : "Kitab icarəyə götürüldü!";
+                ? $"Kitab premium pulsuz icarə hüququnuzla icarəyə götürüldü! Çatdırılma haqqı: {deliveryFee:0.00} AZN balansınızdan tutuldu. Kuryer hazır olan kimi ünvanınıza çatdıracaq."
+                : $"Kitab icarəyə götürüldü! Ümumi {total:0.00} AZN (icarə: {baseCost:0.00} AZN + çatdırılma: {deliveryFee:0.00} AZN) balansınızdan tutuldu. Kuryer hazır olan kimi ünvanınıza çatdıracaq.";
             return RedirectToAction("Index");
         }
 

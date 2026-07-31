@@ -126,6 +126,9 @@ namespace E_Commerce.Migrations
                     b.Property<decimal>("PenaltyAmount")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<int?>("OrderId")
+                        .HasColumnType("int");
+
                     b.Property<int>("PenaltyChargedDays")
                         .HasColumnType("int");
 
@@ -149,6 +152,8 @@ namespace E_Commerce.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
 
                     b.HasIndex("ProductId");
 
@@ -938,11 +943,18 @@ namespace E_Commerce.Migrations
 
             modelBuilder.Entity("E_Commerce.Models.BookRental", b =>
                 {
+                    b.HasOne("E_Commerce.Models.Order", "Order")
+                        .WithMany()
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
                     b.HasOne("E_Commerce.Models.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Order");
 
                     b.Navigation("Product");
                 });
