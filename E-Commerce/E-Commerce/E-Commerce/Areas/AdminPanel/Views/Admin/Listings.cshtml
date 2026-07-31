@@ -1,11 +1,11 @@
 @model List<E_Commerce.Models.Listing>
 @{
-    ViewData["Title"] = "İkinci əl Bazar";
+    ViewData["Title"] = "C2C Bazar";
     var userEmails = ViewBag.UserEmails as Dictionary<string, string> ?? new Dictionary<string, string>();
 }
 
 <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-4">
-    <h4 class="mb-0">🔁 İkinci əl Bazar (istifadəçi elanları)</h4>
+    <h4 class="mb-0">🔁 C2C Bazar (istifadəçi elanları)</h4>
     <span class="text-muted small">Cəmi: @Model.Count elan</span>
 </div>
 

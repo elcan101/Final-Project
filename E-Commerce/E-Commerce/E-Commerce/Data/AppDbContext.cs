@@ -79,7 +79,6 @@ namespace E_Commerce.Data
                 b.Property(r => r.PenaltyRatePerDay).HasColumnType("decimal(18,2)");
                 b.Property(r => r.BaseCost).HasColumnType("decimal(18,2)");
                 b.Property(r => r.PenaltyAmount).HasColumnType("decimal(18,2)");
-                b.HasOne(r => r.Order).WithMany().HasForeignKey(r => r.OrderId).OnDelete(DeleteBehavior.SetNull);
             });
 
             modelBuilder.Entity<Listing>(l =>

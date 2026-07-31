@@ -26,8 +26,6 @@
                     <th>Haqq</th>
                     <th>Cərimə</th>
                     <th>Vəziyyət</th>
-                    <th>Çatdırılma</th>
-                    <th>Kuryer əlaqə</th>
                     <th></th>
                 </tr>
             </thead>
@@ -53,29 +51,6 @@
                             else
                             {
                                 <span class="status-badge">Aktiv</span>
-                            }
-                        </td>
-                        <td>
-                            @if (r.Order != null)
-                            {
-                                <span class="status-badge">@r.Order.Status</span>
-                                <div class="small text-muted mt-1">
-                                    <a asp-controller="Order" asp-action="Track" asp-route-id="@r.Order.Id">📍 Kuryeri izlə</a>
-                                </div>
-                            }
-                            else
-                            {
-                                <span>—</span>
-                            }
-                        </td>
-                        <td>
-                            @if (r.Order?.Courier != null && !string.IsNullOrWhiteSpace(r.Order.Courier.PhoneNumber))
-                            {
-                                <a href="tel:@r.Order.Courier.PhoneNumber">@r.Order.Courier.PhoneNumber</a>
-                            }
-                            else
-                            {
-                                <span>—</span>
                             }
                         </td>
                         <td>

@@ -14,13 +14,6 @@ namespace E_Commerce.Models
         [ForeignKey("ProductId")]
         public Product Product { get; set; } = null!;
 
-        // Digər sifarişlər kimi kuryerlə çatdırılması üçün əlaqəli Order —
-        // çatdırılma ünvanı, kuryer təyinatı və canlı izləmə elə bu Order üzərindən aparılır.
-        public int? OrderId { get; set; }
-
-        [ForeignKey("OrderId")]
-        public Order? Order { get; set; }
-
         [Required]
         public DateTime RentedDate { get; set; } = DateTime.Now;
 
