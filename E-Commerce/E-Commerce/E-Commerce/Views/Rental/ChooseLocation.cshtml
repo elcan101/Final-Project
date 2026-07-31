@@ -1,0 +1,159 @@
+@{
+    ViewData["Title"] = "İcarə üçün çatdırılma ünvanı";
+}
+
+<h4 class="mb-1">📍 İcarə üçün çatdırılma ünvanını seçin</h4>
+<p class="text-muted mb-1">"@ViewBag.ProductTitle" kitabı @ViewBag.Days gün müddətinə icarəyə götürülür.</p>
+<p class="text-muted mb-3">Xəritədə istədiyiniz nöqtəyə klikləyin — kuryer icarəni qəbul etməzdən əvvəl bu yeri görəcək.</p>
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-warning">@TempData["Error"]</div>
+}
+
+<div id="locationMap" class="tracking-map mb-3"></div>
+
+<button type="button" id="useCurrentLocationBtn" class="btn btn-outline-dark btn-sm mb-3">📍 Mövcud məkanımı göndər</button>
+
+<form asp-controller="Rental" asp-action="Rent" method="post" id="locationForm" class="filter-panel" style="max-width:420px;">
+    <input type="hidden" name="productId" value="@ViewBag.ProductId" />
+    <input type="hidden" name="days" value="@ViewBag.Days" />
+    <input type="hidden" name="lat" id="latInput" />
+    <input type="hidden" name="lng" id="lngInput" />
+
+    <div class="mb-3">
+        <label class="form-label small">Əlaqə nömrəsi</label>
+        <input type="tel" name="phoneNumber" class="form-control" placeholder="Məs: 050 123 45 67" required />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label small">Ünvan qeydi (könüllü)</label>
+        <input type="text" name="addressText" class="form-control" placeholder="Məs: Nərimanov r., 3-cü mərtəbə, qapı 12" />
+    </div>
+
+    <p class="small text-muted mb-2" id="pickedLabel">Hələ xəritədən nöqtə seçilməyib.</p>
+    <p class="small mb-2" id="feeLabel" style="display:none;">🚚 Çatdırılma haqqı: <b id="feeAmount" style="color:#0b2f6b;"></b></p>
+
+    <button type="submit" class="btn-deal w-100" id="confirmBtn" disabled>İcarəni təsdiqlə</button>
+</form>
+
+@section Scripts {
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        window.__deliveryPricing = {
+            depotLat: @(((double)ViewBag.DepotLat).ToString(System.Globalization.CultureInfo.InvariantCulture)),
+            depotLng: @(((double)ViewBag.DepotLng).ToString(System.Globalization.CultureInfo.InvariantCulture)),
+            baseFee: @(((decimal)ViewBag.BaseFee).ToString(System.Globalization.CultureInfo.InvariantCulture)),
+            perKmFee: @(((decimal)ViewBag.PerKmFee).ToString(System.Globalization.CultureInfo.InvariantCulture)),
+            minFee: @(((decimal)ViewBag.MinFee).ToString(System.Globalization.CultureInfo.InvariantCulture)),
+            maxFee: @(((decimal)ViewBag.MaxFee).ToString(System.Globalization.CultureInfo.InvariantCulture))
+        };
+    </script>
+    <script>
+        (function () {
+            const BAKU = [40.4093, 49.8671];
+            const map = L.map("locationMap").setView(BAKU, 12);
+
+            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+                maxZoom: 19,
+                attribution: "&copy; OpenStreetMap",
+            }).addTo(map);
+
+            const pricing = window.__deliveryPricing;
+            const depotIcon = L.divIcon({ html: "🏬", className: "map-emoji-icon", iconSize: [32, 32] });
+            L.marker([pricing.depotLat, pricing.depotLng], { icon: depotIcon }).addTo(map).bindPopup("Kitab deposu");
+
+            const pinIcon = L.divIcon({ html: "📍", className: "map-emoji-icon", iconSize: [32, 32] });
+            let marker = null;
+
+            const latInput = document.getElementById("latInput");
+            const lngInput = document.getElementById("lngInput");
+            const pickedLabel = document.getElementById("pickedLabel");
+            const confirmBtn = document.getElementById("confirmBtn");
+            const useCurrentLocationBtn = document.getElementById("useCurrentLocationBtn");
+            const feeLabel = document.getElementById("feeLabel");
+            const feeAmount = document.getElementById("feeAmount");
+
+            // Depodan seçilmiş nöqtəyə qədər məsafəni (km) Haversine düsturu ilə hesablayır —
+            // server tərəfdəki DeliveryPricingService ilə eyni məntiq (canlı qiymətləndirmə üçün)
+            function distanceKm(lat1, lng1, lat2, lng2) {
+                const R = 6371.0;
+                const toRad = (deg) => (deg * Math.PI) / 180;
+                const dLat = toRad(lat2 - lat1);
+                const dLng = toRad(lng2 - lng1);
+                const a = Math.sin(dLat / 2) ** 2 +
+                    Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLng / 2) ** 2;
+                const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+                return R * c;
+            }
+
+            function updateFee(lat, lng) {
+                const km = distanceKm(pricing.depotLat, pricing.depotLng, lat, lng);
+                let fee = pricing.baseFee + km * pricing.perKmFee;
+                fee = Math.round(fee * 100) / 100;
+                if (fee < pricing.minFee) fee = pricing.minFee;
+                if (fee > pricing.maxFee) fee = pricing.maxFee;
+                feeLabel.style.display = "block";
+                feeAmount.textContent = `${fee.toFixed(2)} AZN (${km.toFixed(1)} km)`;
+            }
+
+            function placeMarker(lat, lng) {
+                if (!marker) {
+                    marker = L.marker([lat, lng], { icon: pinIcon, draggable: true }).addTo(map);
+                    marker.on("dragend", () => {
+                        const pos = marker.getLatLng();
+                        setPicked(pos.lat, pos.lng);
+                    });
+                } else {
+                    marker.setLatLng([lat, lng]);
+                }
+                setPicked(lat, lng);
+            }
+
+            map.on("click", (e) => {
+                placeMarker(e.latlng.lat, e.latlng.lng);
+            });
+
+            function setPicked(lat, lng) {
+                latInput.value = lat;
+                lngInput.value = lng;
+                pickedLabel.textContent = `Seçilmiş nöqtə: ${lat.toFixed(5)}, ${lng.toFixed(5)}`;
+                confirmBtn.disabled = false;
+                updateFee(lat, lng);
+            }
+
+            // "Mövcud məkanımı göndər" düyməsi: cihazın canlı GPS mövqeyini alıb xəritədə işarələyir
+            useCurrentLocationBtn?.addEventListener("click", () => {
+                if (!navigator.geolocation) {
+                    alert("Brauzeriniz məkan xidmətini dəstəkləmir.");
+                    return;
+                }
+                useCurrentLocationBtn.disabled = true;
+                useCurrentLocationBtn.textContent = "📍 Məkan alınır...";
+                navigator.geolocation.getCurrentPosition(
+                    (pos) => {
+                        const { latitude, longitude } = pos.coords;
+                        map.setView([latitude, longitude], 16);
+                        placeMarker(latitude, longitude);
+                        useCurrentLocationBtn.textContent = "📍 Mövcud məkanımı göndər";
+                        useCurrentLocationBtn.disabled = false;
+                    },
+                    () => {
+                        alert("Məkanınıza icazə verilmədi. Xəritədən əl ilə nöqtə seçə bilərsiniz.");
+                        useCurrentLocationBtn.textContent = "📍 Mövcud məkanımı göndər";
+                        useCurrentLocationBtn.disabled = false;
+                    }
+                );
+            });
+
+            // İstifadəçinin öz məkanını izin versə xəritəni ora mərkəzləşdiririk (ilkin rahatlıq üçün)
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (pos) => map.setView([pos.coords.latitude, pos.coords.longitude], 14),
+                    () => { /* icazə verilmədi - Bakı mərkəzində qalır */ }
+                );
+            }
+        })();
+    </script>
+}
