@@ -6,131 +6,13 @@
 
 <!-- hero banner -->
 <div class="hero mb-5">
-    <div class="hero-left">
+    <div class="col-md-7">
         <div class="tagline">TƏLƏBƏLƏRƏ ÖZƏL</div>
         <h1>XÜSUSİ <span>ENDİRİMLƏR</span></h1>
         <p class="text-muted">Bütün tələbələr üçün sərfəli qiymətlər</p>
         <a href="/Product" class="btn-deal">ENDİRİMDƏN YARARLAN</a>
     </div>
-
-    <div class="hero-right">
-        <div class="promo-slider" id="promoSlider">
-            <div class="promo-track" id="promoTrack">
-
-                <div class="promo-slide slide-summer">
-                    <div class="promo-content">
-                        <span class="promo-tag">YAY TƏTİLİ</span>
-                        <h3>Okean Kitabevi ilə<br>daha əyləncəli!</h3>
-                        <p>Yay oxu siyahını bizimlə tamamla</p>
-                        <a href="/Product" class="promo-btn">Kəşf et</a>
-                    </div>
-                    <div class="promo-art">
-                        <span class="art-emoji e1">☀️</span>
-                        <span class="art-emoji e2">📚</span>
-                        <span class="art-emoji e3">🏖️</span>
-                        <span class="art-emoji e4">🌊</span>
-                    </div>
-                </div>
-
-                <div class="promo-slide slide-student">
-                    <div class="promo-content">
-                        <span class="promo-tag">TƏLƏBƏLƏRƏ ÖZƏL</span>
-                        <h3>Xüsusi<br>Endirimlər</h3>
-                        <p>Tələbə kartınla əlavə endirim qazan</p>
-                        <a href="/Product" class="promo-btn">Endirimə bax</a>
-                    </div>
-                    <div class="promo-art">
-                        <span class="art-emoji e1">🎓</span>
-                        <span class="art-emoji e2">📘</span>
-                        <span class="art-emoji e3">✏️</span>
-                        <span class="art-emoji e4">🎒</span>
-                    </div>
-                </div>
-
-                <div class="promo-slide slide-kids">
-                    <div class="promo-content">
-                        <span class="promo-tag">KİÇİKLƏR ÜÇÜN</span>
-                        <h3>Uşaq Ədəbiyyatı<br>Dünyası</h3>
-                        <p>Rəngarəng hekayələr, sonsuz macəra</p>
-                        <a href="/Product" class="promo-btn">Kitablara bax</a>
-                    </div>
-                    <div class="promo-art">
-                        <span class="art-emoji e1">🧸</span>
-                        <span class="art-emoji e2">🌈</span>
-                        <span class="art-emoji e3">🎈</span>
-                        <span class="art-emoji e4">📗</span>
-                    </div>
-                </div>
-
-                <div class="promo-slide slide-secondhand">
-                    <div class="promo-content">
-                        <span class="promo-tag">İKİNCİ ƏL BAZAR</span>
-                        <h3>Ucuz Qiymətə<br>Sevimli Kitablar</h3>
-                        <p>Al, sat, dəyişdir — hamısı bir yerdə</p>
-                        <a href="/Product" class="promo-btn">Bazara bax</a>
-                    </div>
-                    <div class="promo-art">
-                        <span class="art-emoji e1">🔄</span>
-                        <span class="art-emoji e2">📕</span>
-                        <span class="art-emoji e3">💰</span>
-                        <span class="art-emoji e4">🤝</span>
-                    </div>
-                </div>
-
-            </div>
-
-            <button class="promo-arrow prev" id="promoPrev" aria-label="Əvvəlki">‹</button>
-            <button class="promo-arrow next" id="promoNext" aria-label="Növbəti">›</button>
-
-            <div class="promo-dots" id="promoDots">
-                <span class="dot active" data-i="0"></span>
-                <span class="dot" data-i="1"></span>
-                <span class="dot" data-i="2"></span>
-                <span class="dot" data-i="3"></span>
-            </div>
-        </div>
-    </div>
 </div>
-
-<script>
-    (function () {
-        var track = document.getElementById('promoTrack');
-        var slider = document.getElementById('promoSlider');
-        var dots = document.querySelectorAll('#promoDots .dot');
-        var slidesCount = dots.length;
-        var current = 0;
-        var timer;
-
-        function goTo(i) {
-            current = (i + slidesCount) % slidesCount;
-            track.style.transform = 'translateX(-' + (current * 100) + '%)';
-            dots.forEach(function (d, idx) {
-                d.classList.toggle('active', idx === current);
-            });
-        }
-
-        function next() { goTo(current + 1); }
-        function prev() { goTo(current - 1); }
-
-        function startAuto() {
-            timer = setInterval(next, 3800);
-        }
-        function stopAuto() {
-            clearInterval(timer);
-        }
-
-        document.getElementById('promoNext').addEventListener('click', function () { next(); stopAuto(); startAuto(); });
-        document.getElementById('promoPrev').addEventListener('click', function () { prev(); stopAuto(); startAuto(); });
-        dots.forEach(function (d) {
-            d.addEventListener('click', function () { goTo(parseInt(d.getAttribute('data-i'), 10)); stopAuto(); startAuto(); });
-        });
-
-        slider.addEventListener('mouseenter', stopAuto);
-        slider.addEventListener('mouseleave', startAuto);
-
-        startAuto();
-    })();
-</script>
 
 <!-- xüsusiyyət ikonları -->
 <div class="row mb-5">
