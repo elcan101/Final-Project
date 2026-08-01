@@ -1,9 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.EntityFrameworkCore;
+using System.Text;
 using E_Commerce.Data;
 using E_Commerce.Models;
+using E_Commerce.Services;
 using E_Commerce.ViewModels;
 
 namespace E_Commerce.Controllers
@@ -13,12 +16,14 @@ namespace E_Commerce.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
         private readonly AppDbContext _context;
+        private readonly IEmailService _emailService;
 
-        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, AppDbContext context)
+        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, AppDbContext context, IEmailService emailService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _context = context;
+            _emailService = emailService;
         }
 
         // ---------- QEYDİYYAT ----------
@@ -128,6 +133,110 @@ namespace E_Commerce.Controllers
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
+        }
+
+        // ---------- ŞİFRƏNİ UNUTMUSUNUZ? ----------
+
+        [HttpGet]
+        public IActionResult ForgotPassword()
+        {
+            return View(new ForgotPasswordViewModel());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var user = await _userManager.FindByEmailAsync(model.Email);
+
+            // Təhlükəsizlik üçün: istifadəçi tapılmasa belə eyni "göndərildi" səhifəsi göstərilir,
+            // beləliklə kənar şəxs hansı e-poçtların qeydiyyatdan keçdiyini bilə bilmir.
+            if (user != null)
+            {
+                var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+                var encodedToken = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(token));
+
+                var resetUrl = Url.Action("ResetPassword", "Account",
+                    new { email = user.Email, token = encodedToken }, Request.Scheme);
+
+                var body = $@"
+                    <p>Salam{(string.IsNullOrWhiteSpace(user.FullName) ? "" : ", " + user.FullName)},</p>
+                    <p>Okean Kitabevi hesabınız üçün şifrə sıfırlama tələbi aldıq.</p>
+                    <p><a href='{resetUrl}'>Şifrəni yeniləmək üçün buraya klikləyin</a></p>
+                    <p>Əgər bu tələbi siz etməmisinizsə, bu mesajı nəzərə almaya bilərsiniz.</p>";
+
+                await _emailService.SendAsync(user.Email!, "Okean Kitabevi — Şifrənin sıfırlanması", body);
+
+                // Test/development rejimində real SMTP olmadığı üçün linki birbaşa
+                // təsdiq səhifəsində də göstəririk ki, funksionallıq sınana bilsin.
+                ViewBag.DevResetLink = resetUrl;
+            }
+
+            return View("ForgotPasswordConfirmation");
+        }
+
+        // ---------- ŞİFRƏNİ SIFIRLA ----------
+
+        [HttpGet]
+        public IActionResult ResetPassword(string? email, string? token)
+        {
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(token))
+            {
+                return RedirectToAction("ForgotPassword");
+            }
+
+            var model = new ResetPasswordViewModel
+            {
+                Email = email,
+                Token = token
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ResetPassword(ResetPasswordViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            if (user == null)
+            {
+                // Burada da eyni səbəbdən istifadəçi tapılmasa belə uğur səhifəsi göstərilir
+                return View("ResetPasswordConfirmation");
+            }
+
+            string decodedToken;
+            try
+            {
+                decodedToken = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(model.Token));
+            }
+            catch
+            {
+                ModelState.AddModelError(string.Empty, "Sıfırlama linki etibarsızdır və ya vaxtı keçib.");
+                return View(model);
+            }
+
+            var result = await _userManager.ResetPasswordAsync(user, decodedToken, model.NewPassword);
+            if (!result.Succeeded)
+            {
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
+                return View(model);
+            }
+
+            return View("ResetPasswordConfirmation");
         }
 
         // ---------- PROFİL ----------

@@ -54,6 +54,13 @@ builder.Services.AddScoped<IEmailService, MockEmailService>();
 // Depodan çatdırılma ünvanına məsafəyə görə çatdırılma haqqı hesablayır (bax Services/DeliveryPricingService.cs)
 builder.Services.AddScoped<DeliveryPricingService>();
 
+// Sayt daxili "Kitab AI" köməkçisi: kataloqu analiz edib kitab tövsiyə edir və
+// sayt haqqında (çatdırılma, qaytarma, kampaniya) suallara cavab verir (bax Services/AiAssistantService.cs)
+builder.Services.AddHttpClient<IAiAssistantService, AiAssistantService>(client =>
+{
+    client.Timeout = TimeSpan.FromSeconds(30);
+});
+
 // Gündəlik hesablaşma: C2C elan haqqı + icarə gecikmə cərimələri avtomatik balansdan tutulur
 builder.Services.AddHostedService<DailyBillingService>();
 
