@@ -1,0 +1,101 @@
+@model IEnumerable<E_Commerce.Models.BookRental>
+@{
+    ViewData["Title"] = "İcarələrim";
+}
+
+<h4 class="mb-4">📦 İcarəyə götürdüyüm kitablar</h4>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-warning">@TempData["Error"]</div>
+}
+
+@if (Model != null && Model.Any())
+{
+    <div class="simple-table">
+        <table class="table align-middle">
+            <thead>
+                <tr>
+                    <th>Kitab</th>
+                    <th>Götürülmə tarixi</th>
+                    <th>Qaytarma tarixi</th>
+                    <th>Haqq</th>
+                    <th>Cərimə</th>
+                    <th>Vəziyyət</th>
+                    <th>Çatdırılma</th>
+                    <th>Kuryer əlaqə</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var r in Model)
+                {
+                    var isLate = !r.IsReturned && r.DueDate < DateTime.Now;
+                    <tr>
+                        <td>@r.Product?.Title</td>
+                        <td>@r.RentedDate.ToString("dd.MM.yyyy")</td>
+                        <td>@r.DueDate.ToString("dd.MM.yyyy")</td>
+                        <td>@(r.IsFreePremiumRental ? "Pulsuz (Premium)" : $"{r.BaseCost} AZN")</td>
+                        <td>@(r.PenaltyAmount > 0 ? $"{r.PenaltyAmount} AZN" : "—")</td>
+                        <td>
+                            @if (r.IsReturned)
+                            {
+                                <span class="status-badge">Qaytarılıb</span>
+                            }
+                            else if (isLate)
+                            {
+                                <span class="status-badge" style="background:#fde8e8;color:#b42318;">Gecikib</span>
+                            }
+                            else
+                            {
+                                <span class="status-badge">Aktiv</span>
+                            }
+                        </td>
+                        <td>
+                            @if (r.Order != null)
+                            {
+                                <span class="status-badge">@r.Order.Status</span>
+                                <div class="small text-muted mt-1">
+                                    <a asp-controller="Order" asp-action="Track" asp-route-id="@r.Order.Id">📍 Kuryeri izlə</a>
+                                </div>
+                            }
+                            else
+                            {
+                                <span>—</span>
+                            }
+                        </td>
+                        <td>
+                            @if (r.Order?.Courier != null && !string.IsNullOrWhiteSpace(r.Order.Courier.PhoneNumber))
+                            {
+                                <a href="tel:@r.Order.Courier.PhoneNumber">@r.Order.Courier.PhoneNumber</a>
+                            }
+                            else
+                            {
+                                <span>—</span>
+                            }
+                        </td>
+                        <td>
+                            @if (!r.IsReturned)
+                            {
+                                <form asp-action="Return" asp-route-id="@r.Id" method="post">
+                                    <button type="submit" class="btn btn-sm btn-outline-dark">Qaytar</button>
+                                </form>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <div class="text-center py-5">
+        <p class="text-muted mb-3">Hələ heç bir kitab icarəyə götürməmisiniz.</p>
+        <a asp-controller="Product" asp-action="Index" class="btn-deal">Kitablara bax</a>
+    </div>
+}
