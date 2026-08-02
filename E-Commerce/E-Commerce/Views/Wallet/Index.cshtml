@@ -47,4 +47,21 @@
             </div>
         </div>
     </div>
+    @{
+        var courierBalance = (decimal)(ViewBag.CourierBalance ?? 0.00m);
+    }
+    @if (courierBalance > 0.00m)
+    {
+        <div class="col-md-6">
+            <div class="product-card text-start">
+                <small class="text-muted">Kuryer Balansı (çatdırılma qazancı)</small>
+                <h3 class="mt-1" style="color:#0b2f6b;">@courierBalance.ToString("0.00") AZN</h3>
+                <div class="small text-muted mt-1">
+                    <form asp-action="TransferCourierBalance" method="post" class="d-inline">
+                        <button type="submit" class="btn btn-sm btn-outline-dark">Balansıma köçür</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    }
 </div>

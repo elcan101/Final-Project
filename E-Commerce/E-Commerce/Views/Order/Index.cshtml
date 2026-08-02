@@ -38,9 +38,19 @@
                         <td>@(order.DiscountAmount > 0 ? $"-{order.DiscountAmount} AZN" : "—")</td>
                         <td>@order.CashbackAmount AZN</td>
                         <td><span class="status-badge">@order.Status</span></td>
-                        <td>@(order.Courier?.FullName ?? "—")</td>
                         <td>
-                            @if (order.Courier != null && !string.IsNullOrWhiteSpace(order.Courier.PhoneNumber))
+                            @if (order.IsPostDelivery)
+                            {
+                                <span>📮 Poçt — @order.District (@order.PostalCode)</span>
+                                <div class="small text-muted mt-1">İzləmə kodu: <b>@order.TrackingCode</b></div>
+                            }
+                            else
+                            {
+                                @(order.Courier?.FullName ?? "—")
+                            }
+                        </td>
+                        <td>
+                            @if (!order.IsPostDelivery && order.Courier != null && !string.IsNullOrWhiteSpace(order.Courier.PhoneNumber))
                             {
                                 <a href="tel:@order.Courier.PhoneNumber">@order.Courier.PhoneNumber</a>
                             }
@@ -50,11 +60,26 @@
                             }
                         </td>
                         <td class="d-flex gap-2">
-                            <a asp-action="Track" asp-route-id="@order.Id" class="btn btn-sm btn-outline-dark">📍 İzlə</a>
-                            @if (order.Status == "Hazırlanır")
+                            @if (!order.IsPostDelivery)
                             {
-                                <form asp-action="MarkReady" asp-route-id="@order.Id" method="post">
-                                    <button type="submit" class="btn btn-sm btn-outline-success">Hazırdır elan et</button>
+                                <a asp-action="Track" asp-route-id="@order.Id" class="btn btn-sm btn-outline-dark">📍 İzlə</a>
+                                @if (order.Status == "Hazırlanır")
+                                {
+                                    <form asp-action="MarkReady" asp-route-id="@order.Id" method="post">
+                                        <button type="submit" class="btn btn-sm btn-outline-success">Hazırdır elan et</button>
+                                    </form>
+                                }
+                            }
+                            @if (order.Status != "Hazırlanır" && order.Status != "Ləğv edildi")
+                            {
+                                <a asp-action="Receipt" asp-route-id="@order.Id" class="btn btn-sm btn-outline-primary">🧾 Qəbz</a>
+                            }
+                            @if (!order.IsPostDelivery && order.CourierProfileId == null
+                                && (order.Status == "Hazırlanır" || order.Status == "Hazırdır"))
+                            {
+                                <form asp-action="Cancel" asp-route-id="@order.Id" method="post"
+                                      onsubmit="return confirm('Sifarişi ləğv etmək istədiyinizə əminsiniz? Ödədiyiniz məbləğ balansınıza geri qaytarılacaq.');">
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">Ləğv et</button>
                                 </form>
                             }
                         </td>

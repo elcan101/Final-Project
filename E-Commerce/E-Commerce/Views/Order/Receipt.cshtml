@@ -1,0 +1,99 @@
+@model E_Commerce.Models.Order
+
+@{
+    ViewData["Title"] = $"Qəbz #{Model.Id}";
+    Layout = "_Layout";
+}
+
+<style>
+    .receipt-box {
+        max-width: 560px;
+        margin: 0 auto;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 32px;
+        background: #fff;
+    }
+    .receipt-header {
+        text-align: center;
+        border-bottom: 2px dashed #dee2e6;
+        padding-bottom: 16px;
+        margin-bottom: 20px;
+    }
+    .receipt-header h2 {
+        margin: 0;
+        letter-spacing: 1px;
+    }
+    .receipt-header .tagline {
+        color: #6c757d;
+        font-size: 0.9rem;
+    }
+    .receipt-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 6px 0;
+    }
+    .receipt-row.total {
+        border-top: 2px dashed #dee2e6;
+        margin-top: 10px;
+        padding-top: 12px;
+        font-weight: 700;
+        font-size: 1.1rem;
+    }
+    .receipt-footer {
+        text-align: center;
+        margin-top: 24px;
+        padding-top: 16px;
+        border-top: 2px dashed #dee2e6;
+        color: #6c757d;
+        font-size: 0.9rem;
+    }
+    @@media print {
+        .no-print { display: none !important; }
+        .receipt-box { border: none; }
+    }
+</style>
+
+<div class="mb-3 no-print d-flex justify-content-between">
+    <a asp-action="Index" class="btn btn-sm btn-outline-secondary">← Sifarişlərimə qayıt</a>
+    <button onclick="window.print()" class="btn btn-sm btn-outline-primary">🖨️ Çap et</button>
+</div>
+
+<div class="receipt-box">
+    <div class="receipt-header">
+        <h2>📚 OKEAN KİTABEVİ</h2>
+        <div class="tagline">10 milyondan çox kitab adı arasında</div>
+        <div class="tagline">Rəsmi qəbz / Order Receipt</div>
+    </div>
+
+    <div class="receipt-row"><span>Sifariş №</span><b>#@Model.Id</b></div>
+    <div class="receipt-row"><span>Tarix</span><span>@Model.CreatedDate.ToString("dd.MM.yyyy HH:mm")</span></div>
+    <div class="receipt-row"><span>Vəziyyət</span><span class="status-badge">@Model.Status</span></div>
+
+    @if (Model.IsPostDelivery)
+    {
+        <div class="receipt-row"><span>Çatdırılma üsulu</span><span>Poçt — @Model.District (@Model.PostalCode)</span></div>
+        <div class="receipt-row"><span>İzləmə kodu</span><b>@Model.TrackingCode</b></div>
+    }
+    else
+    {
+        <div class="receipt-row"><span>Çatdırılma ünvanı</span><span class="text-end">@(Model.DeliveryAddressText ?? "—")</span></div>
+        @if (Model.Courier != null)
+        {
+            <div class="receipt-row"><span>Kuryer</span><span>@Model.Courier.FullName</span></div>
+        }
+    }
+    <div class="receipt-row"><span>Əlaqə nömrəsi</span><span>@(Model.PhoneNumber ?? "—")</span></div>
+
+    <hr />
+
+    <div class="receipt-row"><span>Endirim</span><span>@(Model.DiscountAmount > 0 ? $"-{Model.DiscountAmount:0.00} AZN" : "—")</span></div>
+    <div class="receipt-row"><span>Çatdırılma haqqı</span><span>@Model.DeliveryFee.ToString("0.00") AZN</span></div>
+    <div class="receipt-row"><span>Qazanılan keşbek</span><span>@Model.CashbackAmount.ToString("0.00") AZN</span></div>
+    <div class="receipt-row total"><span>Yekun ödəniş</span><span>@Model.TotalAmount.ToString("0.00") AZN</span></div>
+
+    <div class="receipt-footer">
+        Bizi seçdiyiniz üçün təşəkkür edirik!<br />
+        Okean Kitabevi — localhost:5005
+    </div>
+</div>

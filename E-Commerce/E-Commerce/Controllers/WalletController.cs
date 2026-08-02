@@ -35,7 +35,43 @@ namespace E_Commerce.Controllers
                 _context.SaveChanges();
             }
 
+            // İstifadəçi eyni zamanda kuryerdirsə, çatdırılmadan yığdığı balansı da göstəririk
+            var courierProfile = _context.CourierProfiles.FirstOrDefault(c => c.CourierId == userId && !c.IsDeleted);
+            ViewBag.CourierBalance = courierProfile?.CurrentBalance ?? 0.00m;
+
             return View(wallet);
+        }
+
+        // Kuryerin çatdırılma pullarından yığdığı balansı əsas saytdakı balansa köçürür —
+        // bundan sonra bu pulla abunəlik/digər ödənişlər aparıla bilər.
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult TransferCourierBalance()
+        {
+            var userId = GetUserId();
+            var courierProfile = _context.CourierProfiles.FirstOrDefault(c => c.CourierId == userId && !c.IsDeleted);
+
+            if (courierProfile == null || courierProfile.CurrentBalance <= 0.00m)
+            {
+                TempData["Error"] = "Köçürüləcək kuryer balansınız yoxdur.";
+                return RedirectToAction("Index");
+            }
+
+            var wallet = _context.Wallets.FirstOrDefault(w => w.UserId == userId && !w.IsDeleted);
+            if (wallet == null)
+            {
+                wallet = new Wallet { UserId = userId };
+                _context.Wallets.Add(wallet);
+            }
+
+            var amount = courierProfile.CurrentBalance;
+            wallet.Balance += amount;
+            courierProfile.CurrentBalance = 0.00m;
+            _context.SaveChanges();
+
+            TempData["Success"] = $"{amount:0.00} AZN kuryer balansından saytdakı balansınıza köçürüldü.";
+            return RedirectToAction("Index");
         }
 
         // Kartla balans artırma səhifəsi — yalnız hesaba (mail ilə) giriş etmiş istifadəçi üçün

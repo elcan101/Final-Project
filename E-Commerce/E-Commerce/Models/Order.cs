@@ -52,6 +52,15 @@ namespace E_Commerce.Models
 
         public double? DeliveryDistanceKm { get; set; }
 
+        // Rayonlara poçtla çatdırılma: müştəri xəritədən nöqtə seçmək əvəzinə rayon və
+        // poçt indeksi daxil edərək sifariş verə bilər. Bu sifarişlərə kuryer təyin olunmur,
+        // kuryerlərə heç bir bildiriş getmir — sifariş dərhal "Çatdırıldı" elan olunur və
+        // müştəriyə poçt izləmə kodu göndərilir.
+        public string? District { get; set; }
+        public string? PostalCode { get; set; }
+        public bool IsPostDelivery { get; set; } = false;
+        public string? TrackingCode { get; set; }
+
         // Çatdırılma haqqının kuryerə çatan payı — 70%.
         // Qalan 30% platforma xidmət haqqı kimi saxlanılır.
         [NotMapped]

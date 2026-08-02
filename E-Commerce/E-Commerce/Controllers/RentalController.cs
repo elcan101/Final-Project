@@ -196,9 +196,20 @@ namespace E_Commerce.Controllers
                 }
             }
 
+            // Uzatma haqqı əvvəlki haqqın üzərinə əlavə olunur ki, "Haqq" sütununda hər ikisi
+            // birlikdə (cəmlənmiş) göstərilsin.
+            rental.BaseCost += extraCost;
+
             rental.DueDate = rental.DueDate.AddDays(additionalDays);
             // Yeni qaytarma tarixinə görə "1 gün qalıb" xəbərdarlığı təzədən göndərilsin deyə sıfırlanır
             rental.DueSoonEmailSent = false;
+
+            // Müddət uzadıldığı üçün icarə artıq gecikmiş sayılmır — sabit -5 AZN cərimə və
+            // gündəlik gecikmə cəriməsi hesablama sayğacı sıfırlanır ki, yeni qaytarma
+            // tarixindən sonra YENİDƏN gecikərsə, cərimə (əvvəlki cərimə ilə eyni "Cərimə"
+            // sütununda cəmlənərək) düzgün tətbiq olunsun.
+            rental.LateFineApplied = false;
+            rental.PenaltyChargedDays = 0;
 
             _context.SaveChanges();
 

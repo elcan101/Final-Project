@@ -118,31 +118,33 @@
                     <span asp-validation-for="ImageUrl" class="text-danger"></span>
                 </div>
                 <div class="col-md-4">
-                    <label for="pdfFile" class="form-label">PDF faylı</label>
-                    <input type="file" id="pdfFile" name="pdfFile" class="form-control" accept=".pdf" />
-                    <div class="form-text">
-                        @if (!string.IsNullOrWhiteSpace(Model.PdfUrl))
-                        {
-                            <span>Cari fayl: <a href="@Model.PdfUrl" target="_blank">bax</a> — yalnız yeni fayl seçsəniz dəyişir</span>
-                        }
-                        else
-                        {
-                            <span>Yalnız e-kitab üçün — .pdf, maks. 100 MB</span>
-                        }
+                    <label class="form-label">PDF faylı</label>
+                    <input type="hidden" id="removePdf" name="removePdf" value="false" />
+                    <div id="pdfCurrentBlock" style="display:@(string.IsNullOrWhiteSpace(Model.PdfUrl) ? "none" : "block")">
+                        <div class="form-control d-flex align-items-center justify-content-between">
+                            <a href="@Model.PdfUrl" target="_blank">Cari fayl — bax</a>
+                            <button type="button" id="pdfDeleteBtn" class="btn btn-sm btn-outline-danger ms-2">Sil</button>
+                        </div>
+                        <div class="form-text">Yeni fayl seçmək üçün əvvəlcə mövcud faylı silin</div>
+                    </div>
+                    <div id="pdfUploadBlock" style="display:@(string.IsNullOrWhiteSpace(Model.PdfUrl) ? "block" : "none")">
+                        <input type="file" id="pdfFile" name="pdfFile" class="form-control" accept=".pdf" />
+                        <div class="form-text">Yalnız e-kitab üçün — .pdf, maks. 100 MB</div>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <label for="audioFile" class="form-label">Audio faylı</label>
-                    <input type="file" id="audioFile" name="audioFile" class="form-control" accept=".mp3,.wav,.m4a,.ogg,.aac" />
-                    <div class="form-text">
-                        @if (!string.IsNullOrWhiteSpace(Model.AudioUrl))
-                        {
-                            <span>Cari fayl: <a href="@Model.AudioUrl" target="_blank">bax</a> — yalnız yeni fayl seçsəniz dəyişir</span>
-                        }
-                        else
-                        {
-                            <span>Yalnız səsli kitab üçün — mp3/wav/m4a/ogg/aac, maks. 100 MB</span>
-                        }
+                    <label class="form-label">Audio faylı</label>
+                    <input type="hidden" id="removeAudio" name="removeAudio" value="false" />
+                    <div id="audioCurrentBlock" style="display:@(string.IsNullOrWhiteSpace(Model.AudioUrl) ? "none" : "block")">
+                        <div class="form-control d-flex align-items-center justify-content-between">
+                            <a href="@Model.AudioUrl" target="_blank">Cari fayl — bax</a>
+                            <button type="button" id="audioDeleteBtn" class="btn btn-sm btn-outline-danger ms-2">Sil</button>
+                        </div>
+                        <div class="form-text">Yeni fayl seçmək üçün əvvəlcə mövcud faylı silin</div>
+                    </div>
+                    <div id="audioUploadBlock" style="display:@(string.IsNullOrWhiteSpace(Model.AudioUrl) ? "block" : "none")">
+                        <input type="file" id="audioFile" name="audioFile" class="form-control" accept=".mp3,.wav,.m4a,.ogg,.aac" />
+                        <div class="form-text">Yalnız səsli kitab üçün — mp3/wav/m4a/ogg/aac, maks. 100 MB</div>
                     </div>
                 </div>
             </div>
@@ -157,4 +159,22 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        // Fayl varkən yalnız "Sil" düyməsi göstərilir, yeni fayl seçmək üçün əvvəlcə
+        // silinməlidir — silindikdən sonra fayl seçmə sahəsi görünür.
+        function setupFileToggle(deleteBtnId, currentBlockId, uploadBlockId, removeFieldId) {
+            var deleteBtn = document.getElementById(deleteBtnId);
+            var currentBlock = document.getElementById(currentBlockId);
+            var uploadBlock = document.getElementById(uploadBlockId);
+            var removeField = document.getElementById(removeFieldId);
+            if (!deleteBtn) return;
+            deleteBtn.addEventListener('click', function () {
+                removeField.value = 'true';
+                currentBlock.style.display = 'none';
+                uploadBlock.style.display = 'block';
+            });
+        }
+        setupFileToggle('pdfDeleteBtn', 'pdfCurrentBlock', 'pdfUploadBlock', 'removePdf');
+        setupFileToggle('audioDeleteBtn', 'audioCurrentBlock', 'audioUploadBlock', 'removeAudio');
+    </script>
 }

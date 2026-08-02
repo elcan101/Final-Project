@@ -28,6 +28,12 @@ namespace E_Commerce.Controllers
         // İstifadəçi məcburi giriş etmiş olduğu üçün həmişə əsl hesab ID-si qaytarılır
         private string GetUserId() => User.FindFirstValue(ClaimTypes.NameIdentifier)!;
 
+        // Poçtla çatdırılma sifarişləri üçün izləmə kodu yaradır (məs: AZ483920175BK)
+        private static string GenerateTrackingCode()
+        {
+            return $"AZ{Random.Shared.Next(100000000, 999999999)}BK";
+        }
+
         // İstifadəçinin sifarişlərinin siyahısı
         public IActionResult Index()
         {
@@ -70,12 +76,18 @@ namespace E_Commerce.Controllers
         // Səbətdəki kitablardan sifariş yaradır, kuponu tətbiq edir, keşbek balansa yazılır
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Checkout(double? lat, double? lng, string? addressText, string? phoneNumber)
+        public IActionResult Checkout(double? lat, double? lng, string? addressText, string? phoneNumber, string? district, string? postalCode)
         {
-            // Çatdırılma nöqtəsi seçilməyibsə, geri "xəritədən seç" səhifəsinə qaytarırıq
-            if (lat == null || lng == null)
+            // Rayonlara poçtla çatdırılma: müştəri xəritədən nöqtə seçmək əvəzinə rayon və
+            // poçt indeksi daxil edibsə, kuryer təyinatı olmadan birbaşa poçtla göndərilir
+            var isPostDelivery = lat == null && lng == null
+                && !string.IsNullOrWhiteSpace(district) && !string.IsNullOrWhiteSpace(postalCode);
+
+            // Çatdırılma nöqtəsi seçilməyibsə və rayon/poçt indeksi də daxil edilməyibsə,
+            // geri "xəritədən seç" səhifəsinə qaytarırıq
+            if (!isPostDelivery && (lat == null || lng == null))
             {
-                TempData["Error"] = "Zəhmət olmasa çatdırılma ünvanını xəritədən seçin.";
+                TempData["Error"] = "Zəhmət olmasa çatdırılma ünvanını xəritədən seçin, ya da rayon və poçt indeksini daxil edin.";
                 return RedirectToAction("ChooseLocation");
             }
 
@@ -118,8 +130,12 @@ namespace E_Commerce.Controllers
                 var productTotal = Math.Max(0, subtotal - discount);
 
                 // Depodan çatdırılma ünvanına məsafəyə görə çatdırılma haqqı — bu məbləğ
-                // müştəridən tutulur; çatdırıldıqda 70%-i kuryerin balansına köçürülür
-                var deliveryFee = _deliveryPricing.CalculateDeliveryFee(lat, lng, out var distanceKm);
+                // müştəridən tutulur; çatdırıldıqda 70%-i kuryerin balansına köçürülür.
+                // Poçtla çatdırılmada koordinat olmadığı üçün sabit baza haqqı tətbiq olunur.
+                double distanceKm;
+                var deliveryFee = isPostDelivery
+                    ? _deliveryPricing.CalculateDeliveryFee(null, null, out distanceKm)
+                    : _deliveryPricing.CalculateDeliveryFee(lat, lng, out distanceKm);
 
                 // Müştəridən tutulacaq yekun məbləğ: məhsullar + çatdırılma haqqı
                 var total = productTotal + deliveryFee;
@@ -151,13 +167,19 @@ namespace E_Commerce.Controllers
                     DiscountAmount = discount,
                     CouponCode = couponCode,
                     CashbackAmount = cashback,
-                    Status = "Hazırlanır",
+                    // Poçtla çatdırılma sifarişi kuryer mərhələlərindən (Hazırlanır → Hazırdır →
+                    // Kuryerdədir) keçmir, dərhal "Çatdırıldı" elan olunur.
+                    Status = isPostDelivery ? "Çatdırıldı" : "Hazırlanır",
                     DeliveryLatitude = lat,
                     DeliveryLongitude = lng,
                     DeliveryAddressText = string.IsNullOrWhiteSpace(addressText) ? null : addressText.Trim(),
                     DeliveryFee = deliveryFee,
                     DeliveryDistanceKm = distanceKm,
-                    PhoneNumber = phoneNumber.Trim()
+                    PhoneNumber = phoneNumber.Trim(),
+                    IsPostDelivery = isPostDelivery,
+                    District = isPostDelivery ? district!.Trim() : null,
+                    PostalCode = isPostDelivery ? postalCode!.Trim() : null,
+                    TrackingCode = isPostDelivery ? GenerateTrackingCode() : null
                 };
 
                 _context.Orders.Add(order);
@@ -176,10 +198,26 @@ namespace E_Commerce.Controllers
 
                 _context.SaveChanges();
 
+                // Poçtla çatdırılma sifarişinə kuryer bildirişi getmir — bunun əvəzinə
+                // müştəriyə birbaşa poçt izləmə kodu ilə bildiriş göndərilir.
+                if (isPostDelivery)
+                {
+                    _context.Notifications.Add(new Notification
+                    {
+                        UserId = order.UserId,
+                        Title = "Sifarişiniz poçtla göndərildi",
+                        Message = $"#{order.Id} nömrəli sifarişiniz \"{district}\" rayonuna, {postalCode} poçt indeksinə poçtla göndərildi və çatdırıldı. İzləmə kodu: {order.TrackingCode}",
+                        Url = $"/Order/Track/{order.Id}"
+                    });
+                    _context.SaveChanges();
+                }
+
                 HttpContext.Session.Remove("AppliedCouponCode");
                 HttpContext.Session.Remove("AppliedCouponDiscount");
 
-                TempData["Success"] = $"Sifarişiniz qəbul olundu! {total:0.00} AZN balansınızdan tutuldu (kitablar: {productTotal:0.00} AZN + çatdırılma: {deliveryFee:0.00} AZN), {cashback:0.00} AZN keşbek qazandınız (gözləyən keşbekə əlavə olundu).";
+                TempData["Success"] = isPostDelivery
+                    ? $"Sifarişiniz qəbul olundu və poçtla göndərildi! {total:0.00} AZN balansınızdan tutuldu (kitablar: {productTotal:0.00} AZN + çatdırılma: {deliveryFee:0.00} AZN), {cashback:0.00} AZN keşbek qazandınız. İzləmə kodu: {order.TrackingCode}"
+                    : $"Sifarişiniz qəbul olundu! {total:0.00} AZN balansınızdan tutuldu (kitablar: {productTotal:0.00} AZN + çatdırılma: {deliveryFee:0.00} AZN), {cashback:0.00} AZN keşbek qazandınız (gözləyən keşbekə əlavə olundu).";
                 return RedirectToAction("Index");
             }
             catch
@@ -189,6 +227,81 @@ namespace E_Commerce.Controllers
                 TempData["Error"] = "Sifariş tamamlanarkən xəta baş verdi, zəhmət olmasa bir daha cəhd edin.";
                 return RedirectToAction("Index", "Cart");
             }
+        }
+
+        // Sifarişi ləğv edir. Yalnız kuryer sifarişi HƏLƏ GÖTÜRMƏYİBSƏ (CourierProfileId boşdur)
+        // ləğv etməyə icazə verilir — yəni "Hazırlanır" və ya "Hazırdır" mərhələsindədirsə.
+        // Kuryer sifarişi qəbul edib götürdükdən sonra (Status = "Kuryerdədir") artıq ləğv
+        // oluna bilməz, çünki kitab artıq depodan çıxıb. Poçtla göndərilən sifarişlər də
+        // (dərhal "Çatdırıldı" olduğu üçün) ləğv edilə bilməz.
+        // Ləğv olunanda: ödənilən məbləğ (TotalAmount) istifadəçinin balansına geri qaytarılır,
+        // sifarişdən qazanılmış (hələ balansa keçməmiş) keşbek geri alınır.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Cancel(int id)
+        {
+            var userId = GetUserId();
+            var order = await _context.Orders
+                .FirstOrDefaultAsync(o => o.Id == id && o.UserId == userId && !o.IsDeleted);
+
+            if (order == null) return NotFound();
+
+            if (order.IsPostDelivery || order.CourierProfileId != null
+                || order.Status == "Çatdırıldı" || order.Status == "Ləğv edildi")
+            {
+                TempData["Error"] = "Bu sifarişi artıq ləğv etmək mümkün deyil — kuryer sifarişi götürüb və ya sifariş artıq çatdırılıb.";
+                return RedirectToAction("Index");
+            }
+
+            var wallet = _context.Wallets.FirstOrDefault(w => w.UserId == userId && !w.IsDeleted);
+            if (wallet != null)
+            {
+                // Ödənilən məbləğ geri qaytarılır
+                wallet.Balance += order.TotalAmount;
+
+                // Bu sifarişdən qazanılan (hələ balansa keçirilməmiş) keşbek geri alınır
+                if (order.CashbackAmount > 0)
+                {
+                    wallet.PendingCashback = Math.Max(0, wallet.PendingCashback - order.CashbackAmount);
+                    wallet.TotalCashbackEarned = Math.Max(0, wallet.TotalCashbackEarned - order.CashbackAmount);
+                }
+            }
+
+            order.Status = "Ləğv edildi";
+
+            _context.Notifications.Add(new Notification
+            {
+                UserId = order.UserId,
+                Title = "Sifariş ləğv edildi",
+                Message = $"#{order.Id} nömrəli sifariş ləğv edildi və {order.TotalAmount:0.00} AZN balansınıza geri qaytarıldı.",
+                Url = $"/Order/Index"
+            });
+
+            await _context.SaveChangesAsync();
+
+            TempData["Success"] = $"Sifariş ləğv edildi, {order.TotalAmount:0.00} AZN balansınıza geri qaytarıldı.";
+            return RedirectToAction("Index");
+        }
+
+        // Sifariş hazırlanıb ("Hazırdır" və sonrakı mərhələlər) elan olunduqdan sonra
+        // müştəriyə "Okean Kitabevi" başlıqlı çap oluna bilən qəbz göstərir.
+        public async Task<IActionResult> Receipt(int id)
+        {
+            var userId = GetUserId();
+            var order = await _context.Orders
+                .Include(o => o.Courier)
+                .FirstOrDefaultAsync(o => o.Id == id && o.UserId == userId && !o.IsDeleted);
+
+            if (order == null) return NotFound();
+
+            // "Hazırlanır" mərhələsində qəbz hələ yoxdur — sifariş hazır elan olunmayıb
+            if (order.Status == "Hazırlanır")
+            {
+                TempData["Error"] = "Bu sifariş hələ hazırlanır, qəbz yalnız sifariş hazır elan olunduqdan sonra mövcud olur.";
+                return RedirectToAction("Index");
+            }
+
+            return View(order);
         }
 
         // Depo sifarişi hazır elan edir → bütün boşda kuryerlərə SignalR siqnalı gedir

@@ -153,10 +153,34 @@ namespace E_Commerce.Controllers
             return View(product);
         }
 
+        // Wwwroot altındakı köhnə PDF/audio faylını fiziki olaraq silir (fayl artıq yoxdursa səssizcə keçir).
+        private void DeleteUploadedFile(string? relativeUrl)
+        {
+            if (string.IsNullOrWhiteSpace(relativeUrl)) return;
+
+            var webRoot = _env.WebRootPath;
+            if (string.IsNullOrEmpty(webRoot))
+                webRoot = Path.Combine(_env.ContentRootPath, "wwwroot");
+
+            var relative = relativeUrl.TrimStart('/', '\\').Replace('/', Path.DirectorySeparatorChar);
+            var filePath = Path.Combine(webRoot, relative);
+
+            try
+            {
+                if (System.IO.File.Exists(filePath))
+                    System.IO.File.Delete(filePath);
+            }
+            catch
+            {
+                // Fayl silinərkən xəta olsa belə (icazə, kilidlənmə və s.) əməliyyatı dayandırmırıq —
+                // DB-dəki link hər halda təmizlənəcək.
+            }
+        }
+
         [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Product product, IFormFile? pdfFile, IFormFile? audioFile)
+        public async Task<IActionResult> Edit(int id, Product product, IFormFile? pdfFile, IFormFile? audioFile, bool removePdf = false, bool removeAudio = false)
         {
             if (id != product.Id) return NotFound();
 
@@ -214,9 +238,30 @@ namespace E_Commerce.Controllers
             existing.IsSecondHand = product.IsSecondHand;
             existing.IsHardcover = product.IsHardcover;
             existing.ImageUrl = product.ImageUrl;
-            // Yalnız yeni fayl yüklənibsə mövcud PDF/audio linkini əvəz et — əks halda toxunma
-            if (pdfUrl != null) existing.PdfUrl = pdfUrl;
-            if (audioUrl != null) existing.AudioUrl = audioUrl;
+            // Yalnız yeni fayl yüklənibsə mövcud PDF/audio linkini əvəz et — əks halda toxunma.
+            // "Sil" düyməsi ilə silinmə tələb olunubsa (removePdf/removeAudio) və yeni fayl
+            // yüklənməyibsə, köhnə fayl diskdən silinir və link boşaldılır.
+            if (pdfUrl != null)
+            {
+                DeleteUploadedFile(existing.PdfUrl);
+                existing.PdfUrl = pdfUrl;
+            }
+            else if (removePdf)
+            {
+                DeleteUploadedFile(existing.PdfUrl);
+                existing.PdfUrl = null;
+            }
+
+            if (audioUrl != null)
+            {
+                DeleteUploadedFile(existing.AudioUrl);
+                existing.AudioUrl = audioUrl;
+            }
+            else if (removeAudio)
+            {
+                DeleteUploadedFile(existing.AudioUrl);
+                existing.AudioUrl = null;
+            }
             existing.CategoryId = product.CategoryId;
             existing.UpdatedDate = DateTime.Now;
 
@@ -345,9 +390,10 @@ namespace E_Commerce.Controllers
         // Əvvəllər səhifə birbaşa /uploads/pdf/xxx.pdf linkinə işarə edirdi — brauzer
         // uzantıları/yükləmə menecerləri (məs. IDM) bunu "yüklənəcək fayl" kimi tanıyıb
         // "Aynı indirme bağlantısı" pəncərəsi açırdı və istifadəçini saytdan kənara aparırdı.
-        // Bu endpoint uzantısı .pdf olmayan bir URL-dən faylı "Content-Disposition: inline"
-        // başlığı ilə, "Range" dəstəyi olmadan (EnableRangeProcessing=false) axıdır ki, heç bir
-        // yükləmə meneceri onu tutmasın və fayl birbaşa iframe içində, saytda açılsın.
+        // Bu problem yalnız URL-in .pdf uzantısını gizlətməklə HƏLL OLUNMADI, çünki IDM
+        // cavabı Content-Type başlığına görə də tuturdu (aşağıdakı qeydə bax). Ona görə bu
+        // endpoint faylı süni ("camuflaj") bir Content-Type ilə qaytarır, əsl PDF tipini isə
+        // yalnız brauzerdəki JavaScript (Details.cshtml) təyin edir.
         // Giriş icazəsi (abunəlik) bu endpointdə də serverdə təkrar yoxlanılır.
         [HttpGet]
         public async Task<IActionResult> ReadPdf(int id)
@@ -377,10 +423,48 @@ namespace E_Commerce.Controllers
             if (!System.IO.File.Exists(filePath))
                 return NotFound();
 
-            var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read);
-            Response.Headers["Content-Disposition"] = "inline; filename=\"kitab.pdf\"";
+            // Bu dinamik cavab qlobal "no-cache" middleware-dən keçir (bax Program.cs), amma
+            // ehtiyat üçün burada da açıq şəkildə keş qadağan olunur ki, brauzer köhnə/xarab
+            // bir cavabı (məs. əvvəlki uğursuz Range cavabını) heç vaxt keşdən göstərməsin.
+            //
+            // MÜHÜM: IDM (Internet Download Manager) kimi yükləmə menecerləri brauzer
+            // uzantısı vasitəsilə BÜTÜN şəbəkə cavablarını (səhifə keçidi, fetch(), XHR —
+            // fərq etmir) "Content-Type" başlığına görə skan edir. Cavab "application/pdf"
+            // olaraq gələndə, hətta JavaScript fetch() ilə göndərilsə belə, IDM onu tutub
+            // "Aynı indirme bağlantısı" pəncərəsini açır və faylı öz nəzarətinə keçirir —
+            // nəticədə səhifədəki fetch() natamam/boş cavab alır və PDF "yüklənə bilmədi"
+            // xətası göstərir. Bunun qarşısını almaq üçün server cavabı IDM-in tanıdığı
+            // sənəd MIME tiplərindən (application/pdf, application/octet-stream və s.) BİR-İ
+            // OLMAYAN, süni bir Content-Type ilə göndərir. Brauzerdəki JavaScript real PDF
+            // baytlarını aldıqdan sonra Blob-u "application/pdf" tipi ilə YENİDƏN qurur (bax
+            // Details.cshtml) — bu, faylın PDF kimi düzgün göstərilməsini təmin edir, çünki
+            // Blob-un tipi tamamilə brauzerdə, JS tərəfindən müəyyən olunur, server başlığından
+            // asılı deyil.
+            Response.Headers["Cache-Control"] = "no-store, no-cache, must-revalidate";
             Response.Headers["X-Content-Type-Options"] = "nosniff";
-            return new FileStreamResult(stream, "application/pdf") { EnableRangeProcessing = false };
+            const string CamouflagedContentType = "application/x-ekitab-stream";
+
+            // QEYD: "Range" dəstəyi burada ARTIQ LAZIM DEYİL və bilərəkdən söndürülüb.
+            // Əvvəllər iframe birbaşa bu URL-ə "src" kimi bağlanırdı və brauzerin daxili PDF
+            // görüntüləyicisi faylı "Range" sorğuları ilə açırdı. İndi isə fayl JavaScript
+            // fetch() ilə TAM (200) cavab kimi endirilib Blob-a çevrilir (bax Details.cshtml),
+            // ona görə server tərəfində Range emalına ehtiyac qalmayıb.
+            //
+            // MÜHÜM (2-ci tur): Content-Type-ı kamuflyaj etmək kifayət ETMƏDİ — IDM əlavəsi
+            // fetch() cavabını hələ də "tuturdu" (dialoq artıq açılmır, amma səhifədəki
+            // fetch() "Failed to fetch" ilə uğursuz olurdu, çünki IDM bağlantını öz üzərinə
+            // götürüb səhifəyə tam cavab çatdırmırdı). Bunun səbəbi: IDM qərarını təkcə
+            // Content-Type-a görə deyil, həm də cavabın MƏLUM ÖLÇÜSÜNƏ (Content-Length) görə
+            // verir. FileStreamResult stream.Length məlum olduğu üçün Content-Length başlığını
+            // avtomatik göndərirdi. Buna görə faylı FileStreamResult ƏVƏZİNƏ, Content-Length
+            // başlığı HEÇ VAXT göndərilməyəcək şəkildə (HTTP "chunked" ötürmə ilə) əl ilə axıdırıq —
+            // IDM-in "bu böyük fayldır, tut" qərarı üçün lazım olan siqnal artıq mövcud deyil.
+            Response.ContentType = CamouflagedContentType;
+            using (var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read, bufferSize: 81920, useAsync: true))
+            {
+                await fileStream.CopyToAsync(Response.Body);
+            }
+            return new EmptyResult();
         }
 
         // Müştəri kitab səhifəsindən şərh/reytinq yazır

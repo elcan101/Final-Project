@@ -31,6 +31,19 @@
     <p class="small text-muted mb-2" id="pickedLabel">Hələ xəritədən nöqtə seçilməyib.</p>
     <p class="small mb-2" id="feeLabel" style="display:none;">🚚 Çatdırılma haqqı: <b id="feeAmount" style="color:#0b2f6b;"></b></p>
 
+    <hr class="my-3" />
+    <p class="small text-muted mb-2">📮 Rayonlara poçtla çatdırılma: xəritədən nöqtə seçmədən, rayon və poçt indeksini daxil edərək sifariş verə bilərsiniz. Bu seçimdə kuryer təyin olunmur — sifariş poçtla göndərilir və sizə izləmə kodu göndərilir.</p>
+
+    <div class="mb-3">
+        <label class="form-label small">Rayon</label>
+        <input type="text" name="district" id="districtInput" class="form-control" placeholder="Məs: Gəncə" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label small">Poçt indeksi</label>
+        <input type="text" name="postalCode" id="postalCodeInput" class="form-control" placeholder="Məs: AZ2000" />
+    </div>
+
     <button type="submit" class="btn-deal w-100" id="confirmBtn" disabled>Sifarişi təsdiqlə</button>
 </form>
 
@@ -71,6 +84,25 @@
             const useCurrentLocationBtn = document.getElementById("useCurrentLocationBtn");
             const feeLabel = document.getElementById("feeLabel");
             const feeAmount = document.getElementById("feeAmount");
+            const districtInput = document.getElementById("districtInput");
+            const postalCodeInput = document.getElementById("postalCodeInput");
+
+            // Rayon + poçt indeksi doldurulubsa, xəritədən nöqtə seçmədən də sifarişi
+            // təsdiqləmək mümkün olsun deyə düyməni aktivləşdiririk.
+            function checkPostDeliveryReady() {
+                const hasDistrict = districtInput.value.trim().length > 0;
+                const hasPostalCode = postalCodeInput.value.trim().length > 0;
+                if (hasDistrict && hasPostalCode) {
+                    confirmBtn.disabled = false;
+                    feeLabel.style.display = "none";
+                    pickedLabel.textContent = `📮 Poçtla çatdırılma: ${districtInput.value.trim()} rayonu, ${postalCodeInput.value.trim()}`;
+                } else if (!latInput.value) {
+                    confirmBtn.disabled = true;
+                    pickedLabel.textContent = "Hələ xəritədən nöqtə seçilməyib.";
+                }
+            }
+            districtInput?.addEventListener("input", checkPostDeliveryReady);
+            postalCodeInput?.addEventListener("input", checkPostDeliveryReady);
 
             // Depodan seçilmiş nöqtəyə qədər məsafəni (km) Haversine düsturu ilə hesablayır —
             // server tərəfdəki DeliveryPricingService ilə eyni məntiq (canlı qiymətləndirmə üçün)
