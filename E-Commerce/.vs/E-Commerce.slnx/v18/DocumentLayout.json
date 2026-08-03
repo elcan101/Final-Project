@@ -28,7 +28,7 @@
               "RelativeDocumentMoniker": "E-Commerce\\Services\\IAiAssistantService.cs",
               "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Services\\IAiAssistantService.cs",
               "RelativeToolTip": "E-Commerce\\Services\\IAiAssistantService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-08-03T21:22:54.694Z",
               "EditorCaption": ""
@@ -43,8 +43,7 @@
               "RelativeToolTip": "E-Commerce\\Models\\AppUser.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-03T21:22:08.713Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-08-03T21:22:08.713Z"
             }
           ]
         }
