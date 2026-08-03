@@ -1,0 +1,77 @@
+@model E_Commerce.Models.Listing
+@{
+    ViewData["Title"] = "Elanı Redaktə Et";
+    var categories = ViewBag.Categories as List<E_Commerce.Models.Category>;
+}
+
+<h4 class="mb-4">✏️ Elanı Redaktə Et</h4>
+<p class="text-muted small mb-4">Yalnız aşağıdakı sahələr yenilənir — elanın statusu, yığılmış elan haqları və satış tarixçəsi toxunulmaz qalır.</p>
+
+<div class="filter-panel" style="max-width:560px;">
+    <form asp-action="Edit" asp-route-id="@Model.Id" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label class="form-label small">Kitabın adı</label>
+            <input asp-for="Title" class="form-control" required />
+        </div>
+        <div class="mb-3">
+            <label class="form-label small">Müəllif</label>
+            <input asp-for="Author" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label small">Təsvir / Xüsusiyyətlər</label>
+            <textarea asp-for="Description" class="form-control" rows="3" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label class="form-label small">Əlaqə nömrəsi</label>
+            <input asp-for="ContactPhone" class="form-control" placeholder="+994 XX XXX XX XX" />
+        </div>
+        <div class="row">
+            <div class="col-6 mb-3">
+                <label class="form-label small">Qiymət (AZN)</label>
+                <input asp-for="Price" type="number" step="0.01" class="form-control" required />
+            </div>
+            <div class="col-6 mb-3">
+                <label class="form-label small">Kateqoriya</label>
+                <select asp-for="CategoryId" class="form-select">
+                    <option value="">Seçilməyib</option>
+                    @if (categories != null)
+                    {
+                        foreach (var c in categories)
+                        {
+                            <option value="@c.Id" selected="@(Model.CategoryId == c.Id)">@c.Name</option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label small d-block">Kitabın şəkli və ya sənədi</label>
+            @if (!string.IsNullOrWhiteSpace(Model.ImageUrl))
+            {
+                <div class="mb-2">
+                    <img src="@Model.ImageUrl" alt="@Model.Title" style="max-width:120px; border-radius:8px; border:1px solid #dee2e6;" />
+                </div>
+            }
+            <input type="file" name="bookFile" class="form-control" accept=".pdf,image/*" />
+            <div class="form-text">Yeni fayl seçsəniz köhnəsinin yerinə keçəcək. Seçməsəniz, mövcud şəkil olduğu kimi qalacaq.</div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label small d-block">Cild növü</label>
+            <div class="form-check form-check-inline">
+                <input type="radio" asp-for="IsHardcover" value="true" class="form-check-input" id="listingCoverHard" checked="@(Model.IsHardcover)" />
+                <label class="form-check-label" for="listingCoverHard">📕 Cildli</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input type="radio" asp-for="IsHardcover" value="false" class="form-check-input" id="listingCoverSoft" checked="@(!Model.IsHardcover)" />
+                <label class="form-check-label" for="listingCoverSoft">📗 Cildsiz</label>
+            </div>
+        </div>
+
+        <div class="d-flex gap-2">
+            <button type="submit" class="btn-deal">Yadda saxla</button>
+            <a asp-action="MyListings" class="btn btn-outline-secondary">Ləğv et</a>
+        </div>
+    </form>
+</div>

@@ -156,6 +156,63 @@ namespace E_Commerce.Controllers
             return RedirectToAction("MyListings");
         }
 
+        // Elanı redaktə et — yalnız elanın sahibi öz elanını redaktə edə bilər.
+        [Authorize]
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var listing = await _context.Listings.FirstOrDefaultAsync(l => l.Id == id && !l.IsDeleted);
+            if (listing == null) return NotFound();
+            if (listing.SellerId != GetUserId()) return Forbid();
+
+            ViewBag.Categories = _context.Categories.Where(c => !c.IsDeleted).ToList();
+            return View(listing);
+        }
+
+        // MÜHÜM: bura yalnız "redaktə edilə bilən" sahələri (Title, Author, Description,
+        // Price, CategoryId, ContactPhone, IsHardcover və seçilibsə yeni şəkil) yeniləyir.
+        // SellerId, Status, DailyListingFee, AccruedFees, LastFeeChargedDate, BuyerId,
+        // SoldDate, PlatformCommissionRate, CreatedDate kimi sahələr formdan HEÇ VAXT
+        // qəbul olunmur və toxunulmaz qalır — beləliklə bir sahəni dəyişmək digər (məs.
+        // elanın statusu, yığılmış haqlar) məlumatları sıfırlamır/pozmur.
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(int id, Listing listing, IFormFile? bookFile)
+        {
+            var existing = _context.Listings.FirstOrDefault(l => l.Id == id && !l.IsDeleted);
+            if (existing == null) return NotFound();
+            if (existing.SellerId != GetUserId()) return Forbid();
+
+            ModelState.Remove(nameof(Listing.SellerId));
+            ModelState.Remove(nameof(Listing.ImageUrl));
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Categories = _context.Categories.Where(c => !c.IsDeleted).ToList();
+                listing.Id = id;
+                return View(listing);
+            }
+
+            existing.Title = listing.Title;
+            existing.Author = listing.Author;
+            existing.Description = listing.Description;
+            existing.Price = listing.Price;
+            existing.CategoryId = listing.CategoryId;
+            existing.ContactPhone = listing.ContactPhone;
+            existing.IsHardcover = listing.IsHardcover;
+            existing.UpdatedDate = DateTime.Now;
+
+            // Yalnız yeni fayl seçilibsə şəkli əvəz et — seçilməyibsə köhnə şəkil olduğu kimi qalır
+            var newImage = SaveBookFile(bookFile);
+            if (newImage != null)
+                existing.ImageUrl = newImage;
+
+            _context.SaveChanges();
+
+            TempData["Success"] = "Elan uğurla yeniləndi.";
+            return RedirectToAction("MyListings");
+        }
+
         // Əlaqə Saxla: sayt heç bir ödənişə vasitəçilik etmir — alıcıya satıcının əlaqə
         // nömrəsi/e-poçtu göstərilir, satıcıya isə yalnız "maraqlanan var" bildirişi gedir
         // (müştərinin əlaqə nömrəsi satıcıya ötürülmür — istəsə, müştəri özü satıcının

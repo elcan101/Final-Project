@@ -44,9 +44,10 @@
                         </td>
                         <td>@l.AccruedFees AZN</td>
                         <td>@(l.SoldDate?.ToString("dd.MM.yyyy") ?? "—")</td>
-                        <td>
+                        <td class="d-flex gap-2">
                             @if (l.Status == E_Commerce.Models.ListingStatus.Active)
                             {
+                                <a asp-action="Edit" asp-route-id="@l.Id" class="btn btn-outline-primary btn-sm">Redaktə et</a>
                                 <form asp-action="Deactivate" asp-route-id="@l.Id" method="post" onsubmit="return confirm('Elanı saytdan çıxarmaq istədiyinizə əminsiniz?');">
                                     <button type="submit" class="btn btn-outline-dark btn-sm">Elanı çıxar</button>
                                 </form>

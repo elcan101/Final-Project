@@ -7,6 +7,12 @@
         .Where(ci => ci.Product != null)
         .ToList();
     decimal total = items.Sum(ci => ci.Product.Price * ci.Quantity);
+
+    var appliedCode = Context.Session.GetString("AppliedCouponCode");
+    var appliedDiscountStr = Context.Session.GetString("AppliedCouponDiscount");
+    decimal appliedDiscount = 0;
+    if (!string.IsNullOrEmpty(appliedDiscountStr))
+        decimal.TryParse(appliedDiscountStr, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out appliedDiscount);
 }
 
 <h4 class="mb-4">Səbətim</h4>
@@ -25,7 +31,7 @@
     <div class="cart-list">
         @foreach (var item in items)
         {
-            <div class="cart-row d-flex align-items-center justify-content-between flex-wrap gap-3">
+            <div class="cart-row d-flex align-items-center justify-content-between flex-wrap gap-3" id="cart-row-@item.Id">
                 <div class="d-flex align-items-center gap-3">
                     <img src="@item.Product.ImageUrl" alt="@item.Product.Title" class="cart-thumb" />
                     <div>
@@ -34,13 +40,17 @@
                     </div>
                 </div>
 
-                <form asp-action="UpdateQuantity" method="post" class="d-flex align-items-center gap-2">
+                <form asp-action="UpdateQuantity" method="post" class="d-flex align-items-center gap-2 qty-form" data-id="@item.Id">
                     <input type="hidden" name="id" value="@item.Id" />
-                    <input type="number" name="quantity" value="@item.Quantity" min="0" class="form-control form-control-sm qty-input" />
-                    <button type="submit" class="btn btn-sm btn-outline-secondary">Yenilə</button>
+                    <input type="number" name="quantity" value="@item.Quantity" min="0"
+                           class="form-control form-control-sm qty-input"
+                           data-price="@item.Product.Price.ToString(System.Globalization.CultureInfo.InvariantCulture)"
+                           data-id="@item.Id" />
+                    <button type="submit" class="btn btn-sm btn-outline-secondary d-none">Yenilə</button>
+                    <span class="qty-saving text-muted small d-none">yadda saxlanır...</span>
                 </form>
 
-                <div class="fw-bold" style="min-width: 90px; text-align:right;">@((item.Product.Price * item.Quantity)) AZN</div>
+                <div class="fw-bold" id="line-total-@item.Id" style="min-width: 90px; text-align:right;">@((item.Product.Price * item.Quantity)) AZN</div>
 
                 <a asp-action="Remove" asp-route-id="@item.Id" class="text-danger" title="Sil">✕</a>
             </div>
@@ -54,21 +64,14 @@
         </form>
 
         <div class="checkout-summary">
-            @{
-                var appliedCode = Context.Session.GetString("AppliedCouponCode");
-                var appliedDiscountStr = Context.Session.GetString("AppliedCouponDiscount");
-                decimal appliedDiscount = 0;
-                if (!string.IsNullOrEmpty(appliedDiscountStr))
-                    decimal.TryParse(appliedDiscountStr, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out appliedDiscount);
-            }
             @if (!string.IsNullOrEmpty(appliedCode))
             {
                 <div class="text-success small mb-1">✅ "@appliedCode" tətbiq olundu: -@appliedDiscount AZN</div>
-                <h5 class="mb-0">Yekun: @Math.Max(0, total - appliedDiscount) AZN</h5>
+                <h5 class="mb-0">Yekun: <span id="grand-total">@Math.Max(0, total - appliedDiscount)</span> AZN</h5>
             }
             else
             {
-                <h5 class="mb-0">Yekun: @total AZN</h5>
+                <h5 class="mb-0">Yekun: <span id="grand-total">@total</span> AZN</h5>
             }
             <a asp-controller="Order" asp-action="ChooseLocation" class="btn-deal mt-2 d-inline-block">Sifarişi tamamla</a>
         </div>
@@ -80,4 +83,69 @@ else
         <p class="text-muted mb-3">Səbətiniz boşdur.</p>
         <a asp-controller="Product" asp-action="Index" class="btn-deal">Kitablara bax</a>
     </div>
+}
+
+@section Scripts {
+    <script>
+        // Say seçicisini dəyişdikdə: sətir cəmi və ümumi yekun DƏRHAL (JS ilə) yenilənir —
+        // heç bir "Yenilə" düyməsinə basmağa ehtiyac qalmır. Dəyişiklik verilənlər bazasına
+        // qısa gecikmə (debounce) ilə arxa planda (səhifə yenilənmədən) avtomatik yazılır.
+        (function () {
+            var discount = @Html.Raw(appliedDiscount.ToString(System.Globalization.CultureInfo.InvariantCulture));
+            var saveTimers = {};
+
+            function formatAmount(n) {
+                return Math.round(n * 100) / 100;
+            }
+
+            function recalcAll() {
+                var grandTotal = 0;
+                document.querySelectorAll('.qty-input').forEach(function (input) {
+                    var price = parseFloat(input.getAttribute('data-price')) || 0;
+                    var qty = Math.max(0, parseInt(input.value, 10) || 0);
+                    var lineTotal = price * qty;
+                    grandTotal += lineTotal;
+
+                    var lineEl = document.getElementById('line-total-' + input.getAttribute('data-id'));
+                    if (lineEl) lineEl.textContent = formatAmount(lineTotal) + ' AZN';
+                });
+
+                var grandEl = document.getElementById('grand-total');
+                if (grandEl) grandEl.textContent = formatAmount(Math.max(0, grandTotal - discount));
+            }
+
+            function scheduleSave(form, id) {
+                clearTimeout(saveTimers[id]);
+                var savingLabel = form.querySelector('.qty-saving');
+                if (savingLabel) savingLabel.classList.remove('d-none');
+
+                saveTimers[id] = setTimeout(function () {
+                    fetch(form.action, {
+                        method: 'POST',
+                        credentials: 'same-origin',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        body: new URLSearchParams(new FormData(form)).toString()
+                    })
+                        .then(function () {
+                            if (savingLabel) savingLabel.classList.add('d-none');
+                            var input = form.querySelector('.qty-input');
+                            // Say 0 edilibsə, sətir artıq bazada silinib — səhifəni yeniləyib siyahını təzələyirik
+                            if (input && parseInt(input.value, 10) <= 0) {
+                                window.location.reload();
+                            }
+                        })
+                        .catch(function () {
+                            if (savingLabel) savingLabel.classList.add('d-none');
+                        });
+                }, 600);
+            }
+
+            document.querySelectorAll('.qty-input').forEach(function (input) {
+                input.addEventListener('input', function () {
+                    recalcAll();
+                    scheduleSave(input.closest('form'), input.getAttribute('data-id'));
+                });
+            });
+        })();
+    </script>
 }
