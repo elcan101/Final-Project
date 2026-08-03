@@ -1,12 +1,54 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\services\\iaiassistantservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\services\\iaiassistantservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\models\\appuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\models\\appuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "IAiAssistantService.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Services\\IAiAssistantService.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Services\\IAiAssistantService.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Services\\IAiAssistantService.cs",
+              "RelativeToolTip": "E-Commerce\\Services\\IAiAssistantService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-03T21:22:54.694Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AppUser.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Models\\AppUser.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Models\\AppUser.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Models\\AppUser.cs",
+              "RelativeToolTip": "E-Commerce\\Models\\AppUser.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-03T21:22:08.713Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }
