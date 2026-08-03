@@ -1,0 +1,7 @@
+C:\Users\HP\Desktop\E-Commerce_fixed (14)\E-Commerce\wwwroot\adminpanel\css\admin-horizon.css
+C:\Users\HP\Desktop\E-Commerce_fixed (14)\E-Commerce\wwwroot\jsscript.js
+C:\Users\HP\Desktop\E-Commerce_fixed (14)\E-Commerce\wwwroot\js\ai-assistant.js
+C:\Users\HP\Desktop\E-Commerce_fixed (14)\E-Commerce\wwwroot\js\courier-dashboard.js
+C:\Users\HP\Desktop\E-Commerce_fixed (14)\E-Commerce\wwwroot\js\order-track.js
+C:\Users\HP\Desktop\E-Commerce_fixed (14)\E-Commerce\wwwroot\js\product-filter.js
+C:\Users\HP\Desktop\E-Commerce_fixed (14)\E-Commerce\wwwroot\style.css
