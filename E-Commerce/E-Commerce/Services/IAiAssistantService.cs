@@ -5,11 +5,11 @@ namespace E_Commerce.Services
     {
         public string Role { get; set; } = "user"; // "user" və ya "assistant"
         public string Text { get; set; } = "";
-    
+    }
 
     // AI-nın qaytardığı tövsiyə olunan kitab (Product cədvəlindən götürülüb frontend-ə göndərilir)
     public class AiRecommendedBook
-    
+    {
         public int Id { get; set; }
         public string Title { get; set; } = "";
         public string? Author { get; set; }
