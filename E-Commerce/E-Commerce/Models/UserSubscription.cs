@@ -3,7 +3,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace E_Commerce.Models
 {
-    // Kitab Pass abunəlik növləri
     public enum SubscriptionPlanType
     {
         Standard = 0,
@@ -26,12 +25,9 @@ namespace E_Commerce.Models
 
         public bool IsActive { get; set; } = true;
 
-        // Aylıq abunə haqqı (mock ödəniş tarixçəsi üçün)
         [Column(TypeName = "decimal(18,2)")]
         public decimal PricePaid { get; set; }
 
-        // Premium: "ayda bir pulsuz icarə (14 günlük müddət)" haqqının bu ay artıq
-        // istifadə olunub-olunmadığını izləyir
         public DateTime? FreeRentalUsedThisMonth { get; set; }
 
         public static decimal MonthlyPrice(SubscriptionPlanType plan) =>

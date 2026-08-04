@@ -5,8 +5,6 @@ using E_Commerce.Models;
 
 namespace E_Commerce.Controllers
 {
-    // Kuponlar yalnız Adminlər tərəfindən yaradıla / idarə oluna bilər.
-    // Müştərilər yalnız checkout zamanı kupon KODUNU daxil edib Validate ilə yoxlaya bilirlər.
     [Authorize(Roles = "Admin")]
     public class CouponController : Controller
     {
@@ -80,7 +78,6 @@ namespace E_Commerce.Controllers
             return RedirectToAction("Index");
         }
 
-        // Checkout zamanı kupon kodunun doğruluğunu yoxlamaq üçün (AJAX) — HAMI istifadə edə bilər
         [AllowAnonymous]
         [HttpGet]
         public IActionResult Validate(string code)

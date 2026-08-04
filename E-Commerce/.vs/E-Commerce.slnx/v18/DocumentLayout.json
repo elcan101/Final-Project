@@ -3,12 +3,468 @@
   "WorkspaceRootPath": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\repair_database.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\repair_database.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\views\\wallet\\topup.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\views\\wallet\\topup.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\views\\wallet\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\views\\wallet\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\views\\shared\\_adminlayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\views\\shared\\_adminlayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\views\\rental\\chooselocation.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\views\\rental\\chooselocation.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\views\\product\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\views\\product\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\views\\product\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\views\\product\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\views\\product\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\views\\product\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\views\\order\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\views\\order\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\views\\order\\chooselocation.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\views\\order\\chooselocation.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\views\\notification\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\views\\notification\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\views\\listing\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\views\\listing\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\views\\courier\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\views\\courier\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\views\\courier\\dashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\views\\courier\\dashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\views\\courier\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\views\\courier\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\views\\coupon\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\views\\coupon\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\views\\coupon\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\views\\coupon\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\views\\category\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\views\\category\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\views\\category\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\views\\category\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\views\\cart\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\views\\cart\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\views\\account\\resetpasswordconfirmation.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\views\\account\\resetpasswordconfirmation.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\views\\account\\resetpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\views\\account\\resetpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\views\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\views\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\views\\account\\profile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\views\\account\\profile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\views\\account\\forgotpasswordconfirmation.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\views\\account\\forgotpasswordconfirmation.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\views\\account\\forgotpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\views\\account\\forgotpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\views\\account\\editprofile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\views\\account\\editprofile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\views\\account\\accessdenied.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\views\\account\\accessdenied.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\viewmodels\\resetpasswordviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\viewmodels\\resetpasswordviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\viewmodels\\registerviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\viewmodels\\registerviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\viewmodels\\loginviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\viewmodels\\loginviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\viewmodels\\forgotpasswordviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\viewmodels\\forgotpasswordviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\viewmodels\\editprofileviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\viewmodels\\editprofileviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\services\\mockstripepaymentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\services\\mockstripepaymentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\services\\mockemailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\services\\mockemailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\services\\ipaymentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\services\\ipaymentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\services\\iemailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\services\\iemailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\services\\iaiassistantservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\services\\iaiassistantservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\services\\deliverypricingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\services\\deliverypricingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\services\\dailybillingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\services\\dailybillingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\services\\cardvalidationhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\services\\cardvalidationhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\services\\aiassistantservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\services\\aiassistantservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\models\\wallet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\models\\wallet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\models\\usersubscription.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\models\\usersubscription.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\models\\productreview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\models\\productreview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\models\\paymentmethod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\models\\paymentmethod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\models\\notification.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\models\\notification.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\models\\listing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\models\\listing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\models\\courierprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\models\\courierprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\models\\coupon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\models\\coupon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\models\\chatmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\models\\chatmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\models\\cartitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\models\\cartitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\models\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\models\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\models\\bookrental.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\models\\bookrental.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\models\\appuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\models\\appuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\models\\base\\baseentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\models\\base\\baseentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\migrations\\appdbcontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\migrations\\appdbcontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\migrations\\20260802090000_addorderpostdelivery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\migrations\\20260802090000_addorderpostdelivery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\migrations\\20260801090000_addrentalorderdelivery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\migrations\\20260801090000_addrentalorderdelivery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\migrations\\20260730120000_addlistingcontactphone.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\migrations\\20260730120000_addlistingcontactphone.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\migrations\\20260728110000_backfillpendingcashback.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\migrations\\20260728110000_backfillpendingcashback.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\migrations\\20260728100000_addphonenumberfields.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\migrations\\20260728100000_addphonenumberfields.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\migrations\\20260727120000_addpendingcashback.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\migrations\\20260727120000_addpendingcashback.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\migrations\\20260722100000_adddeliveryfeeandnotifications.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\migrations\\20260722100000_adddeliveryfeeandnotifications.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\migrations\\20260722090000_addrentalwarningandfineflags.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\migrations\\20260722090000_addrentalwarningandfineflags.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\migrations\\20260721120000_addproductdetailsandreviews.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\migrations\\20260721120000_addproductdetailsandreviews.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\migrations\\20260719120000_addhardcoverandproductowner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\migrations\\20260719120000_addhardcoverandproductowner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\migrations\\20260625232231_createtable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\migrations\\20260625232231_createtable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\migrations\\20260716190000_addidentitytables.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\migrations\\20260716190000_addidentitytables.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\migrations\\20260717114048_addcommercefeatures.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\migrations\\20260717114048_addcommercefeatures.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\migrations\\20260718090000_addcourierfullnameanddeliverylocation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\migrations\\20260718090000_addcourierfullnameanddeliverylocation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\hubs\\couriertrackinghub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\hubs\\couriertrackinghub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\hubs\\chathub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\hubs\\chathub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\data\\seeddata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\data\\seeddata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\data\\identityseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\data\\identityseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\controllers\\walletcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\controllers\\walletcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\controllers\\subscriptioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\controllers\\subscriptioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\controllers\\rentalcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\controllers\\rentalcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\controllers\\notificationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\controllers\\notificationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\controllers\\listingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\controllers\\listingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\controllers\\couriercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\controllers\\couriercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\controllers\\couponcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\controllers\\couponcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\controllers\\aiassistantcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\controllers\\aiassistantcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\areas\\adminpanel\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\areas\\adminpanel\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\areas\\adminpanel\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\areas\\adminpanel\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\areas\\adminpanel\\views\\admin\\subscriptions.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\areas\\adminpanel\\views\\admin\\subscriptions.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\areas\\adminpanel\\views\\admin\\rentals.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\areas\\adminpanel\\views\\admin\\rentals.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\areas\\adminpanel\\views\\admin\\orders.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\areas\\adminpanel\\views\\admin\\orders.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\areas\\adminpanel\\views\\admin\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\areas\\adminpanel\\views\\admin\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\areas\\adminpanel\\views\\admin\\couriers.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\areas\\adminpanel\\views\\admin\\couriers.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\areas\\adminpanel\\views\\admin\\categories.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\areas\\adminpanel\\views\\admin\\categories.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\areas\\adminpanel\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\areas\\adminpanel\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\wwwroot\\style.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\wwwroot\\style.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\wwwroot\\jsscript.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\wwwroot\\jsscript.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\wwwroot\\js\\product-filter.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\wwwroot\\js\\product-filter.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\wwwroot\\js\\order-track.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\wwwroot\\js\\order-track.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\wwwroot\\js\\courier-dashboard.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\wwwroot\\js\\courier-dashboard.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\wwwroot\\js\\ai-assistant.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\wwwroot\\js\\ai-assistant.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\wwwroot\\adminpanel\\css\\admin-horizon.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\wwwroot\\adminpanel\\css\\admin-horizon.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\repair_database.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame",
+      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\repair_database.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
     }
   ],
   "DocumentGroupContainers": [
@@ -23,27 +479,1496 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "REPAIR_DATABASE.sql ",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\REPAIR_DATABASE.sql",
+              "RelativeDocumentMoniker": "E-Commerce\\REPAIR_DATABASE.sql",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\REPAIR_DATABASE.sql",
+              "RelativeToolTip": "E-Commerce\\REPAIR_DATABASE.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2026-08-04T21:54:21.461Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Program.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Program.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Program.cs",
+              "RelativeToolTip": "E-Commerce\\Program.cs",
+              "ViewState": "AgIAAHQAAAAAAAAAAAAAAIQAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:52:34.47Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "_ViewStart.cshtml",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\_ViewStart.cshtml",
+              "RelativeDocumentMoniker": "E-Commerce\\Views\\_ViewStart.cshtml",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\_ViewStart.cshtml",
+              "RelativeToolTip": "E-Commerce\\Views\\_ViewStart.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-04T21:52:22.936Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "_ViewImports.cshtml",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\_ViewImports.cshtml",
+              "RelativeDocumentMoniker": "E-Commerce\\Views\\_ViewImports.cshtml",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\_ViewImports.cshtml",
+              "RelativeToolTip": "E-Commerce\\Views\\_ViewImports.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-04T21:52:20.408Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "TopUp.cshtml",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Wallet\\TopUp.cshtml",
+              "RelativeDocumentMoniker": "E-Commerce\\Views\\Wallet\\TopUp.cshtml",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Wallet\\TopUp.cshtml",
+              "RelativeToolTip": "E-Commerce\\Views\\Wallet\\TopUp.cshtml",
+              "ViewState": "AgIAAJAAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-04T21:51:58.514Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Wallet\\Index.cshtml",
+              "RelativeDocumentMoniker": "E-Commerce\\Views\\Wallet\\Index.cshtml",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Wallet\\Index.cshtml",
+              "RelativeToolTip": "E-Commerce\\Views\\Wallet\\Index.cshtml",
+              "ViewState": "AgIAACsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-04T21:51:54.77Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "E-Commerce\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "E-Commerce\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAGkBAAAAAAAAAAAAAEkBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-04T21:50:45.457Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "_AdminLayout.cshtml",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Shared\\_AdminLayout.cshtml",
+              "RelativeDocumentMoniker": "E-Commerce\\Views\\Shared\\_AdminLayout.cshtml",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Shared\\_AdminLayout.cshtml",
+              "RelativeToolTip": "E-Commerce\\Views\\Shared\\_AdminLayout.cshtml",
+              "ViewState": "AgIAADEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-04T21:50:40.791Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ChooseLocation.cshtml",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Rental\\ChooseLocation.cshtml",
+              "RelativeDocumentMoniker": "E-Commerce\\Views\\Rental\\ChooseLocation.cshtml",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Rental\\ChooseLocation.cshtml",
+              "RelativeToolTip": "E-Commerce\\Views\\Rental\\ChooseLocation.cshtml",
+              "ViewState": "AgIAAIIAAAAAAAAAAAAAAJUAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-04T21:50:05.117Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Product\\Edit.cshtml",
+              "RelativeDocumentMoniker": "E-Commerce\\Views\\Product\\Edit.cshtml",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Product\\Edit.cshtml",
+              "RelativeToolTip": "E-Commerce\\Views\\Product\\Edit.cshtml",
+              "ViewState": "AgIAAJsAAAAAAAAAAAAAAKIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-04T21:49:34.15Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Product\\Details.cshtml",
+              "RelativeDocumentMoniker": "E-Commerce\\Views\\Product\\Details.cshtml",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Product\\Details.cshtml",
+              "RelativeToolTip": "E-Commerce\\Views\\Product\\Details.cshtml",
+              "ViewState": "AgIAAMUAAAAAAAAAAAAAAMMAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-04T21:49:04.086Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Product\\Create.cshtml",
+              "RelativeDocumentMoniker": "E-Commerce\\Views\\Product\\Create.cshtml",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Product\\Create.cshtml",
+              "RelativeToolTip": "E-Commerce\\Views\\Product\\Create.cshtml",
+              "ViewState": "AgIAAHsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-04T21:48:58.611Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Order\\Index.cshtml",
+              "RelativeDocumentMoniker": "E-Commerce\\Views\\Order\\Index.cshtml",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Order\\Index.cshtml",
+              "RelativeToolTip": "E-Commerce\\Views\\Order\\Index.cshtml",
+              "ViewState": "AgIAAFgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-04T21:48:28.471Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "ChooseLocation.cshtml",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Order\\ChooseLocation.cshtml",
+              "RelativeDocumentMoniker": "E-Commerce\\Views\\Order\\ChooseLocation.cshtml",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Order\\ChooseLocation.cshtml",
+              "RelativeToolTip": "E-Commerce\\Views\\Order\\ChooseLocation.cshtml",
+              "ViewState": "AgIAAJ4AAAAAAAAAAAAAALAAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-04T21:47:43.944Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Notification\\Index.cshtml",
+              "RelativeDocumentMoniker": "E-Commerce\\Views\\Notification\\Index.cshtml",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Notification\\Index.cshtml",
+              "RelativeToolTip": "E-Commerce\\Views\\Notification\\Index.cshtml",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-04T21:47:37.784Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Listing\\Create.cshtml",
+              "RelativeDocumentMoniker": "E-Commerce\\Views\\Listing\\Create.cshtml",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Listing\\Create.cshtml",
+              "RelativeToolTip": "E-Commerce\\Views\\Listing\\Create.cshtml",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-04T21:47:15.285Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "E-Commerce\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "E-Commerce\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAKcAAAAAAAAAAAAAAJ0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-04T21:46:32.604Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Courier\\Index.cshtml",
+              "RelativeDocumentMoniker": "E-Commerce\\Views\\Courier\\Index.cshtml",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Courier\\Index.cshtml",
+              "RelativeToolTip": "E-Commerce\\Views\\Courier\\Index.cshtml",
+              "ViewState": "AgIAABwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-04T21:46:26.681Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Dashboard.cshtml",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Courier\\Dashboard.cshtml",
+              "RelativeDocumentMoniker": "E-Commerce\\Views\\Courier\\Dashboard.cshtml",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Courier\\Dashboard.cshtml",
+              "RelativeToolTip": "E-Commerce\\Views\\Courier\\Dashboard.cshtml",
+              "ViewState": "AgIAAHYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-04T21:46:22.512Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Courier\\Create.cshtml",
+              "RelativeDocumentMoniker": "E-Commerce\\Views\\Courier\\Create.cshtml",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Courier\\Create.cshtml",
+              "RelativeToolTip": "E-Commerce\\Views\\Courier\\Create.cshtml",
+              "ViewState": "AgIAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-04T21:46:18.817Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Coupon\\Index.cshtml",
+              "RelativeDocumentMoniker": "E-Commerce\\Views\\Coupon\\Index.cshtml",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Coupon\\Index.cshtml",
+              "RelativeToolTip": "E-Commerce\\Views\\Coupon\\Index.cshtml",
+              "ViewState": "AgIAACwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-04T21:46:12.25Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Coupon\\Create.cshtml",
+              "RelativeDocumentMoniker": "E-Commerce\\Views\\Coupon\\Create.cshtml",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Coupon\\Create.cshtml",
+              "RelativeToolTip": "E-Commerce\\Views\\Coupon\\Create.cshtml",
+              "ViewState": "AgIAABoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-04T21:46:08.658Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Category\\Index.cshtml",
+              "RelativeDocumentMoniker": "E-Commerce\\Views\\Category\\Index.cshtml",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Category\\Index.cshtml",
+              "RelativeToolTip": "E-Commerce\\Views\\Category\\Index.cshtml",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-04T21:45:14.96Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Category\\Create.cshtml",
+              "RelativeDocumentMoniker": "E-Commerce\\Views\\Category\\Create.cshtml",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Category\\Create.cshtml",
+              "RelativeToolTip": "E-Commerce\\Views\\Category\\Create.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-04T21:45:11.429Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Cart\\Index.cshtml",
+              "RelativeDocumentMoniker": "E-Commerce\\Views\\Cart\\Index.cshtml",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Cart\\Index.cshtml",
+              "RelativeToolTip": "E-Commerce\\Views\\Cart\\Index.cshtml",
+              "ViewState": "AgIAAHcAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-04T21:44:51.391Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "ResetPasswordConfirmation.cshtml",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Account\\ResetPasswordConfirmation.cshtml",
+              "RelativeDocumentMoniker": "E-Commerce\\Views\\Account\\ResetPasswordConfirmation.cshtml",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Account\\ResetPasswordConfirmation.cshtml",
+              "RelativeToolTip": "E-Commerce\\Views\\Account\\ResetPasswordConfirmation.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-04T21:44:46.508Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "ResetPassword.cshtml",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Account\\ResetPassword.cshtml",
+              "RelativeDocumentMoniker": "E-Commerce\\Views\\Account\\ResetPassword.cshtml",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Account\\ResetPassword.cshtml",
+              "RelativeToolTip": "E-Commerce\\Views\\Account\\ResetPassword.cshtml",
+              "ViewState": "AgIAACQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-04T21:44:42.279Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "Register.cshtml",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Account\\Register.cshtml",
+              "RelativeDocumentMoniker": "E-Commerce\\Views\\Account\\Register.cshtml",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Account\\Register.cshtml",
+              "RelativeToolTip": "E-Commerce\\Views\\Account\\Register.cshtml",
+              "ViewState": "AgIAACwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-04T21:44:38.615Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "Profile.cshtml",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Account\\Profile.cshtml",
+              "RelativeDocumentMoniker": "E-Commerce\\Views\\Account\\Profile.cshtml",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Account\\Profile.cshtml",
+              "RelativeToolTip": "E-Commerce\\Views\\Account\\Profile.cshtml",
+              "ViewState": "AgIAAEMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-04T21:44:35.146Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Account\\Login.cshtml",
+              "RelativeDocumentMoniker": "E-Commerce\\Views\\Account\\Login.cshtml",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Account\\Login.cshtml",
+              "RelativeToolTip": "E-Commerce\\Views\\Account\\Login.cshtml",
+              "ViewState": "AgIAACQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-04T21:44:31.517Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "ForgotPasswordConfirmation.cshtml",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Account\\ForgotPasswordConfirmation.cshtml",
+              "RelativeDocumentMoniker": "E-Commerce\\Views\\Account\\ForgotPasswordConfirmation.cshtml",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Account\\ForgotPasswordConfirmation.cshtml",
+              "RelativeToolTip": "E-Commerce\\Views\\Account\\ForgotPasswordConfirmation.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-04T21:44:29.356Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "ForgotPassword.cshtml",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Account\\ForgotPassword.cshtml",
+              "RelativeDocumentMoniker": "E-Commerce\\Views\\Account\\ForgotPassword.cshtml",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Account\\ForgotPassword.cshtml",
+              "RelativeToolTip": "E-Commerce\\Views\\Account\\ForgotPassword.cshtml",
+              "ViewState": "AgIAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-04T21:44:25.45Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "EditProfile.cshtml",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Account\\EditProfile.cshtml",
+              "RelativeDocumentMoniker": "E-Commerce\\Views\\Account\\EditProfile.cshtml",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Account\\EditProfile.cshtml",
+              "RelativeToolTip": "E-Commerce\\Views\\Account\\EditProfile.cshtml",
+              "ViewState": "AgIAACgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-04T21:44:19.906Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "AccessDenied.cshtml",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Account\\AccessDenied.cshtml",
+              "RelativeDocumentMoniker": "E-Commerce\\Views\\Account\\AccessDenied.cshtml",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Account\\AccessDenied.cshtml",
+              "RelativeToolTip": "E-Commerce\\Views\\Account\\AccessDenied.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-04T21:44:18.169Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "ResetPasswordViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\ViewModels\\ResetPasswordViewModel.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\ViewModels\\ResetPasswordViewModel.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\ViewModels\\ResetPasswordViewModel.cs",
+              "RelativeToolTip": "E-Commerce\\ViewModels\\ResetPasswordViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:43:53.966Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "RegisterViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\ViewModels\\RegisterViewModel.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\ViewModels\\RegisterViewModel.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\ViewModels\\RegisterViewModel.cs",
+              "RelativeToolTip": "E-Commerce\\ViewModels\\RegisterViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:43:51.854Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "LoginViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\ViewModels\\LoginViewModel.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\ViewModels\\LoginViewModel.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\ViewModels\\LoginViewModel.cs",
+              "RelativeToolTip": "E-Commerce\\ViewModels\\LoginViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:43:49.82Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "ForgotPasswordViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\ViewModels\\ForgotPasswordViewModel.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\ViewModels\\ForgotPasswordViewModel.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\ViewModels\\ForgotPasswordViewModel.cs",
+              "RelativeToolTip": "E-Commerce\\ViewModels\\ForgotPasswordViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:43:47.421Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "EditProfileViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\ViewModels\\EditProfileViewModel.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\ViewModels\\EditProfileViewModel.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\ViewModels\\EditProfileViewModel.cs",
+              "RelativeToolTip": "E-Commerce\\ViewModels\\EditProfileViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:43:42.463Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "MockStripePaymentService.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Services\\MockStripePaymentService.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Services\\MockStripePaymentService.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Services\\MockStripePaymentService.cs",
+              "RelativeToolTip": "E-Commerce\\Services\\MockStripePaymentService.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAAAB0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:43:24.876Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "MockEmailService.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Services\\MockEmailService.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Services\\MockEmailService.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Services\\MockEmailService.cs",
+              "RelativeToolTip": "E-Commerce\\Services\\MockEmailService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:43:12.832Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "IPaymentService.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Services\\IPaymentService.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Services\\IPaymentService.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Services\\IPaymentService.cs",
+              "RelativeToolTip": "E-Commerce\\Services\\IPaymentService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:43:05.512Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "IEmailService.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Services\\IEmailService.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Services\\IEmailService.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Services\\IEmailService.cs",
+              "RelativeToolTip": "E-Commerce\\Services\\IEmailService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:43:03.293Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "DeliveryPricingService.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Services\\DeliveryPricingService.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Services\\DeliveryPricingService.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Services\\DeliveryPricingService.cs",
+              "RelativeToolTip": "E-Commerce\\Services\\DeliveryPricingService.cs",
+              "ViewState": "AgIAACMAAAAAAAAAAAAAACgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:42:28.337Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 45,
+              "Title": "DailyBillingService.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Services\\DailyBillingService.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Services\\DailyBillingService.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Services\\DailyBillingService.cs",
+              "RelativeToolTip": "E-Commerce\\Services\\DailyBillingService.cs",
+              "ViewState": "AgIAAIsAAAAAAAAAAAAAAKEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:41:41.29Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 46,
+              "Title": "CardValidationHelper.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Services\\CardValidationHelper.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Services\\CardValidationHelper.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Services\\CardValidationHelper.cs",
+              "RelativeToolTip": "E-Commerce\\Services\\CardValidationHelper.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:41:31.23Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 47,
+              "Title": "AiAssistantService.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Services\\AiAssistantService.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Services\\AiAssistantService.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Services\\AiAssistantService.cs",
+              "RelativeToolTip": "E-Commerce\\Services\\AiAssistantService.cs",
+              "ViewState": "AgIAALwAAAAAAAAAAAAAAIsAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:40:29.171Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 48,
+              "Title": "Wallet.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Models\\Wallet.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Models\\Wallet.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Models\\Wallet.cs",
+              "RelativeToolTip": "E-Commerce\\Models\\Wallet.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:40:01.732Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
               "Title": "IAiAssistantService.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Services\\IAiAssistantService.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Services\\IAiAssistantService.cs",
               "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Services\\IAiAssistantService.cs",
               "RelativeToolTip": "E-Commerce\\Services\\IAiAssistantService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAEAAAAAAAAAA==",
+              "ViewState": "AgIAABEAAAAAAAAAAAAAAAQAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-08-03T21:22:54.694Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 49,
+              "Title": "UserSubscription.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Models\\UserSubscription.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Models\\UserSubscription.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Models\\UserSubscription.cs",
+              "RelativeToolTip": "E-Commerce\\Models\\UserSubscription.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:39:47.316Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 50,
+              "Title": "ProductReview.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Models\\ProductReview.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Models\\ProductReview.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Models\\ProductReview.cs",
+              "RelativeToolTip": "E-Commerce\\Models\\ProductReview.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:39:36.617Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 51,
+              "Title": "Product.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Models\\Product.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Models\\Product.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Models\\Product.cs",
+              "RelativeToolTip": "E-Commerce\\Models\\Product.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAADEAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:38:37.978Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 52,
+              "Title": "PaymentMethod.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Models\\PaymentMethod.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Models\\PaymentMethod.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Models\\PaymentMethod.cs",
+              "RelativeToolTip": "E-Commerce\\Models\\PaymentMethod.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:38:27.502Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 53,
+              "Title": "Order.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Models\\Order.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Models\\Order.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Models\\Order.cs",
+              "RelativeToolTip": "E-Commerce\\Models\\Order.cs",
+              "ViewState": "AgIAADEAAAAAAAAAAAAAADMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:37:33.031Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 54,
+              "Title": "Notification.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Models\\Notification.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Models\\Notification.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Models\\Notification.cs",
+              "RelativeToolTip": "E-Commerce\\Models\\Notification.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:37:18.749Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 55,
+              "Title": "Listing.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Models\\Listing.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Models\\Listing.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Models\\Listing.cs",
+              "RelativeToolTip": "E-Commerce\\Models\\Listing.cs",
+              "ViewState": "AgIAACgAAAAAAAAAAAAAADkAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:35:39.159Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 56,
+              "Title": "CourierProfile.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Models\\CourierProfile.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Models\\CourierProfile.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Models\\CourierProfile.cs",
+              "RelativeToolTip": "E-Commerce\\Models\\CourierProfile.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:35:22.81Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 57,
+              "Title": "Coupon.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Models\\Coupon.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Models\\Coupon.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Models\\Coupon.cs",
+              "RelativeToolTip": "E-Commerce\\Models\\Coupon.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:35:14.327Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 58,
+              "Title": "ChatMessage.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Models\\ChatMessage.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Models\\ChatMessage.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Models\\ChatMessage.cs",
+              "RelativeToolTip": "E-Commerce\\Models\\ChatMessage.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:35:11.88Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 59,
+              "Title": "Category.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Models\\Category.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Models\\Category.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Models\\Category.cs",
+              "RelativeToolTip": "E-Commerce\\Models\\Category.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:35:04.361Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 60,
+              "Title": "CartItem.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Models\\CartItem.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Models\\CartItem.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Models\\CartItem.cs",
+              "RelativeToolTip": "E-Commerce\\Models\\CartItem.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:34:58.984Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 61,
+              "Title": "Cart.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Models\\Cart.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Models\\Cart.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Models\\Cart.cs",
+              "RelativeToolTip": "E-Commerce\\Models\\Cart.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:34:54.139Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 62,
+              "Title": "BookRental.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Models\\BookRental.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Models\\BookRental.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Models\\BookRental.cs",
+              "RelativeToolTip": "E-Commerce\\Models\\BookRental.cs",
+              "ViewState": "AgIAACoAAAAAAAAAAAAAADsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:34:13.211Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 64,
+              "Title": "BaseEntity.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Models\\Base\\BaseEntity.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Models\\Base\\BaseEntity.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Models\\Base\\BaseEntity.cs",
+              "RelativeToolTip": "E-Commerce\\Models\\Base\\BaseEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:34:00.807Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 65,
+              "Title": "AppDbContextModelSnapshot.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Migrations\\AppDbContextModelSnapshot.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Migrations\\AppDbContextModelSnapshot.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Migrations\\AppDbContextModelSnapshot.cs",
+              "RelativeToolTip": "E-Commerce\\Migrations\\AppDbContextModelSnapshot.cs",
+              "ViewState": "AgIAABcEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:33:32.068Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 66,
+              "Title": "20260802090000_AddOrderPostDelivery.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Migrations\\20260802090000_AddOrderPostDelivery.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Migrations\\20260802090000_AddOrderPostDelivery.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Migrations\\20260802090000_AddOrderPostDelivery.cs",
+              "RelativeToolTip": "E-Commerce\\Migrations\\20260802090000_AddOrderPostDelivery.cs",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAAACgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:33:14.346Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 67,
+              "Title": "20260801090000_AddRentalOrderDelivery.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Migrations\\20260801090000_AddRentalOrderDelivery.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Migrations\\20260801090000_AddRentalOrderDelivery.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Migrations\\20260801090000_AddRentalOrderDelivery.cs",
+              "RelativeToolTip": "E-Commerce\\Migrations\\20260801090000_AddRentalOrderDelivery.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAACIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:32:55.923Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 63,
               "Title": "AppUser.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Models\\AppUser.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Models\\AppUser.cs",
               "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Models\\AppUser.cs",
               "RelativeToolTip": "E-Commerce\\Models\\AppUser.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-03T21:22:08.713Z"
+              "WhenOpened": "2026-08-03T21:22:08.713Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 68,
+              "Title": "20260730120000_AddListingContactPhone.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Migrations\\20260730120000_AddListingContactPhone.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Migrations\\20260730120000_AddListingContactPhone.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Migrations\\20260730120000_AddListingContactPhone.cs",
+              "RelativeToolTip": "E-Commerce\\Migrations\\20260730120000_AddListingContactPhone.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:32:02.241Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 69,
+              "Title": "20260728110000_BackfillPendingCashback.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Migrations\\20260728110000_BackfillPendingCashback.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Migrations\\20260728110000_BackfillPendingCashback.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Migrations\\20260728110000_BackfillPendingCashback.cs",
+              "RelativeToolTip": "E-Commerce\\Migrations\\20260728110000_BackfillPendingCashback.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:31:26.171Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 70,
+              "Title": "20260728100000_AddPhoneNumberFields.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Migrations\\20260728100000_AddPhoneNumberFields.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Migrations\\20260728100000_AddPhoneNumberFields.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Migrations\\20260728100000_AddPhoneNumberFields.cs",
+              "RelativeToolTip": "E-Commerce\\Migrations\\20260728100000_AddPhoneNumberFields.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:31:08.499Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 71,
+              "Title": "20260727120000_AddPendingCashback.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Migrations\\20260727120000_AddPendingCashback.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Migrations\\20260727120000_AddPendingCashback.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Migrations\\20260727120000_AddPendingCashback.cs",
+              "RelativeToolTip": "E-Commerce\\Migrations\\20260727120000_AddPendingCashback.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:30:56.923Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 72,
+              "Title": "20260722100000_AddDeliveryFeeAndNotifications.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Migrations\\20260722100000_AddDeliveryFeeAndNotifications.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Migrations\\20260722100000_AddDeliveryFeeAndNotifications.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Migrations\\20260722100000_AddDeliveryFeeAndNotifications.cs",
+              "RelativeToolTip": "E-Commerce\\Migrations\\20260722100000_AddDeliveryFeeAndNotifications.cs",
+              "ViewState": "AgIAACsAAAAAAAAAAAAAACwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:30:35.077Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 73,
+              "Title": "20260722090000_AddRentalWarningAndFineFlags.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Migrations\\20260722090000_AddRentalWarningAndFineFlags.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Migrations\\20260722090000_AddRentalWarningAndFineFlags.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Migrations\\20260722090000_AddRentalWarningAndFineFlags.cs",
+              "RelativeToolTip": "E-Commerce\\Migrations\\20260722090000_AddRentalWarningAndFineFlags.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:30:19.201Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 74,
+              "Title": "20260721120000_AddProductDetailsAndReviews.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Migrations\\20260721120000_AddProductDetailsAndReviews.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Migrations\\20260721120000_AddProductDetailsAndReviews.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Migrations\\20260721120000_AddProductDetailsAndReviews.cs",
+              "RelativeToolTip": "E-Commerce\\Migrations\\20260721120000_AddProductDetailsAndReviews.cs",
+              "ViewState": "AgIAADwAAAAAAAAAAAAAADQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:29:54.841Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 78,
+              "Title": "20260717114048_AddCommerceFeatures.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Migrations\\20260717114048_AddCommerceFeatures.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Migrations\\20260717114048_AddCommerceFeatures.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Migrations\\20260717114048_AddCommerceFeatures.cs",
+              "RelativeToolTip": "E-Commerce\\Migrations\\20260717114048_AddCommerceFeatures.cs",
+              "ViewState": "AgIAAN0AAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:25:32.793Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 77,
+              "Title": "20260716190000_AddIdentityTables.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Migrations\\20260716190000_AddIdentityTables.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Migrations\\20260716190000_AddIdentityTables.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Migrations\\20260716190000_AddIdentityTables.cs",
+              "RelativeToolTip": "E-Commerce\\Migrations\\20260716190000_AddIdentityTables.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:25:21.402Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 76,
+              "Title": "20260625232231_createtable.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Migrations\\20260625232231_createtable.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Migrations\\20260625232231_createtable.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Migrations\\20260625232231_createtable.cs",
+              "RelativeToolTip": "E-Commerce\\Migrations\\20260625232231_createtable.cs",
+              "ViewState": "AgIAALIAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:24:27.265Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 75,
+              "Title": "20260719120000_AddHardcoverAndProductOwner.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Migrations\\20260719120000_AddHardcoverAndProductOwner.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Migrations\\20260719120000_AddHardcoverAndProductOwner.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Migrations\\20260719120000_AddHardcoverAndProductOwner.cs",
+              "RelativeToolTip": "E-Commerce\\Migrations\\20260719120000_AddHardcoverAndProductOwner.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:26:03.184Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 79,
+              "Title": "20260718090000_AddCourierFullNameAndDeliveryLocation.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Migrations\\20260718090000_AddCourierFullNameAndDeliveryLocation.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Migrations\\20260718090000_AddCourierFullNameAndDeliveryLocation.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Migrations\\20260718090000_AddCourierFullNameAndDeliveryLocation.cs",
+              "RelativeToolTip": "E-Commerce\\Migrations\\20260718090000_AddCourierFullNameAndDeliveryLocation.cs",
+              "ViewState": "AgIAACwAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:24:35.221Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 80,
+              "Title": "CourierTrackingHub.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Hubs\\CourierTrackingHub.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Hubs\\CourierTrackingHub.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Hubs\\CourierTrackingHub.cs",
+              "RelativeToolTip": "E-Commerce\\Hubs\\CourierTrackingHub.cs",
+              "ViewState": "AgIAAFwAAAAAAAAAAAAAAFYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:22:40.037Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 81,
+              "Title": "ChatHub.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Hubs\\ChatHub.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Hubs\\ChatHub.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Hubs\\ChatHub.cs",
+              "RelativeToolTip": "E-Commerce\\Hubs\\ChatHub.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:22:34.327Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 82,
+              "Title": "SeedData.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Data\\SeedData.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Data\\SeedData.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Data\\SeedData.cs",
+              "RelativeToolTip": "E-Commerce\\Data\\SeedData.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:22:14.12Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 83,
+              "Title": "IdentitySeeder.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Data\\IdentitySeeder.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Data\\IdentitySeeder.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Data\\IdentitySeeder.cs",
+              "RelativeToolTip": "E-Commerce\\Data\\IdentitySeeder.cs",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAAAC0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:21:24.371Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 84,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Data\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Data\\AppDbContext.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Data\\AppDbContext.cs",
+              "RelativeToolTip": "E-Commerce\\Data\\AppDbContext.cs",
+              "ViewState": "AgIAAEgAAAAAAAAAAAAAACEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:20:22.654Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 85,
+              "Title": "WalletController.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Controllers\\WalletController.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Controllers\\WalletController.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Controllers\\WalletController.cs",
+              "RelativeToolTip": "E-Commerce\\Controllers\\WalletController.cs",
+              "ViewState": "AgIAAMEAAAAAAAAAAAAAAKIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:19:26.109Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 86,
+              "Title": "SubscriptionController.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Controllers\\SubscriptionController.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Controllers\\SubscriptionController.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Controllers\\SubscriptionController.cs",
+              "RelativeToolTip": "E-Commerce\\Controllers\\SubscriptionController.cs",
+              "ViewState": "AgIAAGwAAAAAAAAAAAAAAF8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:16:08.615Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 87,
+              "Title": "RentalController.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Controllers\\RentalController.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Controllers\\RentalController.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Controllers\\RentalController.cs",
+              "RelativeToolTip": "E-Commerce\\Controllers\\RentalController.cs",
+              "ViewState": "AgIAAO0AAAAAAAAAAAAAAP4AAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:14:46.536Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 88,
+              "Title": "ProductController.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Controllers\\ProductController.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Controllers\\ProductController.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Controllers\\ProductController.cs",
+              "RelativeToolTip": "E-Commerce\\Controllers\\ProductController.cs",
+              "ViewState": "AgIAAIMBAAAAAAAAAAAAAK8BAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:12:06.869Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 89,
+              "Title": "OrderController.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Controllers\\OrderController.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Controllers\\OrderController.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Controllers\\OrderController.cs",
+              "RelativeToolTip": "E-Commerce\\Controllers\\OrderController.cs",
+              "ViewState": "AgIAAFgBAAAAAAAAAAAAAFsBAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:09:24.169Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 90,
+              "Title": "NotificationController.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Controllers\\NotificationController.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Controllers\\NotificationController.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Controllers\\NotificationController.cs",
+              "RelativeToolTip": "E-Commerce\\Controllers\\NotificationController.cs",
+              "ViewState": "AgIAADcAAAAAAAAAAAAAAB8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:09:09.448Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 91,
+              "Title": "ListingController.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Controllers\\ListingController.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Controllers\\ListingController.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Controllers\\ListingController.cs",
+              "RelativeToolTip": "E-Commerce\\Controllers\\ListingController.cs",
+              "ViewState": "AgIAAPAAAAAAAAAAAAAAAPAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:07:48.526Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 92,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "E-Commerce\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:07:10.713Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 93,
+              "Title": "CourierController.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Controllers\\CourierController.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Controllers\\CourierController.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Controllers\\CourierController.cs",
+              "RelativeToolTip": "E-Commerce\\Controllers\\CourierController.cs",
+              "ViewState": "AgIAAG8AAAAAAAAAAAAAAG4AAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:06:43.562Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 94,
+              "Title": "CouponController.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Controllers\\CouponController.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Controllers\\CouponController.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Controllers\\CouponController.cs",
+              "RelativeToolTip": "E-Commerce\\Controllers\\CouponController.cs",
+              "ViewState": "AgIAAEMAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:06:27.477Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 95,
+              "Title": "CategoryController.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Controllers\\CategoryController.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Controllers\\CategoryController.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Controllers\\CategoryController.cs",
+              "RelativeToolTip": "E-Commerce\\Controllers\\CategoryController.cs",
+              "ViewState": "AgIAAC4AAAAAAAAAAAAAAEAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:05:52.512Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 96,
+              "Title": "CartController.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Controllers\\CartController.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Controllers\\CartController.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Controllers\\CartController.cs",
+              "RelativeToolTip": "E-Commerce\\Controllers\\CartController.cs",
+              "ViewState": "AgIAAF4AAAAAAAAAAAAAAGQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:05:08.432Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 97,
+              "Title": "AiAssistantController.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Controllers\\AiAssistantController.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Controllers\\AiAssistantController.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Controllers\\AiAssistantController.cs",
+              "RelativeToolTip": "E-Commerce\\Controllers\\AiAssistantController.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAAB8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:04:44.866Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 98,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Controllers\\AccountController.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "E-Commerce\\Controllers\\AccountController.cs",
+              "ViewState": "AgIAADEBAAAAAAAAAAAAADcBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T21:00:56.498Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 99,
+              "Title": "_ViewStart.cshtml",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Areas\\AdminPanel\\Views\\_ViewStart.cshtml",
+              "RelativeDocumentMoniker": "E-Commerce\\Areas\\AdminPanel\\Views\\_ViewStart.cshtml",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Areas\\AdminPanel\\Views\\_ViewStart.cshtml",
+              "RelativeToolTip": "E-Commerce\\Areas\\AdminPanel\\Views\\_ViewStart.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-04T21:00:39.752Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 100,
+              "Title": "_ViewImports.cshtml",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Areas\\AdminPanel\\Views\\_ViewImports.cshtml",
+              "RelativeDocumentMoniker": "E-Commerce\\Areas\\AdminPanel\\Views\\_ViewImports.cshtml",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Areas\\AdminPanel\\Views\\_ViewImports.cshtml",
+              "RelativeToolTip": "E-Commerce\\Areas\\AdminPanel\\Views\\_ViewImports.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-04T21:00:37.089Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 101,
+              "Title": "Subscriptions.cshtml",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Areas\\AdminPanel\\Views\\Admin\\Subscriptions.cshtml",
+              "RelativeDocumentMoniker": "E-Commerce\\Areas\\AdminPanel\\Views\\Admin\\Subscriptions.cshtml",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Areas\\AdminPanel\\Views\\Admin\\Subscriptions.cshtml",
+              "RelativeToolTip": "E-Commerce\\Areas\\AdminPanel\\Views\\Admin\\Subscriptions.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-04T21:00:32.33Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 102,
+              "Title": "Rentals.cshtml",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Areas\\AdminPanel\\Views\\Admin\\Rentals.cshtml",
+              "RelativeDocumentMoniker": "E-Commerce\\Areas\\AdminPanel\\Views\\Admin\\Rentals.cshtml",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Areas\\AdminPanel\\Views\\Admin\\Rentals.cshtml",
+              "RelativeToolTip": "E-Commerce\\Areas\\AdminPanel\\Views\\Admin\\Rentals.cshtml",
+              "ViewState": "AgIAACgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-04T21:00:28.058Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 103,
+              "Title": "Orders.cshtml",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Areas\\AdminPanel\\Views\\Admin\\Orders.cshtml",
+              "RelativeDocumentMoniker": "E-Commerce\\Areas\\AdminPanel\\Views\\Admin\\Orders.cshtml",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Areas\\AdminPanel\\Views\\Admin\\Orders.cshtml",
+              "RelativeToolTip": "E-Commerce\\Areas\\AdminPanel\\Views\\Admin\\Orders.cshtml",
+              "ViewState": "AgIAACgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-04T21:00:24.807Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 104,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Areas\\AdminPanel\\Views\\Admin\\Index.cshtml",
+              "RelativeDocumentMoniker": "E-Commerce\\Areas\\AdminPanel\\Views\\Admin\\Index.cshtml",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Areas\\AdminPanel\\Views\\Admin\\Index.cshtml",
+              "RelativeToolTip": "E-Commerce\\Areas\\AdminPanel\\Views\\Admin\\Index.cshtml",
+              "ViewState": "AgIAAK4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-04T21:00:01.942Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 105,
+              "Title": "Couriers.cshtml",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Areas\\AdminPanel\\Views\\Admin\\Couriers.cshtml",
+              "RelativeDocumentMoniker": "E-Commerce\\Areas\\AdminPanel\\Views\\Admin\\Couriers.cshtml",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Areas\\AdminPanel\\Views\\Admin\\Couriers.cshtml",
+              "RelativeToolTip": "E-Commerce\\Areas\\AdminPanel\\Views\\Admin\\Couriers.cshtml",
+              "ViewState": "AgIAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-04T20:59:57.115Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 106,
+              "Title": "Categories.cshtml",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Areas\\AdminPanel\\Views\\Admin\\Categories.cshtml",
+              "RelativeDocumentMoniker": "E-Commerce\\Areas\\AdminPanel\\Views\\Admin\\Categories.cshtml",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Areas\\AdminPanel\\Views\\Admin\\Categories.cshtml",
+              "RelativeToolTip": "E-Commerce\\Areas\\AdminPanel\\Views\\Admin\\Categories.cshtml",
+              "ViewState": "AgIAACUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-04T20:59:52.953Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 107,
+              "Title": "AdminController.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Areas\\AdminPanel\\Controllers\\AdminController.cs",
+              "RelativeDocumentMoniker": "E-Commerce\\Areas\\AdminPanel\\Controllers\\AdminController.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Areas\\AdminPanel\\Controllers\\AdminController.cs",
+              "RelativeToolTip": "E-Commerce\\Areas\\AdminPanel\\Controllers\\AdminController.cs",
+              "ViewState": "AgIAAOQAAAAAAAAAAAAAABEAAABWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T20:56:56.539Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 108,
+              "Title": "style.css",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\wwwroot\\style.css",
+              "RelativeDocumentMoniker": "E-Commerce\\wwwroot\\style.css",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\wwwroot\\style.css",
+              "RelativeToolTip": "E-Commerce\\wwwroot\\style.css",
+              "ViewState": "AgIAAJgFAAAAAAAAAAAAAJ0EAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-08-04T20:53:30.166Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 109,
+              "Title": "jsscript.js",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\wwwroot\\jsscript.js",
+              "RelativeDocumentMoniker": "E-Commerce\\wwwroot\\jsscript.js",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\wwwroot\\jsscript.js",
+              "RelativeToolTip": "E-Commerce\\wwwroot\\jsscript.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-08-04T20:53:16.564Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 110,
+              "Title": "product-filter.js",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\wwwroot\\js\\product-filter.js",
+              "RelativeDocumentMoniker": "E-Commerce\\wwwroot\\js\\product-filter.js",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\wwwroot\\js\\product-filter.js",
+              "RelativeToolTip": "E-Commerce\\wwwroot\\js\\product-filter.js",
+              "ViewState": "AgIAACYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-08-04T20:52:48.992Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 111,
+              "Title": "order-track.js",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\wwwroot\\js\\order-track.js",
+              "RelativeDocumentMoniker": "E-Commerce\\wwwroot\\js\\order-track.js",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\wwwroot\\js\\order-track.js",
+              "RelativeToolTip": "E-Commerce\\wwwroot\\js\\order-track.js",
+              "ViewState": "AgIAAI0AAAAAAAAAAAAAAHYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-08-04T20:52:11.974Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 112,
+              "Title": "courier-dashboard.js",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\wwwroot\\js\\courier-dashboard.js",
+              "RelativeDocumentMoniker": "E-Commerce\\wwwroot\\js\\courier-dashboard.js",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\wwwroot\\js\\courier-dashboard.js",
+              "RelativeToolTip": "E-Commerce\\wwwroot\\js\\courier-dashboard.js",
+              "ViewState": "AgIAAFoAAAAAAAAAAAAAAFsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-08-04T20:51:39.534Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 113,
+              "Title": "ai-assistant.js",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\wwwroot\\js\\ai-assistant.js",
+              "RelativeDocumentMoniker": "E-Commerce\\wwwroot\\js\\ai-assistant.js",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\wwwroot\\js\\ai-assistant.js",
+              "RelativeToolTip": "E-Commerce\\wwwroot\\js\\ai-assistant.js",
+              "ViewState": "AgIAAG8AAAAAAAAAAAAAAA0AAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-08-04T20:51:09.394Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 114,
+              "Title": "admin-horizon.css",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\wwwroot\\adminpanel\\css\\admin-horizon.css",
+              "RelativeDocumentMoniker": "E-Commerce\\wwwroot\\adminpanel\\css\\admin-horizon.css",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\wwwroot\\adminpanel\\css\\admin-horizon.css",
+              "RelativeToolTip": "E-Commerce\\wwwroot\\adminpanel\\css\\admin-horizon.css",
+              "ViewState": "AgIAAOAAAAAAAAAAAAAAAPIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-08-04T20:49:48.128Z",
+              "EditorCaption": ""
             }
           ]
         }

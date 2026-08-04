@@ -4,13 +4,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace E_Commerce.Migrations
 {
-    /// <inheritdoc />
     public partial class AddListingContactPhone : Migration
     {
-        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            // C2C bazarında elan verərkən satıcının göstərdiyi əlaqə nömrəsi
             migrationBuilder.Sql(@"
 IF NOT EXISTS (SELECT 1 FROM sys.columns WHERE Name = N'ContactPhone' AND Object_ID = Object_ID(N'Listings'))
 BEGIN
@@ -19,7 +16,6 @@ END
 ");
         }
 
-        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.Sql(@"

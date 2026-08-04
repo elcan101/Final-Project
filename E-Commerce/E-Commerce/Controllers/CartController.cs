@@ -7,8 +7,6 @@ using E_Commerce.Models;
 
 namespace E_Commerce.Controllers
 {
-    // Səbətə məhsul əlavə etmək və sifariş vermək üçün hesaba (mail ilə) giriş şərtdir —
-    // qonaq (giriş etməmiş) istifadəçi səbətdən istifadə edə bilmir.
     [Authorize]
     public class CartController : Controller
     {
@@ -19,7 +17,6 @@ namespace E_Commerce.Controllers
             _context = context;
         }
 
-        // İstifadəçi məcburi giriş etmiş olduğu üçün həmişə əsl hesab ID-si qaytarılır
         private string GetUserId() => User.FindFirstValue(ClaimTypes.NameIdentifier)!;
 
         private Cart GetOrCreateCart(string userId)
@@ -39,14 +36,12 @@ namespace E_Commerce.Controllers
             return cart;
         }
 
-        // Səbəti göstər
         public IActionResult Index()
         {
             var cart = GetOrCreateCart(GetUserId());
             return View(cart);
         }
 
-        // Kitabı səbətə əlavə et
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult AddToCart(int productId, int quantity = 1)
@@ -72,7 +67,6 @@ namespace E_Commerce.Controllers
             return RedirectToAction("Index");
         }
 
-        // Səbətdən məhsulu sil
         public IActionResult Remove(int id)
         {
             var item = _context.CartItems.Find(id);
@@ -84,7 +78,6 @@ namespace E_Commerce.Controllers
             return RedirectToAction("Index");
         }
 
-        // Səbətə promokod tətbiqi (Trendyol tipli dinamik endirim)
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult ApplyCoupon(string code)
@@ -105,7 +98,6 @@ namespace E_Commerce.Controllers
             return RedirectToAction("Index");
         }
 
-        // Səbətdəki miqdarı dəyiş
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult UpdateQuantity(int id, int quantity)

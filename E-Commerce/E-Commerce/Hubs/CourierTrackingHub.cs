@@ -5,13 +5,6 @@ using E_Commerce.Models;
 
 namespace E_Commerce.Hubs
 {
-    // ============================================================================
-    // Real-time kuryer izləmə + "SignalR broadcast alqoritmi":
-    // Sifariş hazır olduqda bütün boşda (idle) kuryerlərə siqnal göndərilir.
-    // İlk təsdiqləyən kuryer sifarişi öz üzərinə götürür — digərlərinə "artıq
-    // götürülüb" bildirişi gedir. Yarış vəziyyətinin (race condition) qarşısı
-    // DB-də şərtli UPDATE (WHERE CourierProfileId IS NULL) ilə alınır.
-    // ============================================================================
     public class CourierTrackingHub : Hub
     {
         private const string IdleCouriersGroup = "idle-couriers";
@@ -22,7 +15,6 @@ namespace E_Commerce.Hubs
             _context = context;
         }
 
-        // Kuryer "boşdayam" statusuna keçəndə çağırır — yeni sifariş siqnallarını almaq üçün qoşulur
         public async Task JoinIdlePool(int courierProfileId)
         {
             await Groups.AddToGroupAsync(Context.ConnectionId, IdleCouriersGroup);
@@ -47,20 +39,16 @@ namespace E_Commerce.Hubs
             }
         }
 
-        // Müştəri (və ya kuryer) sifariş izləmə səhifəsində bu qrupa qoşulur
         public async Task JoinOrderGroup(int orderId)
         {
             await Groups.AddToGroupAsync(Context.ConnectionId, OrderGroupName(orderId));
         }
 
-        // Kuryer canlı GPS koordinatlarını göndərir; müştərinin xəritəsi anlıq yenilənir
         public async Task UpdateLocation(int orderId, double lat, double lng)
         {
             var order = await _context.Orders.FindAsync(orderId);
             if (order == null) return;
 
-            // Sifariş hələ heç bir kuryerə təyin olunmayıbsa (qəbul edilməyibsə),
-            // konum yeniləməsini rədd edirik — kuryer yalnız "Götür" düyməsini basdıqdan sonra paylaşa bilər
             if (order.CourierProfileId == null || order.Status != "Kuryerdədir")
                 return;
 
@@ -72,7 +60,6 @@ namespace E_Commerce.Hubs
             await Clients.Group(OrderGroupName(orderId)).SendAsync("LocationUpdated", new { orderId, lat, lng });
         }
 
-        // İlk təsdiqləyən kuryer qazanır — atomik şərtli UPDATE ilə
         public async Task AcceptOrder(int orderId, int courierProfileId)
         {
             var affected = await _context.Orders
@@ -83,7 +70,6 @@ namespace E_Commerce.Hubs
 
             if (affected == 0)
             {
-                // Başqa kuryer artıq götürüb
                 await Clients.Caller.SendAsync("OrderAlreadyTaken", orderId);
                 return;
             }
@@ -91,19 +77,13 @@ namespace E_Commerce.Hubs
             var courier = await _context.CourierProfiles.FindAsync(courierProfileId);
             var order = await _context.Orders.FindAsync(orderId);
 
-            // Digər boşda kuryerlərə bildir ki, bu sifariş siyahıdan çıxsın
             await Clients.Group(IdleCouriersGroup).SendAsync("OrderTaken", orderId);
 
-            // Müştəriyə kuryerin təyin olunduğunu bildir
-            // DİQQƏT: əvvəllər burada səhvən kuryerin adı (FullName) əvəzinə nəqliyyat
-            // növü (VehicleType) göndərilirdi — kuryer və müştəri məlumatları qarışırdı.
             await Clients.Group(OrderGroupName(orderId))
                 .SendAsync("CourierAssigned", new { orderId, courierName = courier?.FullName ?? "Kuryer" });
 
-            // Götürən kuryerə birbaşa bildir ki, çatdırılma/izləmə səhifəsinə keçsin
             await Clients.Caller.SendAsync("OrderAccepted", new { orderId });
 
-            // Sayt-daxili bildirişlər: kuryerə "sifarişi götürdünüz", müştəriyə "kuryer təyin olundu"
             if (courier != null)
             {
                 _context.Notifications.Add(new Notification

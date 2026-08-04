@@ -6,9 +6,7 @@ using E_Commerce.Models;
 
 namespace E_Commerce.Controllers
 {
-    // Qeyd: bu controller-in tamamı üçün giriş TƏLƏB OLUNMUR — abunəlik planlarına
-    // istənilən qonaq (giriş etməmiş) istifadəçi baxa bilsin deyə. Giriş yalnız
-    // ödəniş mərhələsində (Checkout / Subscribe) tələb olunur — bax aşağıdakı [Authorize].
+    
     public class SubscriptionController : Controller
     {
         private readonly AppDbContext _context;
@@ -20,7 +18,6 @@ namespace E_Commerce.Controllers
 
         private string? GetUserId() => User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-        // Planların müqayisə cədvəli (Standard vs Premium) — giriş etmədən də görünür
         public IActionResult Index()
         {
             UserSubscription? current = null;
@@ -38,9 +35,6 @@ namespace E_Commerce.Controllers
             return View();
         }
 
-        // Planı seçəndə ödəniş təsdiq səhifəsinə keçirik — ödəniş yalnız saytdakı balansdan aparılır.
-        // Buradan etibarən giriş tələb olunur (qonaq istifadəçi bura çatanda avtomatik
-        // Login səhifəsinə yönləndirilir, giriş edən kimi elə bu səhifəyə geri qayıdır).
         [Authorize]
         [HttpGet]
         public IActionResult Checkout(SubscriptionPlanType planType)
@@ -62,7 +56,6 @@ namespace E_Commerce.Controllers
             var userId = GetUserId()!;
             var price = UserSubscription.MonthlyPrice(planType);
 
-            // Ödəniş yalnız saytdakı balansdan tutulur — kartdan birbaşa tutulmur.
             var wallet = _context.Wallets.FirstOrDefault(w => w.UserId == userId && !w.IsDeleted);
             if (wallet == null)
             {
@@ -78,7 +71,6 @@ namespace E_Commerce.Controllers
 
             wallet.Balance -= price;
 
-            // Köhnə aktiv abunəni deaktiv et, yenisini yarat (yüksəltmə/yeniləmə)
             var existing = _context.UserSubscriptions
                 .Where(s => s.UserId == userId && s.IsActive && !s.IsDeleted)
                 .ToList();
@@ -101,8 +93,6 @@ namespace E_Commerce.Controllers
             return RedirectToAction("Index");
         }
 
-        // Profil səhifəsindəki "Şəxsi məlumatlar" bölməsindən istifadəçi aktiv
-        // abunəliyini ləğv edə bilsin deyə əlavə olunub.
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]

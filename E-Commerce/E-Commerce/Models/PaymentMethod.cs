@@ -2,8 +2,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace E_Commerce.Models
 {
-    // Kart məlumatları HEÇ VAXT bazada saxlanılmır — yalnız Stripe-dan
-    // qaytarılan tokenləşdirilmiş (tokenization) identifikator saxlanılır.
     public class PaymentMethod : BaseEntity
     {
         [Required]

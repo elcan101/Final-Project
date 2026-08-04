@@ -4,15 +4,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace E_Commerce.Migrations
 {
-    /// <inheritdoc />
     public partial class AddRentalOrderDelivery : Migration
     {
-        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            // İcarəyə götürülən kitablar da digər sifarişlər kimi çatdırılma ünvanı seçib
-            // kuryerlə çatdırılsın deyə, hər icarəni əlaqəli bir Order-ə bağlayırıq
-            // (çatdırılma ünvanı, kuryer təyinatı və canlı izləmə Order üzərindən aparılır).
+           
             migrationBuilder.Sql(@"
 IF NOT EXISTS (SELECT 1 FROM sys.columns WHERE Name = N'OrderId' AND Object_ID = Object_ID(N'BookRentals'))
 BEGIN
@@ -36,7 +32,6 @@ END
 ");
         }
 
-        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.Sql(@"

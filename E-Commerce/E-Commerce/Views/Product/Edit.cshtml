@@ -160,8 +160,6 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     <script>
-        // Fayl varkən yalnız "Sil" düyməsi göstərilir, yeni fayl seçmək üçün əvvəlcə
-        // silinməlidir — silindikdən sonra fayl seçmə sahəsi görünür.
         function setupFileToggle(deleteBtnId, currentBlockId, uploadBlockId, removeFieldId) {
             var deleteBtn = document.getElementById(deleteBtnId);
             var currentBlock = document.getElementById(currentBlockId);

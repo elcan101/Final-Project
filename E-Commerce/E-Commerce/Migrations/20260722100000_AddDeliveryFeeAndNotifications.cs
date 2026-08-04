@@ -4,13 +4,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace E_Commerce.Migrations
 {
-    /// <inheritdoc />
     public partial class AddDeliveryFeeAndNotifications : Migration
     {
-        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            // Sifarişə: depodan məsafəyə görə hesablanan çatdırılma haqqı və məsafə (km)
             migrationBuilder.Sql(@"
 IF NOT EXISTS (SELECT 1 FROM sys.columns WHERE Name = N'DeliveryFee' AND Object_ID = Object_ID(N'Orders'))
 BEGIN
@@ -25,7 +22,6 @@ BEGIN
 END
 ");
 
-            // Sayt-daxili bildirişlər cədvəli
             migrationBuilder.Sql(@"
 IF NOT EXISTS (SELECT 1 FROM sys.tables WHERE Name = N'Notifications')
 BEGIN
@@ -46,7 +42,6 @@ END
 ");
         }
 
-        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.Sql(@"

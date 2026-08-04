@@ -47,8 +47,6 @@ namespace E_Commerce.Controllers
             return View(courier);
         }
 
-        // Kuryerin canlı iş paneli: "Hazır" sifarişlərin broadcast siqnalını qəbul edir,
-        // ilk basan kuryer sifarişi öz üzərinə götürür (SignalR)
         [Authorize]
         public IActionResult Dashboard()
         {
@@ -63,8 +61,7 @@ namespace E_Commerce.Controllers
                     .FirstOrDefault();
                 ViewBag.ActiveOrder = activeOrder;
 
-                // Kuryer online olanda broadcast anını qaçırmış ola bilər —
-                // ona görə hazırda gözləyən (sahibsiz) "Hazırdır" sifarişləri də birbaşa göstəririk
+               
                 var pendingOrders = _context.Orders
                     .Where(o => !o.IsDeleted && o.Status == "Hazırdır" && o.CourierProfileId == null)
                     .OrderBy(o => o.CreatedDate)
@@ -111,9 +108,7 @@ namespace E_Commerce.Controllers
             return RedirectToAction("Dashboard");
         }
 
-        // Əvvəllər (əlaqə nömrəsi tələb olunmadan) profil yaratmış kuryerlər üçün —
-        // qeydiyyat forması artıq görünmür (profil mövcuddur), ona görə nömrəni sonradan
-        // əlavə/yeniləmək üçün ayrıca əməliyyat.
+       
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]

@@ -4,23 +4,15 @@ using E_Commerce.Models;
 
 namespace E_Commerce.Services
 {
-    // Hər gün: (1) aktiv C2C elanlarından günlük elan haqqını, (2) vaxtı keçmiş
-    // icarələrdən gecikmə cəriməsini, (3) qaytarma tarixinə 1 gün qalmış icarələr üçün
-    // xəbərdarlıq mailini və (4) vaxtında qaytarılmayan icarələrə sabit -5 AZN cəriməni
-    // avtomatik olaraq işlədir.
     public class DailyBillingService : BackgroundService
     {
-        // Vaxtında qaytarılmadıqda bir dəfəlik tutulan sabit cərimə
         private const decimal FlatLateFine = 5.00m;
 
-        // Qaytarma xəbərdarlığında göstərilən depo ünvanı
         private const string DepotAddress = "28 May, Dilarə Əliyeva küçəsi 239";
 
         private readonly IServiceProvider _services;
         private readonly ILogger<DailyBillingService> _logger;
 
-        // Demo məqsədilə tez-tez yoxlanılır (real production-da 24 saat kifayətdir);
-        // hər dəfə yalnız o günə görə hələ haqqı tutulmamış qeydlər üçün işləyir.
         private readonly TimeSpan _checkInterval = TimeSpan.FromHours(1);
 
         public DailyBillingService(IServiceProvider services, ILogger<DailyBillingService> logger)
@@ -53,7 +45,6 @@ namespace E_Commerce.Services
 
             var today = DateTime.Now.Date;
 
-            // ---- 1) C2C elan haqqı ----
             var dueListings = await db.Listings
                 .Where(l => !l.IsDeleted && l.Status == ListingStatus.Active && l.LastFeeChargedDate < today)
                 .ToListAsync(ct);
@@ -70,7 +61,6 @@ namespace E_Commerce.Services
                 listing.LastFeeChargedDate = today;
             }
 
-            // ---- 2) Gecikmiş icarə cərimələri (gündəlik) ----
             var overdueRentals = await db.BookRentals
                 .Where(r => !r.IsDeleted && r.ReturnedDate == null && r.DueDate < DateTime.Now)
                 .ToListAsync(ct);
@@ -88,7 +78,6 @@ namespace E_Commerce.Services
                 rental.PenaltyChargedDays = totalLateDays;
             }
 
-            // ---- 3) Qaytarma tarixinə 1 gün qalmış icarələr üçün xəbərdarlıq maili ----
             var emailService = scope.ServiceProvider.GetRequiredService<IEmailService>();
             var dueSoonRentals = await db.BookRentals
                 .Include(r => r.Product)
@@ -125,7 +114,6 @@ namespace E_Commerce.Services
                 });
             }
 
-            // ---- 4) Vaxtında qaytarılmayan icarələrə bir dəfəlik sabit -5 AZN cərimə ----
             var newlyLateRentals = overdueRentals.Where(r => !r.LateFineApplied).ToList();
             foreach (var rental in newlyLateRentals)
             {
@@ -171,7 +159,6 @@ namespace E_Commerce.Services
                 db.Wallets.Add(wallet);
             }
 
-            // Balans mənfiyə düşə bilər — istifadəçi bir sonrakı ödənişdə borcunu bağlamalıdır
             wallet.Balance -= amount;
         }
     }

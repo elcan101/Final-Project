@@ -26,7 +26,6 @@ namespace E_Commerce.Controllers
             _emailService = emailService;
         }
 
-        // ---------- QEYDİYYAT ----------
 
         [HttpGet]
         public IActionResult Register()
@@ -77,7 +76,6 @@ namespace E_Commerce.Controllers
             return View(model);
         }
 
-        // ---------- GİRİŞ ----------
 
         [HttpGet]
         public IActionResult Login(string? returnUrl = null)
@@ -112,7 +110,6 @@ namespace E_Commerce.Controllers
                     return Redirect(model.ReturnUrl);
                 }
 
-                // Admin isə birbaşa admin panelinə (/AdminPanel/Admin), digərləri ana səhifəyə yönləndirilir
                 if (user != null && roles.Contains("Admin"))
                 {
                     return RedirectToAction("Index", "Admin", new { area = "AdminPanel" });
@@ -125,7 +122,6 @@ namespace E_Commerce.Controllers
             return View(model);
         }
 
-        // ---------- ÇIXIŞ ----------
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -135,7 +131,6 @@ namespace E_Commerce.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        // ---------- ŞİFRƏNİ UNUTMUSUNUZ? ----------
 
         [HttpGet]
         public IActionResult ForgotPassword()
@@ -154,8 +149,6 @@ namespace E_Commerce.Controllers
 
             var user = await _userManager.FindByEmailAsync(model.Email);
 
-            // Təhlükəsizlik üçün: istifadəçi tapılmasa belə eyni "göndərildi" səhifəsi göstərilir,
-            // beləliklə kənar şəxs hansı e-poçtların qeydiyyatdan keçdiyini bilə bilmir.
             if (user != null)
             {
                 var token = await _userManager.GeneratePasswordResetTokenAsync(user);
@@ -172,15 +165,13 @@ namespace E_Commerce.Controllers
 
                 await _emailService.SendAsync(user.Email!, "Okean Kitabevi — Şifrənin sıfırlanması", body);
 
-                // Test/development rejimində real SMTP olmadığı üçün linki birbaşa
-                // təsdiq səhifəsində də göstəririk ki, funksionallıq sınana bilsin.
+               
                 ViewBag.DevResetLink = resetUrl;
             }
 
             return View("ForgotPasswordConfirmation");
         }
 
-        // ---------- ŞİFRƏNİ SIFIRLA ----------
 
         [HttpGet]
         public IActionResult ResetPassword(string? email, string? token)
@@ -211,7 +202,6 @@ namespace E_Commerce.Controllers
             var user = await _userManager.FindByEmailAsync(model.Email);
             if (user == null)
             {
-                // Burada da eyni səbəbdən istifadəçi tapılmasa belə uğur səhifəsi göstərilir
                 return View("ResetPasswordConfirmation");
             }
 
@@ -239,9 +229,6 @@ namespace E_Commerce.Controllers
             return View("ResetPasswordConfirmation");
         }
 
-        // ---------- PROFİL ----------
-        // Mailinə giriş edən istənilən istifadəçi (müştəri, kuryer və s.) üçün ortaq profil
-        // səhifəsi: şəxsi məlumatlar + kuryer profili (varsa) + abunəlik tarixçəsi.
         [Authorize]
         [HttpGet]
         public async Task<IActionResult> Profile()
@@ -267,10 +254,6 @@ namespace E_Commerce.Controllers
             return View();
         }
 
-        // ---------- PROFİLİ REDAKTƏ ET ----------
-        // Əvvəllər "Profilim" səhifəsindəki şəxsi məlumatlar yalnız statik mətn kimi
-        // göstərilirdi — heç bir redaktə forması/əməliyyatı yox idi. İndi istifadəçi
-        // Ad Soyad, Əlaqə nömrəsi və (istəyə bağlı) şifrəsini dəyişə bilər.
         [Authorize]
         [HttpGet]
         public async Task<IActionResult> EditProfile()
@@ -313,7 +296,6 @@ namespace E_Commerce.Controllers
                 return View(model);
             }
 
-            // Şifrə sahələri doldurulubsa, şifrəni də yenilə
             if (!string.IsNullOrWhiteSpace(model.NewPassword))
             {
                 var token = await _userManager.GeneratePasswordResetTokenAsync(user);
@@ -328,8 +310,6 @@ namespace E_Commerce.Controllers
                 }
             }
 
-            // FullName dəyişdiyi üçün cookie-dəki claim-lər təzələnsin ki, dərhal
-            // (səhifəni yenidən açmadan) hər yerdə yeni ad görünsün
             await _signInManager.RefreshSignInAsync(user);
 
             TempData["Success"] = "Profiliniz uğurla yeniləndi.";

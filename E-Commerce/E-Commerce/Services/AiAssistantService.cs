@@ -6,32 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace E_Commerce.Services
 {
-    // ============================================================================
-    // SAYT DAXİLİ AI KÖMƏKÇİ ("Kitab AI")
-    //
-    // Nə edir:
-    //   1) Kitab tövsiyəsi: istifadəçi "əvvəli xoşbəxt, sonu kədərli romanlar göstər"
-    //      kimi sərbəst dildə sual verəndə, hazırkı kataloqdakı kitabların
-    //      Description sahələrini AI-ya göndəririk, AI məzmuna görə uyğun olanları seçir.
-    //   2) Sayt haqqında suallar (çatdırılma müddəti, qaytarma şərtləri, aktiv
-    //      kampaniyalar, ikinci əl kitab necə yerləşdirilir və s.) — appsettings.json
-    //      daxilindəki "SiteFaq" bölməsindən (real, admin tərəfindən yazılan faktlardan)
-    //      cavablandırır ki, AI heç nə "uydurmasın".
-    //
-    // Niyə belə qurulub:
-    //   Hər sorğuda bütün kataloq (qısaldılmış description ilə) system promptuna
-    //   ötürülür — beləliklə tövsiyələr HƏMİŞə anbarın hazırkı vəziyyətinə (qiymət,
-    //   stok, yeni əlavə olunan kitablar) uyğun olur, köhnəlmiş/uydurma cavab riski
-    //   olmur. Kataloq çox böyüyəndə (min kitabdan çox) bu yanaşma baha başa gələr —
-    //   o zaman description-ları əvvəlcədən vektor (embedding) bazasına köçürüb,
-    //   yalnız açar sözlərə uyğun olan hissəni AI-ya göndərmək lazım gələcək.
-    //
-    // Production üçün əlavə tövsiyələr:
-    //   - Bu endpoint-ə sadə "rate limiting" (məs. IP başına dəqiqədə 10 sorğu) əlavə edin,
-    //     əks halda kimsə botla saytınızın AI xərcini şişirdə bilər.
-    //   - API açarını appsettings.json-da SAXLAMAYIN (development üçün rahatlıqdır),
-    //     production-da mütləq environment variable və ya "dotnet user-secrets" istifadə edin.
-    // ============================================================================
+    
     public class AiAssistantService : IAiAssistantService
     {
         private readonly HttpClient _http;
@@ -39,9 +14,7 @@ namespace E_Commerce.Services
         private readonly IConfiguration _config;
         private readonly ILogger<AiAssistantService> _logger;
 
-        // Kataloqdan AI-ya göndərilən maksimum kitab sayı (token xərcini məhdudlaşdırmaq üçün)
         private const int MaxCatalogItems = 300;
-        // Hər kitabın description-undan neçə simvol göndərilsin
         private const int DescriptionSnippetLength = 350;
 
         public AiAssistantService(HttpClient http, AppDbContext db, IConfiguration config, ILogger<AiAssistantService> logger)
@@ -68,7 +41,6 @@ namespace E_Commerce.Services
             var systemPrompt = BuildSystemPrompt(catalog);
 
             var messages = new List<object>();
-            // son 8 mesajı (4 istifadəçi + 4 cavab) tarixçə kimi əlavə edirik ki, AI kontekst itirməsin
             foreach (var turn in history.TakeLast(8))
             {
                 messages.Add(new { role = turn.Role == "assistant" ? "assistant" : "user", content = turn.Text });
@@ -115,8 +87,6 @@ namespace E_Commerce.Services
             return await ParseResponseAsync(rawText);
         }
 
-        // AI cavabının sonundakı gizli <!--BOOKS:1,5,9--> blokunu tapır, oradan kitab ID-lərini
-        // çıxarır, DB-dən HƏMİŞƏ təzə (qiymət/stok/şəkil) məlumatla product kartlarını qurur.
         private async Task<AiAssistantResponse> ParseResponseAsync(string rawText)
         {
             var result = new AiAssistantResponse();
@@ -142,7 +112,6 @@ namespace E_Commerce.Services
                         .Where(p => !p.IsDeleted && ids.Contains(p.Id))
                         .ToListAsync();
 
-                    // AI-nın verdiyi sıra ilə (relevanslıq sırası) saxlayırıq
                     result.Books = ids
                         .Select(id => products.FirstOrDefault(p => p.Id == id))
                         .Where(p => p != null)
@@ -168,7 +137,7 @@ namespace E_Commerce.Services
             var products = await _db.Products
                 .Where(p => !p.IsDeleted)
                 .Include(p => p.Category)
-                .OrderByDescending(p => p.CreatedDate) // ən yeni əlavə olunanlar əvvəldə — "son çıxanlar" sualları üçün
+                .OrderByDescending(p => p.CreatedDate) 
                 .Take(MaxCatalogItems)
                 .Select(p => new
                 {

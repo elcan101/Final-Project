@@ -18,7 +18,6 @@ namespace E_Commerce.Controllers
 
         private string GetUserId() => User.FindFirstValue(ClaimTypes.NameIdentifier)!;
 
-        // Bütün bildirişlərin tam siyahısı
         public IActionResult Index()
         {
             var userId = GetUserId();
@@ -30,7 +29,6 @@ namespace E_Commerce.Controllers
             return View(notifications);
         }
 
-        // Zəng ikonasının dropdown-u üçün: son bildirişlər + oxunmamış say (JSON)
         [HttpGet]
         public IActionResult Recent()
         {

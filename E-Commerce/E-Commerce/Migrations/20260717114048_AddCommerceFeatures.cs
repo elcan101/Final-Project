@@ -5,10 +5,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace E_Commerce.Migrations
 {
-    /// <inheritdoc />
     public partial class AddCommerceFeatures : Migration
     {
-        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<string>(
@@ -188,7 +186,6 @@ namespace E_Commerce.Migrations
                 column: "CategoryId");
         }
 
-        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(

@@ -1,4 +1,3 @@
-// Sifariş izləmə səhifəsi: canlı kuryer mövqeyi (Leaflet xəritə) + canlı çat (SignalR)
 (function () {
     const cfg = window.__orderTrack;
     if (!cfg) return;
@@ -6,7 +5,6 @@
     const statusBadge = document.getElementById("orderStatus");
     const BAKU = [40.4093, 49.8671];
 
-    // ---- Leaflet xəritə ----
     const map = L.map("leafletMap").setView(
         cfg.lat != null && cfg.lng != null ? [cfg.lat, cfg.lng] : BAKU,
         13
@@ -37,7 +35,6 @@
 
     if (cfg.lat != null && cfg.lng != null) placeCourier(cfg.lat, cfg.lng, true);
 
-    // ---- Çatdırılma nöqtəsi (müştərinin sifariş zamanı seçdiyi yer) ----
     const deliveryIcon = L.divIcon({ html: "📦", className: "map-emoji-icon", iconSize: [32, 32] });
     if (cfg.deliveryLat != null && cfg.deliveryLng != null) {
         L.marker([cfg.deliveryLat, cfg.deliveryLng], { icon: deliveryIcon })
@@ -49,7 +46,6 @@
         }
     }
 
-    // ---- Kitab deposu (anbar) nöqtəsi ----
     const depotIcon = L.divIcon({ html: "🏬", className: "map-emoji-icon", iconSize: [32, 32] });
     if (cfg.depotLat != null && cfg.depotLng != null) {
         L.marker([cfg.depotLat, cfg.depotLng], { icon: depotIcon })
@@ -57,7 +53,6 @@
             .bindPopup(cfg.depotName || "Kitab deposu");
     }
 
-    // ---- Kuryer izləmə hub-u ----
     const trackConn = new signalR.HubConnectionBuilder()
         .withUrl("/hubs/courier-tracking")
         .withAutomaticReconnect()
@@ -80,7 +75,6 @@
         .then(() => trackConn.invoke("JoinOrderGroup", cfg.orderId))
         .catch((err) => console.error("Kuryer izləmə bağlantı xətası:", err));
 
-    // ---- Kuryer: canlı GPS paylaşımı ----
     if (cfg.isCourier) {
         const shareBtn = document.getElementById("shareLocationBtn");
         const shareStatus = document.getElementById("shareStatus");
@@ -122,7 +116,6 @@
         });
     }
 
-    // ---- Canlı çat hub-u ----
     const chatConn = new signalR.HubConnectionBuilder()
         .withUrl("/hubs/chat")
         .withAutomaticReconnect()

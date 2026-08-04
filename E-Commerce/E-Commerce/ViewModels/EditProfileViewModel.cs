@@ -12,7 +12,6 @@ namespace E_Commerce.ViewModels
         [Phone(ErrorMessage = "Düzgün əlaqə nömrəsi daxil edin")]
         public string? PhoneNumber { get; set; }
 
-        // Şifrəni dəyişmək istəməyən istifadəçi bu sahələri boş buraxa bilər
         [DataType(DataType.Password)]
         [Display(Name = "Yeni şifrə (istəyə bağlı)")]
         public string? NewPassword { get; set; }

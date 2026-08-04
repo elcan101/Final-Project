@@ -17,7 +17,6 @@ namespace E_Commerce.Models
         [ForeignKey("ProductId")]
         public Product Product { get; set; } = null!;
 
-        // Səbətə əlavə olunan kitabın sayı
         [Required]
         public int Quantity { get; set; } = 1;
     }

@@ -87,8 +87,6 @@
             const districtInput = document.getElementById("districtInput");
             const postalCodeInput = document.getElementById("postalCodeInput");
 
-            // Rayon + poçt indeksi doldurulubsa, xəritədən nöqtə seçmədən də sifarişi
-            // təsdiqləmək mümkün olsun deyə düyməni aktivləşdiririk.
             function checkPostDeliveryReady() {
                 const hasDistrict = districtInput.value.trim().length > 0;
                 const hasPostalCode = postalCodeInput.value.trim().length > 0;
@@ -104,8 +102,6 @@
             districtInput?.addEventListener("input", checkPostDeliveryReady);
             postalCodeInput?.addEventListener("input", checkPostDeliveryReady);
 
-            // Depodan seçilmiş nöqtəyə qədər məsafəni (km) Haversine düsturu ilə hesablayır —
-            // server tərəfdəki DeliveryPricingService ilə eyni məntiq (canlı qiymətləndirmə üçün)
             function distanceKm(lat1, lng1, lat2, lng2) {
                 const R = 6371.0;
                 const toRad = (deg) => (deg * Math.PI) / 180;
@@ -152,7 +148,6 @@
                 updateFee(lat, lng);
             }
 
-            // "Mövcud məkanımı göndər" düyməsi: cihazın canlı GPS mövqeyini alıb xəritədə işarələyir
             useCurrentLocationBtn?.addEventListener("click", () => {
                 if (!navigator.geolocation) {
                     alert("Brauzeriniz məkan xidmətini dəstəkləmir.");
@@ -176,11 +171,10 @@
                 );
             });
 
-            // İstifadəçinin öz məkanını izin versə xəritəni ora mərkəzləşdiririk (ilkin rahatlıq üçün)
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(
                     (pos) => map.setView([pos.coords.latitude, pos.coords.longitude], 14),
-                    () => { /* icazə verilmədi - Bakı mərkəzində qalır */ }
+                    () => {  }
                 );
             }
         })();

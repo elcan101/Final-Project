@@ -4,14 +4,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace E_Commerce.Migrations
 {
-    /// <inheritdoc />
     public partial class AddProductDetailsAndReviews : Migration
     {
-        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            // Hər sütun/cədvəl əlavə edilmədən əvvəl mövcudluğu yoxlanılır — migrasiya
-            // neçə dəfə işlədilsə də xəta vermir (layihənin əvvəlki migrasiyalarındakı üsul).
             migrationBuilder.Sql(@"
 IF NOT EXISTS (SELECT 1 FROM sys.columns WHERE Name = N'Publisher' AND Object_ID = Object_ID(N'Products'))
 BEGIN
@@ -54,7 +50,6 @@ END
 ");
         }
 
-        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.Sql(@"

@@ -3,7 +3,6 @@ body {
     font-family: "Segoe UI", sans-serif;
 }
 
-/* --- üst sətir --- */
 .top-bar {
     background: #fff;
     border-bottom: 1px solid #eaeaea;
@@ -69,7 +68,6 @@ body {
         background: #eef3f9;
     }
 
-/* --- kartla balans artırma / ödəniş forması --- */
 .payment-card {
     max-width: 420px;
     background: #fff;
@@ -84,7 +82,6 @@ body {
     padding-bottom: 12px;
 }
 
-/* --- səbət/sifariş loqolarının yanında istifadəçinin balans göstəricisi --- */
 .wallet-balance-badge {
     display: inline-flex;
     align-items: center;
@@ -107,7 +104,6 @@ body {
         border-color: #0b2f6b;
     }
 
-/* --- bildiriş zəngi + dropdown --- */
 .notif-bell-wrap {
     position: relative;
 }
@@ -224,7 +220,6 @@ body {
         background: #f7f9fc;
     }
 
-/* --- bildirişlər səhifəsi (tam siyahı) --- */
 .notif-page-item {
     display: flex;
     align-items: flex-start;
@@ -311,7 +306,6 @@ body {
         margin: 0;
     }
 
-/* --- giriş / qeydiyyat düymələri --- */
 .auth-actions {
     flex-wrap: nowrap;
 }
@@ -352,7 +346,6 @@ body {
         color: #fff;
     }
 
-/* --- kateqoriya menyusu --- */
 .category-bar {
     background: #fff;
     border-bottom: 1px solid #eaeaea;
@@ -369,7 +362,6 @@ body {
             color: #0b2f6b;
         }
 
-        /* hansı səhifədəyiksə, onun altından göy xətt keçir */
         .category-bar .nav-link.active {
             color: #0b2f6b;
             font-weight: 700;
@@ -398,7 +390,6 @@ body {
                 background: #e63946;
             }
 
-/* --- hero banner --- */
 .hero {
     background: #eef3f9;
     border-radius: 12px;
@@ -455,7 +446,6 @@ body {
         color: #fff;
     }
 
-/* --- sağ tərəf: promo slider (karusel) --- */
 .promo-slider {
     position: relative;
     width: 100%;
@@ -660,7 +650,6 @@ body {
         }
 }
 
-/* --- xüsusiyyət ikonları --- */
 .feature-box {
     text-align: center;
     padding: 20px;
@@ -675,7 +664,6 @@ body {
         margin-top: 8px;
     }
 
-/* --- məhsul kartı --- */
 .product-card {
     background: #fff;
     border: 1px solid #eaeaea;
@@ -723,7 +711,6 @@ body {
     display: block;
 }
 
-/* --- kitab əlavə et / form kartı --- */
 .form-card {
     background: #fff;
     border: 1px solid #eaeaea;
@@ -742,7 +729,6 @@ body {
     border-bottom: 1px solid #eee;
 }
 
-/* --- şifrə göstər/gizlət düyməsi --- */
 .password-field {
     position: relative;
 }
@@ -793,7 +779,6 @@ body {
         text-decoration: underline;
     }
 
-/* --- şifrə sıfırlama təsdiq səhifələri --- */
 .reset-check-icon {
     font-size: 44px;
     margin-bottom: 12px;
@@ -830,7 +815,6 @@ body {
     padding: 10px 14px;
 }
 
-/* --- məhsul kartındakı "səbətə əlavə et" düyməsi --- */
 .add-cart-btn {
     background: #fff;
     border: 1px solid #0b2f6b;
@@ -848,7 +832,6 @@ body {
         color: #fff;
     }
 
-/* --- səbət səhifəsi --- */
 .cart-list {
     background: #fff;
     border: 1px solid #eaeaea;
@@ -876,7 +859,6 @@ body {
     width: 60px;
 }
 
-/* --- səbətin altındakı "sifarişi tamamla" bloku --- */
 .checkout-box {
     background: #fff;
     border: 1px solid #eaeaea;
@@ -903,7 +885,6 @@ body {
         cursor: pointer;
     }
 
-/* --- sadə cədvəl siyahıları (sifariş, kupon, kuryer, kateqoriya) --- */
 .simple-table {
     background: #fff;
     border: 1px solid #eaeaea;
@@ -1021,7 +1002,6 @@ body {
     transition: opacity 0.2s ease;
 }
 
-/* --- Sifariş izləmə (SignalR + Leaflet) --- */
 .tracking-map {
     height: 380px;
     border-radius: 14px;
@@ -1082,7 +1062,6 @@ body {
     border-top: 1px solid #eaeef5;
 }
 
-/* --- Abunəlik planları --- */
 .plan-card {
     background: #fff;
     border: 1px solid #eaeef5;
@@ -1128,7 +1107,6 @@ body {
         font-size: 14px;
     }
 
-/* --- Admin Panel --- */
 .admin-stat-card {
     background: #fff;
     border: 1px solid #eaeaea;
@@ -1176,7 +1154,6 @@ body {
     margin-bottom: 4px;
 }
 
-/* --- Saxta ödəniş (kart) formu --- */
 .fake-card-preview {
     background: linear-gradient(135deg, #0b2f6b, #1a4f9b);
     border-radius: 16px;
@@ -1202,7 +1179,6 @@ body {
     opacity: 0.85;
 }
 
-/* ===================== AI Köməkçi (Kitab AI) çat widget-i ===================== */
 .ai-fab {
     position: fixed;
     bottom: 22px;

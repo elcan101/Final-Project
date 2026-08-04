@@ -4,16 +4,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace E_Commerce.Migrations
 {
-    /// <inheritdoc />
     public partial class AddCourierFullNameAndDeliveryLocation : Migration
     {
-        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            // CourierProfile.FullName modeldə var idi, amma heç bir migration-a düşməmişdi.
-            // Bu sütunlar bəzi bazalarda artıq əlavə olunmuş ola bilər (əvvəlki uğursuz/yarımçıq
-            // "database update" cəhdindən), ona görə hər sütunu əlavə etməzdən əvvəl mövcudluğunu
-            // yoxlayırıq — beləliklə migrasiya neçə dəfə işlədilsə də xəta vermir.
+            
             migrationBuilder.Sql(@"
 IF NOT EXISTS (SELECT 1 FROM sys.columns WHERE Name = N'FullName' AND Object_ID = Object_ID(N'CourierProfiles'))
 BEGIN
@@ -43,7 +38,6 @@ END
 ");
         }
 
-        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.Sql(@"

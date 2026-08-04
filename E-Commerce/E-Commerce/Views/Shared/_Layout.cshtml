@@ -3,16 +3,10 @@
 @using System.Security.Claims
 @inject AppDbContext DbContext
 @{
-    // hansı controller-dəyik - menyuda altını xətt çəkmək üçün
     var currentController = (string?)ViewContext.RouteData.Values["controller"] ?? "";
     Func<string, string> navActive = ctrl =>
         string.Equals(currentController, ctrl, StringComparison.OrdinalIgnoreCase) ? "active" : "";
 
-    // Balans yalnız mail ilə (hesaba) giriş etmiş istifadəçiyə göstərilir —
-    // qonaq (giriş etməmiş) istifadəçilər üçün heç vaxt hesablanmır/göstərilmir.
-    // Əgər istifadəçi eyni zamanda kuryerdirsə, kuryer panelindəki "Balans" (çatdırılmadan
-    // qazanılan pul) da bura əlavə olunur — əvvəllər kuryerin qazandığı pul yalnız
-    // Kuryer Panelində görünürdü, yuxarıdakı ümumi balans nişanında görünmürdü.
     decimal? headerWalletBalance = null;
     if (User.Identity != null && User.Identity.IsAuthenticated)
     {
@@ -44,7 +38,6 @@
 </head>
 <body>
 
-    <!-- üst sətir: loqo + axtarış + səbət/giriş -->
     <div class="top-bar">
         <div class="container d-flex align-items-center justify-content-between py-3">
             <a class="logo" href="/">
@@ -113,7 +106,6 @@
         </div>
     </div>
 
-    <!-- alt sətir: kateqoriya menyusu -->
     <nav class="navbar navbar-expand-lg category-bar">
         <div class="container">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
@@ -210,7 +202,6 @@
         </div>
     </footer>
 
-    <!-- ===== Footer "Müştəri Xidməti" siyasət modalları ===== -->
     <div class="modal fade" id="returnPolicyModal" tabindex="-1" aria-labelledby="returnPolicyModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
@@ -336,7 +327,6 @@
     }
     @await RenderSectionAsync("Scripts", required: false)
 
-    <!-- ===== Kitab AI köməkçisi (bütün səhifələrdə görünən üzən çat düyməsi) ===== -->
     <button id="aiFab" class="ai-fab" type="button" title="Kitab AI köməkçisi">
         📚<span class="ai-fab-badge">AI</span>
     </button>

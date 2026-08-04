@@ -1,9 +1,3 @@
-/* =========================================================
-   ADMIN PANEL — Horizon UI görünüşü
-   Bu fayl YALNIZ admin panel səhifələrində (Layout=_AdminLayout
-   istifadə edən .cshtml-lərdə) yüklənir, saytın qalan hissəsinə
-   təsir etmir — hər şey .admin-horizon-wrap içində scope olunub.
-   ========================================================= */
 
 .admin-horizon-wrap {
     --ah-purple: #422AFB;
@@ -153,7 +147,6 @@
     padding: 28px 32px 60px;
 }
 
-/* ---------- Stat / action cards (Horizon-style) ---------- */
 .admin-horizon-wrap .admin-stat-card {
     background: #fff;
     border: none;
@@ -203,7 +196,6 @@
     margin-bottom: 14px;
 }
 
-/* ---------- Tables ---------- */
 .admin-horizon-wrap .simple-table {
     background: #fff;
     border: none;
@@ -228,7 +220,6 @@
     vertical-align: middle;
 }
 
-/* ---------- Badges & buttons ---------- */
 .admin-horizon-wrap .status-badge {
     background: var(--ah-green-bg);
     color: var(--ah-green);
@@ -249,7 +240,6 @@
     background: var(--ah-purple-dark);
 }
 
-/* ---------- Responsive ---------- */
 @media (max-width: 900px) {
     .admin-horizon-wrap {
         flex-direction: column;

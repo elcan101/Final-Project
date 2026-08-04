@@ -15,7 +15,6 @@ namespace E_Commerce.Controllers
             _context = context;
         }
 
-        // Bütün kateqoriyaları göstər
         public IActionResult Index()
         {
             var categories = _context.Categories
@@ -26,7 +25,6 @@ namespace E_Commerce.Controllers
             return View(categories);
         }
 
-        // Kateqoriya əlavə etmək YALNIZ admin üçündür — adi müştəri bu səhifəyə keçə bilməz
         [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult Create()
@@ -49,7 +47,6 @@ namespace E_Commerce.Controllers
             return View(category);
         }
 
-        // Kateqoriyaya aid kitabları göstər (kateqoriya üzərinə kliklədikdə)
         public IActionResult Products(int id)
         {
             var category = _context.Categories
@@ -65,7 +62,6 @@ namespace E_Commerce.Controllers
             ViewData["Title"] = category.Name;
             var products = category.Products.Where(p => !p.IsDeleted).ToList();
 
-            // Product/Index.cshtml filtr panelinin işləməsi üçün lazım olan ViewBag-lər
             ViewBag.Categories = _context.Categories.Where(c => !c.IsDeleted).OrderBy(c => c.Name).ToList();
             ViewBag.Authors = _context.Products.Where(p => !p.IsDeleted && p.Author != null)
                 .Select(p => p.Author).Distinct().OrderBy(a => a).ToList();

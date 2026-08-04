@@ -11,7 +11,6 @@ namespace E_Commerce.Data
         {
         }
 
-        // Qurduğumuz modellərin SQL-də cədvələ çevrilməsi
         public DbSet<Product> Products { get; set; } = null!;
         public DbSet<Category> Categories { get; set; } = null!;
         public DbSet<Wallet> Wallets { get; set; } = null!;
@@ -32,7 +31,6 @@ namespace E_Commerce.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            // Pul və balans dəqiqliyi üçün SQL konfiqurasiyası
             modelBuilder.Entity<Product>()
                 .Property(p => p.Price)
                 .HasColumnType("decimal(18,2)");

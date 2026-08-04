@@ -16,8 +16,8 @@ namespace E_Commerce.Models
         [Column(TypeName = "decimal(18,2)")]
         public decimal TotalCashbackEarned { get; set; } = 0.00m;
 
-        // Hələ balansa köçürülməmiş, gözləyən keşbek — minimum 5 AZN-ə çatanda
-        // istifadəçi "Balansa köçür" düyməsi ilə bunu Balance-a köçürə bilər.
+       
+
         [Required]
         [Column(TypeName = "decimal(18,2)")]
         public decimal PendingCashback { get; set; } = 0.00m;

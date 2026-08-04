@@ -13,7 +13,6 @@ namespace E_Commerce.Controllers
         private readonly AppDbContext _context;
         private readonly IWebHostEnvironment _env;
 
-        // Yalnız bu uzantılara icazə verilir (təhlükəsizlik: icra oluna bilən fayllar qadağandır)
         private static readonly string[] AllowedPdfExtensions = { ".pdf" };
         private static readonly string[] AllowedAudioExtensions = { ".mp3", ".wav", ".m4a", ".ogg", ".aac" };
         private const long MaxUploadBytes = 500L * 1024 * 1024; // 500 MB (bax Program.cs — Kestrel limiti ilə eynidir)
@@ -24,8 +23,6 @@ namespace E_Commerce.Controllers
             _env = env;
         }
 
-        // Yüklənən PDF/audio faylını wwwroot/uploads altına yazır və sayta əlçatan nisbi linki qaytarır.
-        // Fayl seçilməyibsə (dəyişiklik yoxdursa) null qaytarır — köhnə fayl linki toxunulmaz qalır.
         private async Task<(string? url, string? error)> SaveUploadedFileAsync(IFormFile? file, string subFolder, string[] allowedExtensions)
         {
             if (file == null || file.Length == 0)
@@ -38,16 +35,11 @@ namespace E_Commerce.Controllers
             if (!allowedExtensions.Contains(ext))
                 return (null, $"Bu fayl növünə icazə verilmir. İcazəli formatlar: {string.Join(", ", allowedExtensions)}");
 
-            // Fayl sistemi ilə bağlı gözlənilməz xətalar (icazə, disk yeri, yol problemi və s.)
-            // düşsə, tətbiqi çökdürüb "ağ ekran" göstərmək əvəzinə, admin panelinə anlaşılan
-            // xəta mesajı ilə qayıdırıq — bu, "fayl əlavə edəndə yadda saxlanmır" problemi üçün
-            // əsas səbəb idi (unhandled exception → boş/xəta səhifəsi).
             try
             {
                 var webRoot = _env.WebRootPath;
                 if (string.IsNullOrEmpty(webRoot))
                 {
-                    // Bəzi hosting mühitlərində wwwroot avtomatik təyin olunmaya bilər
                     webRoot = Path.Combine(_env.ContentRootPath, "wwwroot");
                 }
 
@@ -72,7 +64,6 @@ namespace E_Commerce.Controllers
 
         private string GetUserId() => User.FindFirstValue(ClaimTypes.NameIdentifier) ?? "";
 
-        // 1. Formu göstər — YALNIZ ADMİN yeni kitab (kataloq məhsulu) əlavə edə bilər
         [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult Create()
@@ -83,13 +74,12 @@ namespace E_Commerce.Controllers
             return View();
         }
 
-        // 2. Formdan gələn məlumatı qəbul et və bazaya yaz
         [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Product product, IFormFile? pdfFile, IFormFile? audioFile)
         {
-            // Fayl sahələri modeldə deyil, ayrıca parametr kimi gəldiyi üçün onlara görə validasiya xətasını təmizləyirik
+            
             ModelState.Remove(nameof(Product.PdfUrl));
             ModelState.Remove(nameof(Product.AudioUrl));
 
@@ -116,7 +106,6 @@ namespace E_Commerce.Controllers
                     await _context.SaveChangesAsync();
 
                     TempData["Success"] = "Kitab uğurla əlavə olundu!";
-                    // Əlavə etdikdən sonra idarəetmə (Kitablarım) siyahısına yönləndiririk
                     return RedirectToAction("Manage");
                 }
             }
@@ -127,7 +116,6 @@ namespace E_Commerce.Controllers
             return View(product);
         }
 
-        // Kitablarım: admin əlavə etdiyi kitabları idarə edir (update / delete)
         [Authorize(Roles = "Admin")]
         public IActionResult Manage()
         {
@@ -153,7 +141,6 @@ namespace E_Commerce.Controllers
             return View(product);
         }
 
-        // Wwwroot altındakı köhnə PDF/audio faylını fiziki olaraq silir (fayl artıq yoxdursa səssizcə keçir).
         private void DeleteUploadedFile(string? relativeUrl)
         {
             if (string.IsNullOrWhiteSpace(relativeUrl)) return;
@@ -172,8 +159,7 @@ namespace E_Commerce.Controllers
             }
             catch
             {
-                // Fayl silinərkən xəta olsa belə (icazə, kilidlənmə və s.) əməliyyatı dayandırmırıq —
-                // DB-dəki link hər halda təmizlənəcək.
+                
             }
         }
 
@@ -192,9 +178,6 @@ namespace E_Commerce.Controllers
             ModelState.Remove(nameof(Product.AudioUrl));
             if (!ModelState.IsValid)
             {
-                // Formda PDF/audio üçün gizli sahə yoxdur, ona görə bağlanan "product"
-                // obyektində bu linklər həmişə boş gəlir — səhifə yenidən göstəriləndə
-                // mövcud faylın itdiyi təəssüratını yaratmamaq üçün DB-dəki cari linkləri qoruyuruq.
                 product.PdfUrl = existing.PdfUrl;
                 product.AudioUrl = existing.AudioUrl;
                 ViewBag.Categories = new SelectList(
@@ -238,9 +221,7 @@ namespace E_Commerce.Controllers
             existing.IsSecondHand = product.IsSecondHand;
             existing.IsHardcover = product.IsHardcover;
             existing.ImageUrl = product.ImageUrl;
-            // Yalnız yeni fayl yüklənibsə mövcud PDF/audio linkini əvəz et — əks halda toxunma.
-            // "Sil" düyməsi ilə silinmə tələb olunubsa (removePdf/removeAudio) və yeni fayl
-            // yüklənməyibsə, köhnə fayl diskdən silinir və link boşaldılır.
+            
             if (pdfUrl != null)
             {
                 DeleteUploadedFile(existing.PdfUrl);
@@ -286,8 +267,6 @@ namespace E_Commerce.Controllers
             return RedirectToAction("Manage");
         }
 
-        // ProductController-in içində:
-        // Turbo.az tipli filtrasiya: kateqoriya, qiymət aralığı, müəllif, sıralama
         public IActionResult Index(int? categoryId, decimal? minPrice, decimal? maxPrice, string? author, string? q, string? sort)
         {
             var products = FilterProducts(categoryId, minPrice, maxPrice, author, q, sort);
@@ -306,7 +285,6 @@ namespace E_Commerce.Controllers
             return View(products.ToList());
         }
 
-        // AJAX ilə sayfa yenilənmədən nəticələri qaytarır (yalnız kitab şəbəkəsi HTML-i)
         [HttpGet]
         public IActionResult FilterAjax(int? categoryId, decimal? minPrice, decimal? maxPrice, string? author, string? q, string? sort)
         {
@@ -343,7 +321,6 @@ namespace E_Commerce.Controllers
             return products;
         }
 
-        // Tək kitab səhifəsi
         public async Task<IActionResult> Details(int id)
         {
             var product = await _context.Products
@@ -358,10 +335,7 @@ namespace E_Commerce.Controllers
                 .OrderByDescending(r => r.CreatedDate)
                 .ToListAsync();
 
-            // E-kitab (PDF) və səsli kitab girişi yalnız aktiv abunəliyə görə verilir:
-            // Standard planı → yalnız e-kitab, Premium planı → e-kitab + səsli kitab.
-            // Giriş etməmiş və ya abunəliyi olmayan istifadəçiyə məzmun göstərilmir —
-            // əvəzinə abunəlik səhifəsinə yönləndirən dəvət göstərilir.
+           
             bool hasEbookAccess = false;
             bool hasAudioAccess = false;
 
@@ -375,7 +349,7 @@ namespace E_Commerce.Controllers
 
                 if (activeSub != null)
                 {
-                    hasEbookAccess = true; // Standard və Premium — hər ikisi e-kitaba icazə verir
+                    hasEbookAccess = true; 
                     hasAudioAccess = activeSub.PlanType == SubscriptionPlanType.Premium;
                 }
             }
@@ -386,15 +360,7 @@ namespace E_Commerce.Controllers
             return View(product);
         }
 
-        // PDF-i saytda ("inline") göstərmək üçün ayrıca endpoint.
-        // Əvvəllər səhifə birbaşa /uploads/pdf/xxx.pdf linkinə işarə edirdi — brauzer
-        // uzantıları/yükləmə menecerləri (məs. IDM) bunu "yüklənəcək fayl" kimi tanıyıb
-        // "Aynı indirme bağlantısı" pəncərəsi açırdı və istifadəçini saytdan kənara aparırdı.
-        // Bu problem yalnız URL-in .pdf uzantısını gizlətməklə HƏLL OLUNMADI, çünki IDM
-        // cavabı Content-Type başlığına görə də tuturdu (aşağıdakı qeydə bax). Ona görə bu
-        // endpoint faylı süni ("camuflaj") bir Content-Type ilə qaytarır, əsl PDF tipini isə
-        // yalnız brauzerdəki JavaScript (Details.cshtml) təyin edir.
-        // Giriş icazəsi (abunəlik) bu endpointdə də serverdə təkrar yoxlanılır.
+       
         [HttpGet]
         public async Task<IActionResult> ReadPdf(int id)
         {
@@ -423,42 +389,12 @@ namespace E_Commerce.Controllers
             if (!System.IO.File.Exists(filePath))
                 return NotFound();
 
-            // Bu dinamik cavab qlobal "no-cache" middleware-dən keçir (bax Program.cs), amma
-            // ehtiyat üçün burada da açıq şəkildə keş qadağan olunur ki, brauzer köhnə/xarab
-            // bir cavabı (məs. əvvəlki uğursuz Range cavabını) heç vaxt keşdən göstərməsin.
-            //
-            // MÜHÜM: IDM (Internet Download Manager) kimi yükləmə menecerləri brauzer
-            // uzantısı vasitəsilə BÜTÜN şəbəkə cavablarını (səhifə keçidi, fetch(), XHR —
-            // fərq etmir) "Content-Type" başlığına görə skan edir. Cavab "application/pdf"
-            // olaraq gələndə, hətta JavaScript fetch() ilə göndərilsə belə, IDM onu tutub
-            // "Aynı indirme bağlantısı" pəncərəsini açır və faylı öz nəzarətinə keçirir —
-            // nəticədə səhifədəki fetch() natamam/boş cavab alır və PDF "yüklənə bilmədi"
-            // xətası göstərir. Bunun qarşısını almaq üçün server cavabı IDM-in tanıdığı
-            // sənəd MIME tiplərindən (application/pdf, application/octet-stream və s.) BİR-İ
-            // OLMAYAN, süni bir Content-Type ilə göndərir. Brauzerdəki JavaScript real PDF
-            // baytlarını aldıqdan sonra Blob-u "application/pdf" tipi ilə YENİDƏN qurur (bax
-            // Details.cshtml) — bu, faylın PDF kimi düzgün göstərilməsini təmin edir, çünki
-            // Blob-un tipi tamamilə brauzerdə, JS tərəfindən müəyyən olunur, server başlığından
-            // asılı deyil.
+            
             Response.Headers["Cache-Control"] = "no-store, no-cache, must-revalidate";
             Response.Headers["X-Content-Type-Options"] = "nosniff";
             const string CamouflagedContentType = "application/x-ekitab-stream";
 
-            // QEYD: "Range" dəstəyi burada ARTIQ LAZIM DEYİL və bilərəkdən söndürülüb.
-            // Əvvəllər iframe birbaşa bu URL-ə "src" kimi bağlanırdı və brauzerin daxili PDF
-            // görüntüləyicisi faylı "Range" sorğuları ilə açırdı. İndi isə fayl JavaScript
-            // fetch() ilə TAM (200) cavab kimi endirilib Blob-a çevrilir (bax Details.cshtml),
-            // ona görə server tərəfində Range emalına ehtiyac qalmayıb.
-            //
-            // MÜHÜM (2-ci tur): Content-Type-ı kamuflyaj etmək kifayət ETMƏDİ — IDM əlavəsi
-            // fetch() cavabını hələ də "tuturdu" (dialoq artıq açılmır, amma səhifədəki
-            // fetch() "Failed to fetch" ilə uğursuz olurdu, çünki IDM bağlantını öz üzərinə
-            // götürüb səhifəyə tam cavab çatdırmırdı). Bunun səbəbi: IDM qərarını təkcə
-            // Content-Type-a görə deyil, həm də cavabın MƏLUM ÖLÇÜSÜNƏ (Content-Length) görə
-            // verir. FileStreamResult stream.Length məlum olduğu üçün Content-Length başlığını
-            // avtomatik göndərirdi. Buna görə faylı FileStreamResult ƏVƏZİNƏ, Content-Length
-            // başlığı HEÇ VAXT göndərilməyəcək şəkildə (HTTP "chunked" ötürmə ilə) əl ilə axıdırıq —
-            // IDM-in "bu böyük fayldır, tut" qərarı üçün lazım olan siqnal artıq mövcud deyil.
+            
             Response.ContentType = CamouflagedContentType;
             using (var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read, bufferSize: 81920, useAsync: true))
             {
@@ -467,7 +403,6 @@ namespace E_Commerce.Controllers
             return new EmptyResult();
         }
 
-        // Müştəri kitab səhifəsindən şərh/reytinq yazır
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -494,7 +429,6 @@ namespace E_Commerce.Controllers
             _context.ProductReviews.Add(review);
             await _context.SaveChangesAsync();
 
-            // Kitabın ortalama reytinqini yenilə
             var allRatings = await _context.ProductReviews
                 .Where(r => r.ProductId == productId && !r.IsDeleted)
                 .Select(r => r.Rating)

@@ -2,8 +2,6 @@ using System.Globalization;
 
 namespace E_Commerce.Services
 {
-    // Saxta (mock) ödəniş formalarında daxil edilən kart məlumatlarının formatını
-    // yoxlayır (real kart şəbəkəsinə qoşulmur — sadəcə uzunluq/format/tarix yoxlanışı).
     public static class CardValidationHelper
     {
         public static bool TryValidate(string? cardNumber, string? expiry, string? cvc, out string error)

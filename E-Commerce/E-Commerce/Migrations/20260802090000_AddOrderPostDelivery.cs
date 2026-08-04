@@ -4,14 +4,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace E_Commerce.Migrations
 {
-    /// <inheritdoc />
     public partial class AddOrderPostDelivery : Migration
     {
-        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            // Rayonlara poçtla çatdırılma: xəritədən seçmədən, rayon və poçt indeksi
-            // ilə sifariş vermək üçün lazım olan sütunlar.
+           
             migrationBuilder.Sql(@"
 IF NOT EXISTS (SELECT 1 FROM sys.columns WHERE Name = N'District' AND Object_ID = Object_ID(N'Orders'))
 BEGIN
@@ -41,7 +38,6 @@ END
 ");
         }
 
-        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.Sql(@"

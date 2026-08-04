@@ -3,12 +3,10 @@ using E_Commerce.Models;
 
 namespace E_Commerce.Data
 {
-    // Tətbiq hər başladıqda işə düşür, amma hər şeyi "yalnız yoxdursa" yaradır —
-    // buna görə bazanı silmir və artıq mövcud olan heç bir şeyi pozmur.
+   
     public static class IdentitySeeder
     {
-        // İLK ADMİN HESABI (bununla giriş edib Admin Panelə keçə bilərsiniz).
-        // Təhlükəsizlik üçün ilk girişdən sonra şifrəni dəyişməyiniz tövsiyə olunur.
+        
         public const string DefaultAdminEmail = "admin@okean.az";
         public const string DefaultAdminPassword = "Admin123!";
 
@@ -18,14 +16,12 @@ namespace E_Commerce.Data
             var userManager = services.GetRequiredService<UserManager<AppUser>>();
             var context = services.GetRequiredService<AppDbContext>();
 
-            // 1) Rollar
             foreach (var role in new[] { "Admin", "Customer" })
             {
                 if (!await roleManager.RoleExistsAsync(role))
                     await roleManager.CreateAsync(new IdentityRole(role));
             }
 
-            // 2) İlk admin hesabı
             var admin = await userManager.FindByEmailAsync(DefaultAdminEmail);
             if (admin == null)
             {
@@ -47,7 +43,6 @@ namespace E_Commerce.Data
                 await userManager.AddToRoleAsync(admin, "Admin");
             }
 
-            // 3) Baza kateqoriyalar (yalnız heç kateqoriya yoxdursa əlavə olunur)
             if (!context.Categories.Any())
             {
                 var names = new[]

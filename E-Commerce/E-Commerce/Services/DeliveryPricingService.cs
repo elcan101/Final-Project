@@ -11,8 +11,6 @@ namespace E_Commerce.Services
         public decimal MaxFee { get; set; } = 15.00m;
     }
 
-    // Depodan (kitabların saxlandığı anbar) çatdırılma ünvanına qədər olan məsafəyə
-    // görə çatdırılma haqqını hesablayır. Bu haqq kuryerin balansına köçürülür.
     public class DeliveryPricingService
     {
         private readonly DepotOptions _depot;
@@ -24,7 +22,6 @@ namespace E_Commerce.Services
 
         public DepotOptions Depot => _depot;
 
-        // Haversine düsturu ilə iki koordinat arasındakı məsafə (km)
         public static double DistanceKm(double lat1, double lng1, double lat2, double lng2)
         {
             const double earthRadiusKm = 6371.0;
@@ -41,7 +38,6 @@ namespace E_Commerce.Services
 
         private static double ToRadians(double deg) => deg * Math.PI / 180.0;
 
-        // Çatdırılma haqqını hesablayır: sabit baza + hər km üçün əlavə haqq, min/max limitlər daxilində
         public decimal CalculateDeliveryFee(double? deliveryLat, double? deliveryLng, out double distanceKm)
         {
             if (deliveryLat == null || deliveryLng == null)

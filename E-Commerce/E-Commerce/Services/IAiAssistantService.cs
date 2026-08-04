@@ -1,13 +1,11 @@
 namespace E_Commerce.Services
 {
-    // Sadə söhbət tarixçəsi elementi (frontend hər sorğuda əvvəlki 6-8 mesajı göndərir)
     public class AiChatTurn
     {
-        public string Role { get; set; } = "user"; // "user" və ya "assistant"
+        public string Role { get; set; } = "user"; 
         public string Text { get; set; } = "";
     }
 
-    // AI-nın qaytardığı tövsiyə olunan kitab (Product cədvəlindən götürülüb frontend-ə göndərilir)
     public class AiRecommendedBook
     {
         public int Id { get; set; }

@@ -9,10 +9,8 @@ namespace E_Commerce.Services
 
     public interface IPaymentService
     {
-        // Kartı tokenləşdirir — kartın özü deyil, yalnız token saxlanılır
         Task<(string token, string brand, string last4)> TokenizeCardAsync(string cardNumber, string expiry, string cvc);
 
-        // Tokenləşdirilmiş kartdan məbləğ tutur (abunə, icarə, sifariş ödənişi və s.)
         Task<PaymentResult> ChargeAsync(string userId, decimal amount, string description, string? stripeToken = null);
     }
 }

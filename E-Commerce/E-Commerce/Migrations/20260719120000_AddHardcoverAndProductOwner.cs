@@ -4,14 +4,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace E_Commerce.Migrations
 {
-    /// <inheritdoc />
     public partial class AddHardcoverAndProductOwner : Migration
     {
-        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            // Hər sütun əlavə edilmədən əvvəl mövcudluğu yoxlanılır — migrasiya
-            // neçə dəfə işlədilsə də (və ya sütun əvvəlcədən əl ilə əlavə olunsa da) xəta vermir.
+           
             migrationBuilder.Sql(@"
 IF NOT EXISTS (SELECT 1 FROM sys.columns WHERE Name = N'IsHardcover' AND Object_ID = Object_ID(N'Products'))
 BEGIN
@@ -34,7 +31,6 @@ END
 ");
         }
 
-        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.Sql(@"

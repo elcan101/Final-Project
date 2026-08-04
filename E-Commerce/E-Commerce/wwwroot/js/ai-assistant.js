@@ -1,5 +1,4 @@
-// "Kitab AI" çat widget-i — bütün səhifələrdə görünən üzən düymə.
-// Söhbət tarixçəsi yalnız yaddaşda (JS massivi) saxlanılır, səhifə yenilənəndə sıfırlanır.
+
 (function () {
     const fab = document.getElementById('aiFab');
     const panel = document.getElementById('aiChatPanel');
@@ -12,7 +11,7 @@
 
     if (!fab || !panel) return;
 
-    let history = []; // [{role: 'user'|'assistant', text: string}]
+    let history = []; 
     let opened = false;
 
     function scrollToBottom() {

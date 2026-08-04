@@ -8,13 +8,7 @@ using E_Commerce.Models;
 
 namespace E_Commerce.Controllers
 {
-    // C2C Marketplace: "Elan Ver → Alıcı Tap → Əlaqə Saxla"
-    // Qeyd: bura tap.az prinsipi ilə işləyir — sayt heç bir ödənişə vasitəçilik etmir.
-    // Alıcı "Nömrəni göstər" düyməsini basanda yalnız tərəflərin əlaqə məlumatları
-    // bir-birinə ötürülür, alış-veriş özləri təyin etdikləri yerdə həyata keçirilir.
-    // Satıcı elanı istədiyi vaxt saytdan çıxara bilər; elan aktiv qaldığı hər gün üçün
-    // satıcının balansından gündəlik elan haqqı (DailyListingFee) avtomatik tutulur
-    // (bax: Services/DailyBillingService.cs).
+    
     public class ListingController : Controller
     {
         private readonly AppDbContext _context;
@@ -28,8 +22,7 @@ namespace E_Commerce.Controllers
             _userManager = userManager;
         }
 
-        // Şəkil linki əvəzinə istifadəçinin yüklədiyi faylı (şəkil və ya PDF) diskə yazır
-        // və saxlanılan faylın nisbi yolunu qaytarır
+        
         private string? SaveBookFile(IFormFile? bookFile)
         {
             if (bookFile == null || bookFile.Length == 0) return null;
@@ -54,7 +47,7 @@ namespace E_Commerce.Controllers
 
         private string GetUserId() => User.FindFirstValue(ClaimTypes.NameIdentifier) ?? "";
 
-        // Alıcı Tap: aktiv elanların açıq bazarı
+       
         public IActionResult Index(string? q, decimal? minPrice, decimal? maxPrice)
         {
             var listings = _context.Listings
@@ -71,8 +64,7 @@ namespace E_Commerce.Controllers
             return View(listings.OrderByDescending(l => l.CreatedDate).ToList());
         }
 
-        // Elana klikləyəndə açılan ətraflı səhifə: satıcının yazdığı təsvir/xüsusiyyətlər
-        // və əlaqə nömrəsi bu səhifədə tam görünür.
+       
         public async Task<IActionResult> Details(int id)
         {
             var listing = await _context.Listings
@@ -117,7 +109,6 @@ namespace E_Commerce.Controllers
             return View(new Listing { ContactPhone = user?.PhoneNumber });
         }
 
-        // Elan Ver
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -138,8 +129,7 @@ namespace E_Commerce.Controllers
 
             _context.Listings.Add(listing);
 
-            // Elan yerləşdirilən kimi ilk günün elan haqqı dərhal balansdan tutulur —
-            // sonrakı hər gün üçün isə DailyBillingService avtomatik olaraq eyni məbləği tutmağa davam edir
+           
             var firstDayFee = listing.DailyListingFee;
             var wallet = _context.Wallets.FirstOrDefault(w => w.UserId == listing.SellerId && !w.IsDeleted);
             if (wallet == null)
@@ -156,7 +146,7 @@ namespace E_Commerce.Controllers
             return RedirectToAction("MyListings");
         }
 
-        // Elanı redaktə et — yalnız elanın sahibi öz elanını redaktə edə bilər.
+       
         [Authorize]
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
@@ -169,12 +159,6 @@ namespace E_Commerce.Controllers
             return View(listing);
         }
 
-        // MÜHÜM: bura yalnız "redaktə edilə bilən" sahələri (Title, Author, Description,
-        // Price, CategoryId, ContactPhone, IsHardcover və seçilibsə yeni şəkil) yeniləyir.
-        // SellerId, Status, DailyListingFee, AccruedFees, LastFeeChargedDate, BuyerId,
-        // SoldDate, PlatformCommissionRate, CreatedDate kimi sahələr formdan HEÇ VAXT
-        // qəbul olunmur və toxunulmaz qalır — beləliklə bir sahəni dəyişmək digər (məs.
-        // elanın statusu, yığılmış haqlar) məlumatları sıfırlamır/pozmur.
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -202,7 +186,6 @@ namespace E_Commerce.Controllers
             existing.IsHardcover = listing.IsHardcover;
             existing.UpdatedDate = DateTime.Now;
 
-            // Yalnız yeni fayl seçilibsə şəkli əvəz et — seçilməyibsə köhnə şəkil olduğu kimi qalır
             var newImage = SaveBookFile(bookFile);
             if (newImage != null)
                 existing.ImageUrl = newImage;
@@ -213,10 +196,7 @@ namespace E_Commerce.Controllers
             return RedirectToAction("MyListings");
         }
 
-        // Əlaqə Saxla: sayt heç bir ödənişə vasitəçilik etmir — alıcıya satıcının əlaqə
-        // nömrəsi/e-poçtu göstərilir, satıcıya isə yalnız "maraqlanan var" bildirişi gedir
-        // (müştərinin əlaqə nömrəsi satıcıya ötürülmür — istəsə, müştəri özü satıcının
-        // nömrəsinə zəng edib danışa bilər).
+       
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -239,8 +219,7 @@ namespace E_Commerce.Controllers
             var buyer = await _userManager.FindByIdAsync(buyerId);
             var seller = await _userManager.FindByIdAsync(listing.SellerId);
 
-            // Satıcıya bildiriş: yalnız kiminsə maraqlandığı bildirilir — müştərinin əlaqə
-            // nömrəsi ötürülmür, satıcı istəsə elanın səhifəsindən öz nömrəsinə zəng gözləyə bilər.
+           
             _context.Notifications.Add(new Notification
             {
                 UserId = listing.SellerId,
@@ -260,8 +239,6 @@ namespace E_Commerce.Controllers
             return RedirectToAction("Details", new { id });
         }
 
-        // Satıcı elanı istədiyi vaxt saytdan çıxara bilər — bundan sonra gündəlik
-        // elan haqqı da artıq tutulmur (bax: DailyBillingService, yalnız Active elanlardan tutur).
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]

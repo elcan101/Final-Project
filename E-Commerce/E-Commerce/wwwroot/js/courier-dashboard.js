@@ -1,7 +1,4 @@
-// Kuryer paneli: SignalR broadcast alqoritmi — "Hazır" sifariş elan olunanda
-// bütün boşda kuryerlərə siqnal gedir, ilk basan qazanır. Səhifə açılanda
-// artıq gözləyən sifarişlər server tərəfindən əvvəlcədən render olunur
-// (broadcast anını qaçırmış kuryerlər üçün) + yeni sifarişlər canlı gəlir.
+
 (function () {
     const cfg = window.__courierDashboard;
     if (!cfg) return;
@@ -32,7 +29,6 @@
         alert("Bu sifariş artıq başqa kuryer tərəfindən götürülüb.");
     });
 
-    // Bu kuryer sifarişi uğurla götürdü → birbaşa çatdırılma/izləmə səhifəsinə keçir
     conn.on("OrderAccepted", (data) => {
         window.location.href = `/Order/Track/${data.orderId}`;
     });
@@ -76,7 +72,6 @@
         }
     }
 
-    // Statik (server render) + dinamik kartlar üçün vahid klik idarəsi
     ordersList.addEventListener("click", (e) => {
         const acceptBtn = e.target.closest(".accept-btn");
         const rejectBtn = e.target.closest(".reject-btn");
@@ -94,7 +89,6 @@
 
         if (rejectBtn) {
             const orderId = parseInt(rejectBtn.dataset.orderId, 10);
-            // Rədd etmək digər kuryerlərə təsir etmir — sadəcə bu kuryerin siyahısından çıxır
             removeOrderCard(orderId);
         }
     });

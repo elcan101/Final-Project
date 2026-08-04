@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace E_Commerce.Models
 {
-    // Müştərilərin kitab səhifəsində yazdığı şərhlər
     public class ProductReview : BaseEntity
     {
         [Required]

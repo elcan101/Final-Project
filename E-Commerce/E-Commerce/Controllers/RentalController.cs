@@ -36,7 +36,6 @@ namespace E_Commerce.Controllers
             return View(rentals);
         }
 
-        // Sifariş kimi icarə də əvvəlcə çatdırılma nöqtəsinin xəritədən seçilməsini tələb edir
         [HttpGet]
         public IActionResult ChooseLocation(int productId, int days = 7)
         {
@@ -66,8 +65,7 @@ namespace E_Commerce.Controllers
         {
             if (days <= 0) days = 7;
 
-            // Çatdırılma nöqtəsi seçilməyibsə, geri "xəritədən seç" səhifəsinə qaytarırıq —
-            // digər normal sifarişlərdə olduğu kimi
+           
             if (lat == null || lng == null)
             {
                 TempData["Error"] = "Zəhmət olmasa çatdırılma ünvanını xəritədən seçin.";
@@ -88,8 +86,6 @@ namespace E_Commerce.Controllers
             var dailyRate = 0.20m;
             var isFree = false;
 
-            // Standart plan: fiziki kitab icarəsinə 5% endirim.
-            // Premium plan: ayda bir dəfə 14 günlük pulsuz icarə haqqı.
             var subscription = await _context.UserSubscriptions
                 .Where(s => s.UserId == userId && s.IsActive && !s.IsDeleted && s.ExpiryDate > DateTime.Now)
                 .FirstOrDefaultAsync();
@@ -100,20 +96,17 @@ namespace E_Commerce.Controllers
                  subscription.FreeRentalUsedThisMonth.Value.Month != DateTime.Now.Month))
             {
                 isFree = true;
-                chargeableDays = Math.Max(0, days - 14); // yalnız 14 günü keçən hissə ödənişlidir
+                chargeableDays = Math.Max(0, days - 14); 
                 subscription.FreeRentalUsedThisMonth = DateTime.Now;
             }
             else if (subscription != null)
             {
-                // Standart abunəçi hər zaman 5% endirim alır; Premium abunəçi bu ayki pulsuz
-                // haqqını artıq istifadə edibsə, o da eyni 5% endirimdən faydalanır.
                 dailyRate = 0.19m;
             }
 
             var baseCost = chargeableDays * dailyRate;
 
-            // Digər sifarişlərdə olduğu kimi, depodan çatdırılma ünvanına məsafəyə görə
-            // çatdırılma haqqı hesablanır və kitab haqqı ilə birlikdə balansdan tutulur
+           
             var deliveryFee = _deliveryPricing.CalculateDeliveryFee(lat, lng, out var distanceKm);
             var total = baseCost + deliveryFee;
 
@@ -127,9 +120,6 @@ namespace E_Commerce.Controllers
                 }
             }
 
-            // Digər sifarişlər kimi kuryerlə çatdırılsın deyə əlaqəli Order yaradılır —
-            // depo "Hazırdır" elan edəndə kuryerlərə bildiriş gedir, ilk qəbul edən kuryer
-            // gedib kitabı müştəriyə çatdırır (Order/Track səhifəsindən eyni canlı izləmə).
             var order = new Order
             {
                 UserId = userId,
@@ -165,8 +155,7 @@ namespace E_Commerce.Controllers
             return RedirectToAction("Index");
         }
 
-        // Müştəri "İcarələrim" bölməsindən icarə müddətini uzada bilər —
-        // əlavə günlər eyni gündəlik haqqla (rental.DailyRate) balansdan tutulur
+       
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Extend(int id, int additionalDays)
@@ -196,18 +185,12 @@ namespace E_Commerce.Controllers
                 }
             }
 
-            // Uzatma haqqı əvvəlki haqqın üzərinə əlavə olunur ki, "Haqq" sütununda hər ikisi
-            // birlikdə (cəmlənmiş) göstərilsin.
+           
             rental.BaseCost += extraCost;
 
             rental.DueDate = rental.DueDate.AddDays(additionalDays);
-            // Yeni qaytarma tarixinə görə "1 gün qalıb" xəbərdarlığı təzədən göndərilsin deyə sıfırlanır
             rental.DueSoonEmailSent = false;
 
-            // Müddət uzadıldığı üçün icarə artıq gecikmiş sayılmır — sabit -5 AZN cərimə və
-            // gündəlik gecikmə cəriməsi hesablama sayğacı sıfırlanır ki, yeni qaytarma
-            // tarixindən sonra YENİDƏN gecikərsə, cərimə (əvvəlki cərimə ilə eyni "Cərimə"
-            // sütununda cəmlənərək) düzgün tətbiq olunsun.
             rental.LateFineApplied = false;
             rental.PenaltyChargedDays = 0;
 
@@ -217,7 +200,6 @@ namespace E_Commerce.Controllers
             return RedirectToAction("Index");
         }
 
-        // Kitabı qaytar — gecikmə varsa cərimə avtomatik balansdan tutulur
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Return(int id)
@@ -243,8 +225,6 @@ namespace E_Commerce.Controllers
             return RedirectToAction("Index");
         }
 
-        // Balansdan tut — kartdan birbaşa tutmur. Balans kifayət etmirsə, istifadəçi
-        // əvvəlcə "Kartla balansı artır" səhifəsindən balansını artırmalıdır.
         private async Task<bool> PayAsync(string userId, decimal amount, string description)
         {
             var wallet = _context.Wallets.FirstOrDefault(w => w.UserId == userId && !w.IsDeleted);
@@ -272,7 +252,7 @@ namespace E_Commerce.Controllers
                 wallet = new Wallet { UserId = userId };
                 _context.Wallets.Add(wallet);
             }
-            wallet.Balance -= amount; // İcarə cərimələri avtomatik balansdan çıxılır (mənfiyə düşə bilər)
+            wallet.Balance -= amount; 
             await Task.CompletedTask;
         }
     }

@@ -1,4 +1,3 @@
-// Turbo.az tipli AJAX filtrasiya: sayfa yenilənmədən kitab şəbəkəsi təzələnir
 (function () {
     const grid = document.getElementById("productGrid");
     if (!grid) return;

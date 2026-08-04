@@ -7,7 +7,6 @@ using E_Commerce.Services;
 
 namespace E_Commerce.Controllers
 {
-    // Balans yalnız hesaba (mail ilə) giriş etmiş istifadəçiyə aiddir — qonaqlar üçün yoxdur.
     [Authorize]
     public class WalletController : Controller
     {
@@ -22,7 +21,6 @@ namespace E_Commerce.Controllers
 
         private string GetUserId() => User.FindFirstValue(ClaimTypes.NameIdentifier)!;
 
-        // İstifadəçinin balansı və keşbek məlumatı
         public IActionResult Index()
         {
             var userId = GetUserId();
@@ -35,15 +33,13 @@ namespace E_Commerce.Controllers
                 _context.SaveChanges();
             }
 
-            // İstifadəçi eyni zamanda kuryerdirsə, çatdırılmadan yığdığı balansı da göstəririk
             var courierProfile = _context.CourierProfiles.FirstOrDefault(c => c.CourierId == userId && !c.IsDeleted);
             ViewBag.CourierBalance = courierProfile?.CurrentBalance ?? 0.00m;
 
             return View(wallet);
         }
 
-        // Kuryerin çatdırılma pullarından yığdığı balansı əsas saytdakı balansa köçürür —
-        // bundan sonra bu pulla abunəlik/digər ödənişlər aparıla bilər.
+       
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -74,7 +70,6 @@ namespace E_Commerce.Controllers
             return RedirectToAction("Index");
         }
 
-        // Kartla balans artırma səhifəsi — yalnız hesaba (mail ilə) giriş etmiş istifadəçi üçün
         [Authorize]
         [HttpGet]
         public IActionResult TopUp()
@@ -82,8 +77,7 @@ namespace E_Commerce.Controllers
             return View();
         }
 
-        // Kart məlumatları heç vaxt bazada saxlanılmır — mock ödəniş servisi ilə "tokenləşdirilir"
-        // və test rejimində avtomatik təsdiqlənir (bax Services/MockStripePaymentService.cs)
+      
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -132,7 +126,6 @@ namespace E_Commerce.Controllers
             return RedirectToAction("Index");
         }
 
-        // Gözləyən keşbeki balansa köçürmə — minimum 5 AZN toplananda aktiv olur
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -156,7 +149,6 @@ namespace E_Commerce.Controllers
             return RedirectToAction("Index");
         }
 
-        // Balansdan pul çıxarma (məs. C2C bazarında kitab satışından qazanılan pulu geri almaq üçün)
         [Authorize]
         [HttpGet]
         public IActionResult Withdraw()
@@ -168,8 +160,6 @@ namespace E_Commerce.Controllers
             return View();
         }
 
-        // Kart/IBAN məlumatları saxlanılmır — test rejimində məbləğ dərhal balansdan çıxılır
-        // (real inteqrasiyada bank köçürməsi/kart geri ödənişi API-si buraya bağlanmalıdır)
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]

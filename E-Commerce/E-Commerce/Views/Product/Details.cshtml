@@ -93,7 +93,6 @@
             <a href="/Product" class="btn btn-outline-secondary px-4">← Kitablara qayıt</a>
         </div>
 
-        <!-- Xüsusiyyətlər paneli: default gizli, düyməyə klikləndikdə açılır -->
         <div id="featuresPanel" class="mt-4" style="display:none;">
             <div class="form-card">
                 <h6 class="mb-3">📋 Kitabın xüsusiyyətləri</h6>
@@ -123,7 +122,7 @@
     </div>
 </div>
 
-<!-- Şərhlər bölməsi -->
+
 <div class="row mt-5">
     <div class="col-lg-8">
         <h5 class="mb-3">💬 Müştəri şərhləri (@reviews.Count)</h5>
@@ -194,12 +193,7 @@
             panel.style.display = (panel.style.display === 'none' || !panel.style.display) ? 'block' : 'none';
         });
 
-        // PDF-i "src" ilə birbaşa deyil, fetch + blob URL ilə yükləyirik.
-        // Səbəb: IDM (Internet Download Manager) kimi yükləmə menecerləri təkcə birbaşa
-        // keçidləri deyil, "Content-Type: application/pdf" başlıqlı BÜTÜN şəbəkə
-        // cavablarını (fetch() daxil) tuturdu. Server tərəfi indi faylı süni ("camuflaj")
-        // Content-Type ilə göndərir (bax ProductController.ReadPdf) ki, IDM onu tanımasın;
-        // əsl PDF tipini isə burada, JS Blob yaradılarkən açıq şəkildə təyin edirik.
+       
         (function () {
             var frame = document.getElementById('pdfViewerFrame');
             if (!frame) return;

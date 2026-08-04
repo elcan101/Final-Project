@@ -10,7 +10,6 @@ namespace E_Commerce.Models
         Deactivated = 2
     }
 
-    // Vətəndaşlar arası ikinci əl kitab elanı (C2C bazar)
     public class Listing : BaseEntity
     {
         [Required]
@@ -31,7 +30,6 @@ namespace E_Commerce.Models
 
         public string? ImageUrl { get; set; }
 
-        // Alıcının satıcı ilə birbaşa əlaqə saxlaması üçün elanda göstərilən nömrə
         [StringLength(30)]
         public string? ContactPhone { get; set; }
 
@@ -40,11 +38,10 @@ namespace E_Commerce.Models
         [ForeignKey("CategoryId")]
         public Category? Category { get; set; }
 
-        public bool IsHardcover { get; set; } = true; // Cildli (true) / Cildsiz (false)
+        public bool IsHardcover { get; set; } = true; 
 
         public ListingStatus Status { get; set; } = ListingStatus.Active;
 
-        // Günlük elan haqqı sistemi
         [Column(TypeName = "decimal(18,2)")]
         public decimal DailyListingFee { get; set; } = 0.10m;
 
@@ -57,8 +54,7 @@ namespace E_Commerce.Models
 
         public DateTime? SoldDate { get; set; }
 
-        // Platforma komissiyası (satışdan tutulan faiz)
         [Column(TypeName = "decimal(18,2)")]
-        public decimal PlatformCommissionRate { get; set; } = 0.08m; // 8%
+        public decimal PlatformCommissionRate { get; set; } = 0.08m; 
     }
 }

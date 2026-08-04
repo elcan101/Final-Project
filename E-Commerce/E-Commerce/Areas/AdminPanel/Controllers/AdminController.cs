@@ -7,8 +7,7 @@ using E_Commerce.Models;
 
 namespace E_Commerce.Areas.AdminPanel.Controllers
 {
-    // Bu controller "AdminPanel" adlı ayrıca Area-nın içindədir.
-    // Route: /AdminPanel/Admin, /AdminPanel/Admin/Admins və s.
+   
     [Area("AdminPanel")]
     [Authorize(Roles = "Admin")]
     public class AdminController : Controller
@@ -32,18 +31,16 @@ namespace E_Commerce.Areas.AdminPanel.Controllers
             var allOrders = _context.Orders.Where(o => !o.IsDeleted).ToList();
             ViewBag.OrderCount = allOrders.Count;
 
-            // Satış/gəlir dövriyyəsi: kitabların ödənişi, çatdırılma gəliri və ümumi dövriyyə
-            var totalTurnover = allOrders.Sum(o => o.TotalAmount);           // Ümumi gəlir dövriyyəsi
-            var totalDeliveryFee = allOrders.Sum(o => o.DeliveryFee);        // Çatdırılma haqqı (cəmi)
-            var totalBookSales = totalTurnover - totalDeliveryFee;           // Kitabların ödənişi (satış dövriyyəsi)
-            var platformDeliveryShare = Math.Round(totalDeliveryFee * (1 - Order.CourierShareRate), 2); // Platformanın 30%-i
+            var totalTurnover = allOrders.Sum(o => o.TotalAmount);           
+            var totalDeliveryFee = allOrders.Sum(o => o.DeliveryFee);      
+            var totalBookSales = totalTurnover - totalDeliveryFee;          
+            var platformDeliveryShare = Math.Round(totalDeliveryFee * (1 - Order.CourierShareRate), 2); 
 
             ViewBag.TotalTurnover = totalTurnover;
             ViewBag.TotalBookSales = totalBookSales;
             ViewBag.TotalDeliveryFee = totalDeliveryFee;
             ViewBag.PlatformDeliveryShare = platformDeliveryShare;
 
-            // Son 14 günün gündəlik dövriyyə diaqramı üçün data
             var since = DateTime.Now.Date.AddDays(-13);
             var dailyTotals = allOrders
                 .Where(o => o.CreatedDate.Date >= since)
@@ -63,7 +60,6 @@ namespace E_Commerce.Areas.AdminPanel.Controllers
             return View();
         }
 
-        // Bütün sifarişlərə tam baxış: ödəniş, tarix, ünvan, status, kuryer, keşbek və s.
         public async Task<IActionResult> Orders()
         {
             var orders = await _context.Orders
@@ -81,7 +77,6 @@ namespace E_Commerce.Areas.AdminPanel.Controllers
             return View(orders);
         }
 
-        // ---------- Kateqoriyalar (admin panel daxilində, sayta keçmədən) ----------
 
         public IActionResult Categories()
         {
@@ -122,7 +117,6 @@ namespace E_Commerce.Areas.AdminPanel.Controllers
                 return RedirectToAction("Categories");
             }
 
-            // Soft delete: kateqoriyaya bağlı kitablar silinmir, sadəcə kateqoriya siyahıdan gizlənir
             category.IsDeleted = true;
             category.UpdatedDate = DateTime.Now;
             _context.SaveChanges();
@@ -131,7 +125,6 @@ namespace E_Commerce.Areas.AdminPanel.Controllers
             return RedirectToAction("Categories");
         }
 
-        // ---------- Kuryerlər (admin panel daxilində, sayta keçmədən) ----------
 
         public IActionResult Couriers()
         {
@@ -143,7 +136,6 @@ namespace E_Commerce.Areas.AdminPanel.Controllers
             return View(couriers);
         }
 
-        // ---------- Abunəliklər (Kitab Pass) ----------
 
         public async Task<IActionResult> Subscriptions()
         {
@@ -161,7 +153,6 @@ namespace E_Commerce.Areas.AdminPanel.Controllers
             return View(subscriptions);
         }
 
-        // ---------- İcarəyə götürülən kitablar ----------
 
         public async Task<IActionResult> Rentals()
         {
@@ -180,7 +171,6 @@ namespace E_Commerce.Areas.AdminPanel.Controllers
             return View(rentals);
         }
 
-        // ---------- C2C bazar (istifadəçilər arası ikinci əl kitab elanları) ----------
 
         public async Task<IActionResult> Listings()
         {
@@ -202,7 +192,6 @@ namespace E_Commerce.Areas.AdminPanel.Controllers
             return View(listings);
         }
 
-        // ---------- Adminlərin idarə olunması ----------
 
         public async Task<IActionResult> Admins()
         {

@@ -7,11 +7,11 @@ namespace E_Commerce.Models
     {
         [Required]
         [StringLength(50)]
-        public string Code { get; set; } = null!; // Məs: OKEAN20
+        public string Code { get; set; } = null!; 
 
         [Required]
         [Column(TypeName = "decimal(18,2)")]
-        public decimal DiscountAmount { get; set; } // Nə qədər endirim edəcək (Məs: 5.00 AZN)
+        public decimal DiscountAmount { get; set; } 
 
         public bool IsActive { get; set; } = true;
     }

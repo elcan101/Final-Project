@@ -1,16 +1,6 @@
 namespace E_Commerce.Services
 {
-    // ============================================================================
-    // TEST REJİMİ: Real Stripe API açarı olmadan işləyən saxta (mock) ödəniş servisi.
-    //
-    // Production-a keçid üçün:
-    //   1) NuGet: dotnet add package Stripe.net
-    //   2) appsettings.json-a "Stripe:SecretKey" əlavə et
-    //   3) Bu klası StripeChargeService kimi yenidən yaz, StripeConfiguration.ApiKey
-    //      təyin et və Charges/PaymentMethods.Create çağırışlarını et
-    //   4) Program.cs-də IPaymentService qeydiyyatını dəyişdir:
-    //        builder.Services.AddScoped<IPaymentService, StripeChargeService>();
-    // ============================================================================
+    
     public class MockStripePaymentService : IPaymentService
     {
         private readonly ILogger<MockStripePaymentService> _logger;
@@ -29,7 +19,6 @@ namespace E_Commerce.Services
                 : cleaned.StartsWith("5") ? "MasterCard"
                 : "Card";
 
-            // Real kart nömrəsi HEÇ VAXT saxlanılmır — sadəcə saxta token generasiya olunur
             var token = $"tok_mock_{Guid.NewGuid():N}".Substring(0, 24);
 
             _logger.LogInformation("[MockStripe] Kart tokenləşdirildi: {Brand} ****{Last4}", brand, last4);
@@ -38,7 +27,6 @@ namespace E_Commerce.Services
 
         public Task<PaymentResult> ChargeAsync(string userId, decimal amount, string description, string? stripeToken = null)
         {
-            // Test rejimində bütün ödənişlər avtomatik uğurlu sayılır
             _logger.LogInformation("[MockStripe] Ödəniş: {Amount} AZN — {Description} (İstifadəçi: {UserId})", amount, description, userId);
 
             return Task.FromResult(new PaymentResult

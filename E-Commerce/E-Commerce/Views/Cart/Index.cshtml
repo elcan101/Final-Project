@@ -2,7 +2,6 @@
 
 @{
     ViewData["Title"] = "Səbətim";
-    // silinmiş/olmayan məhsula bağlı "yetim" sətirləri kənara qoyuruq ki, səhifə çökməsin
     var items = (Model.CartItems ?? new List<E_Commerce.Models.CartItem>())
         .Where(ci => ci.Product != null)
         .ToList();
@@ -87,9 +86,7 @@ else
 
 @section Scripts {
     <script>
-        // Say seçicisini dəyişdikdə: sətir cəmi və ümumi yekun DƏRHAL (JS ilə) yenilənir —
-        // heç bir "Yenilə" düyməsinə basmağa ehtiyac qalmır. Dəyişiklik verilənlər bazasına
-        // qısa gecikmə (debounce) ilə arxa planda (səhifə yenilənmədən) avtomatik yazılır.
+       
         (function () {
             var discount = @Html.Raw(appliedDiscount.ToString(System.Globalization.CultureInfo.InvariantCulture));
             var saveTimers = {};
@@ -129,7 +126,6 @@ else
                         .then(function () {
                             if (savingLabel) savingLabel.classList.add('d-none');
                             var input = form.querySelector('.qty-input');
-                            // Say 0 edilibsə, sətir artıq bazada silinib — səhifəni yeniləyib siyahını təzələyirik
                             if (input && parseInt(input.value, 10) <= 0) {
                                 window.location.reload();
                             }
