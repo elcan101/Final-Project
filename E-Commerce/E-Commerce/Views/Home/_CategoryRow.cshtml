@@ -1,0 +1,42 @@
+@model E_Commerce.ViewModels.CategoryShowcase
+@{
+    var rowId = ViewData["RowId"] as string ?? ("row-" + Guid.NewGuid().ToString("N"));
+    var seeAllUrl = ViewData["SeeAllUrl"] as string ?? "/Product";
+    var items = Model.Products ?? new List<E_Commerce.Models.Product>();
+}
+
+@if (items.Any())
+{
+    <div class="category-row mb-5">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h4 class="mb-0">@Model.Category.Name</h4>
+            <a href="@seeAllUrl" class="category-row-link">Hamısına bax <span aria-hidden="true">›</span></a>
+        </div>
+
+        <div class="category-scroller-wrap">
+            <button type="button" class="category-arrow prev" data-target="@rowId" aria-label="Əvvəlki">‹</button>
+
+            <div class="category-scroller" id="@rowId">
+                @foreach (var item in items)
+                {
+                    <div class="category-scroller-item">
+                        <div class="product-card">
+                            <a asp-controller="Product" asp-action="Details" asp-route-id="@item.Id" class="text-decoration-none text-dark">
+                                <img src="@item.ImageUrl" alt="@item.Title" />
+                                <h6>@item.Title</h6>
+                                <div class="author">@(item.Author ?? item.Category?.Name)</div>
+                                <div class="price">@item.Price AZN</div>
+                            </a>
+                            <form asp-controller="Cart" asp-action="AddToCart" method="post">
+                                <input type="hidden" name="productId" value="@item.Id" />
+                                <button type="submit" class="add-cart-btn">🛒 Səbətə əlavə et</button>
+                            </form>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <button type="button" class="category-arrow next" data-target="@rowId" aria-label="Növbəti">›</button>
+        </div>
+    </div>
+}

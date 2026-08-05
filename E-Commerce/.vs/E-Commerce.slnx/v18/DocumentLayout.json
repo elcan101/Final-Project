@@ -3,52 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\views\\product\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\views\\product\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\services\\mockstripepaymentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\services\\mockstripepaymentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\services\\mockemailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\services\\mockemailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\services\\ipaymentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\services\\ipaymentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\services\\iemailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\services\\iemailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\services\\iaiassistantservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\services\\iaiassistantservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\services\\deliverypricingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\services\\deliverypricingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\services\\dailybillingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\services\\dailybillingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\services\\cardvalidationhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|solutionrelative:e-commerce\\services\\cardvalidationhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{61EB0C26-7856-FFE4-D9A9-746B9AE31137}|E-Commerce\\E-Commerce.csproj|c:\\users\\hp\\desktop\\final-project\\e-commerce\\e-commerce\\services\\aiassistantservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -330,11 +294,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "_ViewImports.cshtml",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\_ViewImports.cshtml",
               "RelativeDocumentMoniker": "E-Commerce\\Views\\_ViewImports.cshtml",
@@ -343,109 +307,12 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2026-08-04T21:52:20.408Z",
-              "IsPinned": true
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\appsettings.json",
-              "RelativeDocumentMoniker": "E-Commerce\\appsettings.json",
-              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\appsettings.json",
-              "RelativeToolTip": "E-Commerce\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAB7AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-08-04T23:37:35.677Z",
+              "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Program.cs",
-              "RelativeDocumentMoniker": "E-Commerce\\Program.cs",
-              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Program.cs",
-              "RelativeToolTip": "E-Commerce\\Program.cs",
-              "ViewState": "AgIAAHMAAAAAAAAAAAAAAIcAAAADAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-04T21:52:34.47Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Edit.cshtml",
-              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Product\\Edit.cshtml",
-              "RelativeDocumentMoniker": "E-Commerce\\Views\\Product\\Edit.cshtml",
-              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Views\\Product\\Edit.cshtml",
-              "RelativeToolTip": "E-Commerce\\Views\\Product\\Edit.cshtml",
-              "ViewState": "AgIAAJsAAAAAAAAAAAAAAKIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-08-04T21:49:34.15Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "MockStripePaymentService.cs",
-              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Services\\MockStripePaymentService.cs",
-              "RelativeDocumentMoniker": "E-Commerce\\Services\\MockStripePaymentService.cs",
-              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Services\\MockStripePaymentService.cs",
-              "RelativeToolTip": "E-Commerce\\Services\\MockStripePaymentService.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAAAB0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-04T21:43:24.876Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "MockEmailService.cs",
-              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Services\\MockEmailService.cs",
-              "RelativeDocumentMoniker": "E-Commerce\\Services\\MockEmailService.cs",
-              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Services\\MockEmailService.cs",
-              "RelativeToolTip": "E-Commerce\\Services\\MockEmailService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-04T21:43:12.832Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "IPaymentService.cs",
-              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Services\\IPaymentService.cs",
-              "RelativeDocumentMoniker": "E-Commerce\\Services\\IPaymentService.cs",
-              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Services\\IPaymentService.cs",
-              "RelativeToolTip": "E-Commerce\\Services\\IPaymentService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-04T21:43:05.512Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "IEmailService.cs",
-              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Services\\IEmailService.cs",
-              "RelativeDocumentMoniker": "E-Commerce\\Services\\IEmailService.cs",
-              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Services\\IEmailService.cs",
-              "RelativeToolTip": "E-Commerce\\Services\\IEmailService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-04T21:43:03.293Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "DeliveryPricingService.cs",
-              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Services\\DeliveryPricingService.cs",
-              "RelativeDocumentMoniker": "E-Commerce\\Services\\DeliveryPricingService.cs",
-              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Services\\DeliveryPricingService.cs",
-              "RelativeToolTip": "E-Commerce\\Services\\DeliveryPricingService.cs",
-              "ViewState": "AgIAACMAAAAAAAAAAAAAACgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-04T21:42:28.337Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 2,
               "Title": "DailyBillingService.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Services\\DailyBillingService.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Services\\DailyBillingService.cs",
@@ -457,19 +324,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "CardValidationHelper.cs",
-              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Services\\CardValidationHelper.cs",
-              "RelativeDocumentMoniker": "E-Commerce\\Services\\CardValidationHelper.cs",
-              "ToolTip": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Services\\CardValidationHelper.cs",
-              "RelativeToolTip": "E-Commerce\\Services\\CardValidationHelper.cs",
-              "ViewState": "AgIAACIAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-04T21:41:31.23Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 3,
               "Title": "AiAssistantService.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Services\\AiAssistantService.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Services\\AiAssistantService.cs",
@@ -481,7 +336,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 4,
               "Title": "Wallet.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Models\\Wallet.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Models\\Wallet.cs",
@@ -493,7 +348,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 1,
               "Title": "IAiAssistantService.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Services\\IAiAssistantService.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Services\\IAiAssistantService.cs",
@@ -505,7 +360,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 5,
               "Title": "UserSubscription.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Models\\UserSubscription.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Models\\UserSubscription.cs",
@@ -517,7 +372,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 6,
               "Title": "ProductReview.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Models\\ProductReview.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Models\\ProductReview.cs",
@@ -529,7 +384,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 7,
               "Title": "Product.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Models\\Product.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Models\\Product.cs",
@@ -541,7 +396,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 8,
               "Title": "PaymentMethod.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Models\\PaymentMethod.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Models\\PaymentMethod.cs",
@@ -553,7 +408,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 9,
               "Title": "Order.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Models\\Order.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Models\\Order.cs",
@@ -565,7 +420,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 10,
               "Title": "Notification.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Models\\Notification.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Models\\Notification.cs",
@@ -577,7 +432,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 11,
               "Title": "Listing.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Models\\Listing.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Models\\Listing.cs",
@@ -589,7 +444,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 12,
               "Title": "CourierProfile.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Models\\CourierProfile.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Models\\CourierProfile.cs",
@@ -601,7 +456,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 13,
               "Title": "Coupon.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Models\\Coupon.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Models\\Coupon.cs",
@@ -613,7 +468,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 14,
               "Title": "ChatMessage.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Models\\ChatMessage.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Models\\ChatMessage.cs",
@@ -625,7 +480,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 15,
               "Title": "Category.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Models\\Category.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Models\\Category.cs",
@@ -637,7 +492,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 16,
               "Title": "CartItem.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Models\\CartItem.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Models\\CartItem.cs",
@@ -649,7 +504,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 17,
               "Title": "Cart.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Models\\Cart.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Models\\Cart.cs",
@@ -661,7 +516,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 18,
               "Title": "BookRental.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Models\\BookRental.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Models\\BookRental.cs",
@@ -673,7 +528,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 20,
               "Title": "BaseEntity.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Models\\Base\\BaseEntity.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Models\\Base\\BaseEntity.cs",
@@ -685,7 +540,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 21,
               "Title": "AppDbContextModelSnapshot.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Migrations\\AppDbContextModelSnapshot.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Migrations\\AppDbContextModelSnapshot.cs",
@@ -697,7 +552,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 22,
               "Title": "20260802090000_AddOrderPostDelivery.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Migrations\\20260802090000_AddOrderPostDelivery.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Migrations\\20260802090000_AddOrderPostDelivery.cs",
@@ -709,7 +564,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 23,
               "Title": "20260801090000_AddRentalOrderDelivery.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Migrations\\20260801090000_AddRentalOrderDelivery.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Migrations\\20260801090000_AddRentalOrderDelivery.cs",
@@ -721,7 +576,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 19,
               "Title": "AppUser.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Models\\AppUser.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Models\\AppUser.cs",
@@ -733,7 +588,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 24,
               "Title": "20260730120000_AddListingContactPhone.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Migrations\\20260730120000_AddListingContactPhone.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Migrations\\20260730120000_AddListingContactPhone.cs",
@@ -745,7 +600,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 25,
               "Title": "20260728110000_BackfillPendingCashback.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Migrations\\20260728110000_BackfillPendingCashback.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Migrations\\20260728110000_BackfillPendingCashback.cs",
@@ -757,7 +612,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 26,
               "Title": "20260728100000_AddPhoneNumberFields.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Migrations\\20260728100000_AddPhoneNumberFields.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Migrations\\20260728100000_AddPhoneNumberFields.cs",
@@ -769,7 +624,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 27,
               "Title": "20260727120000_AddPendingCashback.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Migrations\\20260727120000_AddPendingCashback.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Migrations\\20260727120000_AddPendingCashback.cs",
@@ -781,7 +636,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 28,
               "Title": "20260722100000_AddDeliveryFeeAndNotifications.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Migrations\\20260722100000_AddDeliveryFeeAndNotifications.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Migrations\\20260722100000_AddDeliveryFeeAndNotifications.cs",
@@ -793,7 +648,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 29,
               "Title": "20260722090000_AddRentalWarningAndFineFlags.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Migrations\\20260722090000_AddRentalWarningAndFineFlags.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Migrations\\20260722090000_AddRentalWarningAndFineFlags.cs",
@@ -805,7 +660,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 30,
               "Title": "20260721120000_AddProductDetailsAndReviews.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Migrations\\20260721120000_AddProductDetailsAndReviews.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Migrations\\20260721120000_AddProductDetailsAndReviews.cs",
@@ -817,7 +672,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 34,
               "Title": "20260717114048_AddCommerceFeatures.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Migrations\\20260717114048_AddCommerceFeatures.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Migrations\\20260717114048_AddCommerceFeatures.cs",
@@ -829,7 +684,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 33,
               "Title": "20260716190000_AddIdentityTables.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Migrations\\20260716190000_AddIdentityTables.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Migrations\\20260716190000_AddIdentityTables.cs",
@@ -841,7 +696,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 32,
               "Title": "20260625232231_createtable.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Migrations\\20260625232231_createtable.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Migrations\\20260625232231_createtable.cs",
@@ -853,7 +708,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 31,
               "Title": "20260719120000_AddHardcoverAndProductOwner.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Migrations\\20260719120000_AddHardcoverAndProductOwner.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Migrations\\20260719120000_AddHardcoverAndProductOwner.cs",
@@ -865,7 +720,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 35,
               "Title": "20260718090000_AddCourierFullNameAndDeliveryLocation.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Migrations\\20260718090000_AddCourierFullNameAndDeliveryLocation.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Migrations\\20260718090000_AddCourierFullNameAndDeliveryLocation.cs",
@@ -877,7 +732,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 45,
+              "DocumentIndex": 36,
               "Title": "CourierTrackingHub.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Hubs\\CourierTrackingHub.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Hubs\\CourierTrackingHub.cs",
@@ -889,7 +744,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 46,
+              "DocumentIndex": 37,
               "Title": "ChatHub.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Hubs\\ChatHub.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Hubs\\ChatHub.cs",
@@ -901,7 +756,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 47,
+              "DocumentIndex": 38,
               "Title": "SeedData.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Data\\SeedData.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Data\\SeedData.cs",
@@ -913,7 +768,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 48,
+              "DocumentIndex": 39,
               "Title": "IdentitySeeder.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Data\\IdentitySeeder.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Data\\IdentitySeeder.cs",
@@ -925,7 +780,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 49,
+              "DocumentIndex": 40,
               "Title": "AppDbContext.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Data\\AppDbContext.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Data\\AppDbContext.cs",
@@ -937,7 +792,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 50,
+              "DocumentIndex": 41,
               "Title": "WalletController.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Controllers\\WalletController.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Controllers\\WalletController.cs",
@@ -949,7 +804,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 51,
+              "DocumentIndex": 42,
               "Title": "SubscriptionController.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Controllers\\SubscriptionController.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Controllers\\SubscriptionController.cs",
@@ -961,7 +816,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 52,
+              "DocumentIndex": 43,
               "Title": "RentalController.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Controllers\\RentalController.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Controllers\\RentalController.cs",
@@ -973,7 +828,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 53,
+              "DocumentIndex": 44,
               "Title": "ProductController.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Controllers\\ProductController.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Controllers\\ProductController.cs",
@@ -985,7 +840,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 54,
+              "DocumentIndex": 45,
               "Title": "OrderController.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Controllers\\OrderController.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Controllers\\OrderController.cs",
@@ -997,7 +852,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 55,
+              "DocumentIndex": 46,
               "Title": "NotificationController.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Controllers\\NotificationController.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Controllers\\NotificationController.cs",
@@ -1009,7 +864,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 56,
+              "DocumentIndex": 47,
               "Title": "ListingController.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Controllers\\ListingController.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Controllers\\ListingController.cs",
@@ -1021,7 +876,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 57,
+              "DocumentIndex": 48,
               "Title": "HomeController.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Controllers\\HomeController.cs",
@@ -1033,7 +888,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 58,
+              "DocumentIndex": 49,
               "Title": "CourierController.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Controllers\\CourierController.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Controllers\\CourierController.cs",
@@ -1045,7 +900,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 59,
+              "DocumentIndex": 50,
               "Title": "CouponController.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Controllers\\CouponController.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Controllers\\CouponController.cs",
@@ -1057,7 +912,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 60,
+              "DocumentIndex": 51,
               "Title": "CategoryController.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Controllers\\CategoryController.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Controllers\\CategoryController.cs",
@@ -1069,7 +924,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 61,
+              "DocumentIndex": 52,
               "Title": "CartController.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Controllers\\CartController.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Controllers\\CartController.cs",
@@ -1081,7 +936,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 62,
+              "DocumentIndex": 53,
               "Title": "AiAssistantController.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Controllers\\AiAssistantController.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Controllers\\AiAssistantController.cs",
@@ -1093,7 +948,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 63,
+              "DocumentIndex": 54,
               "Title": "AccountController.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Controllers\\AccountController.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Controllers\\AccountController.cs",
@@ -1105,7 +960,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 64,
+              "DocumentIndex": 55,
               "Title": "_ViewStart.cshtml",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Areas\\AdminPanel\\Views\\_ViewStart.cshtml",
               "RelativeDocumentMoniker": "E-Commerce\\Areas\\AdminPanel\\Views\\_ViewStart.cshtml",
@@ -1117,7 +972,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 65,
+              "DocumentIndex": 56,
               "Title": "_ViewImports.cshtml",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Areas\\AdminPanel\\Views\\_ViewImports.cshtml",
               "RelativeDocumentMoniker": "E-Commerce\\Areas\\AdminPanel\\Views\\_ViewImports.cshtml",
@@ -1129,7 +984,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 66,
+              "DocumentIndex": 57,
               "Title": "Subscriptions.cshtml",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Areas\\AdminPanel\\Views\\Admin\\Subscriptions.cshtml",
               "RelativeDocumentMoniker": "E-Commerce\\Areas\\AdminPanel\\Views\\Admin\\Subscriptions.cshtml",
@@ -1141,7 +996,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 67,
+              "DocumentIndex": 58,
               "Title": "Rentals.cshtml",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Areas\\AdminPanel\\Views\\Admin\\Rentals.cshtml",
               "RelativeDocumentMoniker": "E-Commerce\\Areas\\AdminPanel\\Views\\Admin\\Rentals.cshtml",
@@ -1153,7 +1008,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 68,
+              "DocumentIndex": 59,
               "Title": "Orders.cshtml",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Areas\\AdminPanel\\Views\\Admin\\Orders.cshtml",
               "RelativeDocumentMoniker": "E-Commerce\\Areas\\AdminPanel\\Views\\Admin\\Orders.cshtml",
@@ -1165,7 +1020,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 69,
+              "DocumentIndex": 60,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Areas\\AdminPanel\\Views\\Admin\\Index.cshtml",
               "RelativeDocumentMoniker": "E-Commerce\\Areas\\AdminPanel\\Views\\Admin\\Index.cshtml",
@@ -1177,7 +1032,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 70,
+              "DocumentIndex": 61,
               "Title": "Couriers.cshtml",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Areas\\AdminPanel\\Views\\Admin\\Couriers.cshtml",
               "RelativeDocumentMoniker": "E-Commerce\\Areas\\AdminPanel\\Views\\Admin\\Couriers.cshtml",
@@ -1189,7 +1044,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 71,
+              "DocumentIndex": 62,
               "Title": "Categories.cshtml",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Areas\\AdminPanel\\Views\\Admin\\Categories.cshtml",
               "RelativeDocumentMoniker": "E-Commerce\\Areas\\AdminPanel\\Views\\Admin\\Categories.cshtml",
@@ -1201,7 +1056,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 72,
+              "DocumentIndex": 63,
               "Title": "AdminController.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\Areas\\AdminPanel\\Controllers\\AdminController.cs",
               "RelativeDocumentMoniker": "E-Commerce\\Areas\\AdminPanel\\Controllers\\AdminController.cs",
@@ -1213,7 +1068,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 73,
+              "DocumentIndex": 64,
               "Title": "style.css",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\wwwroot\\style.css",
               "RelativeDocumentMoniker": "E-Commerce\\wwwroot\\style.css",
@@ -1225,7 +1080,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 74,
+              "DocumentIndex": 65,
               "Title": "jsscript.js",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\wwwroot\\jsscript.js",
               "RelativeDocumentMoniker": "E-Commerce\\wwwroot\\jsscript.js",
@@ -1237,7 +1092,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 75,
+              "DocumentIndex": 66,
               "Title": "product-filter.js",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\wwwroot\\js\\product-filter.js",
               "RelativeDocumentMoniker": "E-Commerce\\wwwroot\\js\\product-filter.js",
@@ -1249,7 +1104,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 76,
+              "DocumentIndex": 67,
               "Title": "order-track.js",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\wwwroot\\js\\order-track.js",
               "RelativeDocumentMoniker": "E-Commerce\\wwwroot\\js\\order-track.js",
@@ -1261,7 +1116,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 77,
+              "DocumentIndex": 68,
               "Title": "courier-dashboard.js",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\wwwroot\\js\\courier-dashboard.js",
               "RelativeDocumentMoniker": "E-Commerce\\wwwroot\\js\\courier-dashboard.js",
@@ -1273,7 +1128,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 78,
+              "DocumentIndex": 69,
               "Title": "ai-assistant.js",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\wwwroot\\js\\ai-assistant.js",
               "RelativeDocumentMoniker": "E-Commerce\\wwwroot\\js\\ai-assistant.js",
@@ -1285,7 +1140,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 79,
+              "DocumentIndex": 70,
               "Title": "admin-horizon.css",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Final-Project\\E-Commerce\\E-Commerce\\wwwroot\\adminpanel\\css\\admin-horizon.css",
               "RelativeDocumentMoniker": "E-Commerce\\wwwroot\\adminpanel\\css\\admin-horizon.css",

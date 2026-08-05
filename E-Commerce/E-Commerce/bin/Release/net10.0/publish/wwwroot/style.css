@@ -1,6 +1,8 @@
-body {
+html, body {
     background-color: #f7f9fb;
     font-family: "Segoe UI", sans-serif;
+    overflow-x: hidden;
+    max-width: 100%;
 }
 
 .top-bar {
@@ -648,6 +650,10 @@ body {
         .promo-slide .e2 {
             font-size: 34px;
         }
+
+    .product-card img {
+        height: 180px;
+    }
 }
 
 .feature-box {
@@ -1428,5 +1434,175 @@ body {
         left: 12px;
         width: auto;
         bottom: 82px;
+    }
+}
+
+/* --- Sifarişlərim / İcarələrim cədvəlləri: kəsilmə problemi düzəlişi --- */
+.simple-table {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    max-width: 100%;
+}
+
+    .simple-table table {
+        margin-bottom: 0;
+        min-width: 760px;
+    }
+
+    .simple-table th,
+    .simple-table td {
+        white-space: nowrap;
+    }
+
+    .simple-table td:last-child,
+    .simple-table th:last-child {
+        white-space: normal;
+    }
+
+/* --- Ana səhifə: kateqoriya sətirləri (alinino.az tərzi) --- */
+.category-row-link {
+    font-size: 14px;
+    text-decoration: none;
+    color: #0b2f6b;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.category-scroller-wrap {
+    position: relative;
+}
+
+.category-scroller {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding: 4px 2px 10px;
+    scrollbar-width: none;
+}
+
+    .category-scroller::-webkit-scrollbar {
+        display: none;
+    }
+
+.category-scroller-item {
+    flex: 0 0 46%;
+    scroll-snap-align: start;
+}
+
+.category-arrow {
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid #eaeaea;
+    background: #fff;
+    color: #0b2f6b;
+    font-size: 20px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    z-index: 2;
+}
+
+    .category-arrow.prev {
+        left: -6px;
+    }
+
+    .category-arrow.next {
+        right: -6px;
+    }
+
+    .category-arrow:hover {
+        background: #0b2f6b;
+        color: #fff;
+    }
+
+@media (min-width: 768px) {
+    .category-scroller-item {
+        flex-basis: 22%;
+    }
+}
+
+@media (min-width: 992px) {
+    .category-scroller-item {
+        flex-basis: 15.5%;
+    }
+
+    .category-arrow.prev {
+        left: -18px;
+    }
+
+    .category-arrow.next {
+        right: -18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .product-card img {
+        height: 150px;
+    }
+
+    .product-card h6 {
+        font-size: 13px;
+    }
+
+    .product-card .price {
+        font-size: 13px;
+    }
+
+    .add-cart-btn {
+        font-size: 12px;
+        padding: 6px 4px;
+    }
+}
+
+/* --- Header: mobil ekranda sıxılma (elementlər ekranı aşıb sürüşməsin) --- */
+@media (max-width: 576px) {
+    .top-bar .container {
+        padding-left: 10px;
+        padding-right: 10px;
+        gap: 6px;
+    }
+
+    .logo-text {
+        font-size: 13px;
+    }
+
+    .logo-mark {
+        width: 24px;
+        height: 24px;
+    }
+
+    .auth-actions {
+        gap: 2px !important;
+    }
+
+    .icon-link {
+        width: 30px;
+        height: 30px;
+        font-size: 15px;
+    }
+
+    .wallet-balance-badge {
+        padding: 4px 6px;
+        font-size: 11px;
+    }
+
+    .btn-nav {
+        padding: 6px 8px;
+        font-size: 12px;
+        white-space: nowrap;
+    }
+
+    .notif-unread-badge {
+        min-width: 14px;
+        font-size: 9px;
     }
 }

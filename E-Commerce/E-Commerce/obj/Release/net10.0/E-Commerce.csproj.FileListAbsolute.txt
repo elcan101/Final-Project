@@ -135,7 +135,7 @@ C:\Users\HP\Desktop\Final-Project\E-Commerce\E-Commerce\obj\Release\net10.0\comp
 C:\Users\HP\Desktop\Final-Project\E-Commerce\E-Commerce\obj\Release\net10.0\compressed\1erlzrzq8j-{0}-1cgjpeim5j-1cgjpeim5j.gz
 C:\Users\HP\Desktop\Final-Project\E-Commerce\E-Commerce\obj\Release\net10.0\compressed\ay9p430x2x-{0}-lkws842eaj-lkws842eaj.gz
 C:\Users\HP\Desktop\Final-Project\E-Commerce\E-Commerce\obj\Release\net10.0\compressed\01iufuj2ku-{0}-espsfzjz1x-espsfzjz1x.gz
-C:\Users\HP\Desktop\Final-Project\E-Commerce\E-Commerce\obj\Release\net10.0\compressed\dan3d1rml1-{0}-y1gqaamjfd-y1gqaamjfd.gz
+C:\Users\HP\Desktop\Final-Project\E-Commerce\E-Commerce\obj\Release\net10.0\compressed\dan3d1rml1-{0}-881sat9tmp-881sat9tmp.gz
 C:\Users\HP\Desktop\Final-Project\E-Commerce\E-Commerce\obj\Release\net10.0\compressed\k5zw8qdytf-{0}-togcwe19fw-togcwe19fw.gz
 C:\Users\HP\Desktop\Final-Project\E-Commerce\E-Commerce\obj\Release\net10.0\compressed\hsbmi7kzqn-{0}-togcwe19fw-togcwe19fw.gz
 C:\Users\HP\Desktop\Final-Project\E-Commerce\E-Commerce\obj\Release\net10.0\staticwebassets.build.json

@@ -33,7 +33,7 @@
     {
         @foreach (var l in Model)
         {
-            <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="col-6 col-lg-3 col-md-4 col-sm-6">
                 <div class="product-card">
                     <a asp-action="Details" asp-route-id="@l.Id" class="text-decoration-none" style="color:inherit;">
                         @if (!string.IsNullOrEmpty(l.ImageUrl) && l.ImageUrl.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase))

@@ -1,7 +1,9 @@
 ﻿@model IEnumerable<E_Commerce.Models.Product>
+@using E_Commerce.ViewModels
 
 @{
     ViewData["Title"] = "Ana Səhifə";
+    var categoryGroups = ViewBag.CategoryGroups as List<CategoryShowcase>;
 }
 
 <div class="hero mb-5">
@@ -156,34 +158,29 @@
 </div>
 
 
-<div class="d-flex justify-content-between align-items-center mb-3">
-    <h4 class="mb-0">Ən Çox Satılanlar</h4>
-    <a href="/Product">Hamısına bax</a>
-</div>
+@{ var bestSellers = Model != null ? Model.Take(10).ToList() : new List<E_Commerce.Models.Product>(); }
 
-<div class="row g-4">
-    @if (Model != null && Model.Any())
+@await Html.PartialAsync("_CategoryRow", new CategoryShowcase { Category = new E_Commerce.Models.Category { Name = "Ən Çox Satılanlar" }, Products = bestSellers },
+    new ViewDataDictionary(ViewData) { { "RowId", "row-best" }, { "SeeAllUrl", "/Product" } })
+
+@if (categoryGroups != null)
+{
+    @foreach (var group in categoryGroups)
     {
-        @foreach (var item in Model.Take(6))
-        {
-            <div class="col-lg-2 col-md-4 col-sm-6">
-                <div class="product-card">
-                    <a asp-controller="Product" asp-action="Details" asp-route-id="@item.Id" class="text-decoration-none text-dark">
-                        <img src="@item.ImageUrl" alt="@item.Title" />
-                        <h6>@item.Title</h6>
-                        <div class="author">@item.Category?.Name</div>
-                        <div class="price">@item.Price AZN</div>
-                    </a>
-                    <form asp-controller="Cart" asp-action="AddToCart" method="post">
-                        <input type="hidden" name="productId" value="@item.Id" />
-                        <button type="submit" class="add-cart-btn">🛒 Səbətə əlavə et</button>
-                    </form>
-                </div>
-            </div>
-        }
+        @await Html.PartialAsync("_CategoryRow", group,
+            new ViewDataDictionary(ViewData) { { "RowId", "row-cat-" + group.Category.Id }, { "SeeAllUrl", Url.Action("Index", "Product", new { categoryId = group.Category.Id }) } })
     }
-    else
-    {
-        <p class="text-muted text-center">Hazırda məhsul yoxdur.</p>
-    }
-</div>
+}
+
+<script>
+    (function () {
+        document.querySelectorAll('.category-arrow').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var scroller = document.getElementById(btn.getAttribute('data-target'));
+                if (!scroller) return;
+                var step = scroller.clientWidth * 0.9;
+                scroller.scrollBy({ left: btn.classList.contains('next') ? step : -step, behavior: 'smooth' });
+            });
+        });
+    })();
+</script>
