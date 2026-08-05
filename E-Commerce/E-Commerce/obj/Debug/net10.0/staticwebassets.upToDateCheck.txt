@@ -1,7 +1,3 @@
-wwwroot\uploads\audio\b9eca6c8-3923-4e4c-ab6b-983f2b50a3d3.mp3
-wwwroot\uploads\listings\16f57c7c-5c74-48f2-9ce7-3d78c833048c.jpg
-wwwroot\uploads\listings\7793fb0d-b3da-4656-81fd-f2785910cb73.jpg
-wwwroot\uploads\pdf\15da4f04-e0dc-4aa8-9595-e63b752fc953.pdf
 wwwroot\adminpanel\css\admin-horizon.css
 wwwroot\jsscript.js
 wwwroot\js\ai-assistant.js
@@ -9,6 +5,10 @@ wwwroot\js\courier-dashboard.js
 wwwroot\js\order-track.js
 wwwroot\js\product-filter.js
 wwwroot\style.css
+wwwroot\uploads\audio\b9eca6c8-3923-4e4c-ab6b-983f2b50a3d3.mp3
+wwwroot\uploads\listings\16f57c7c-5c74-48f2-9ce7-3d78c833048c.jpg
+wwwroot\uploads\listings\7793fb0d-b3da-4656-81fd-f2785910cb73.jpg
+wwwroot\uploads\pdf\15da4f04-e0dc-4aa8-9595-e63b752fc953.pdf
 C:\Users\HP\Desktop\Final-Project\E-Commerce\E-Commerce\wwwroot\adminpanel\css\admin-horizon.css
 C:\Users\HP\Desktop\Final-Project\E-Commerce\E-Commerce\wwwroot\jsscript.js
 C:\Users\HP\Desktop\Final-Project\E-Commerce\E-Commerce\wwwroot\js\ai-assistant.js

@@ -1,0 +1,112 @@
+
+(function () {
+    const cfg = window.__courierDashboard;
+    if (!cfg) return;
+
+    const toggleBtn = document.getElementById("toggleAvailability");
+    const toggleLabel = document.getElementById("toggleLabel");
+    const ordersList = document.getElementById("incomingOrders");
+    const noOrdersMsg = document.getElementById("noOrdersMsg");
+
+    let isAvailable = cfg.initiallyAvailable;
+
+    const conn = new signalR.HubConnectionBuilder()
+        .withUrl("/hubs/courier-tracking")
+        .withAutomaticReconnect()
+        .build();
+
+    conn.on("NewOrderAvailable", (data) => {
+        if (!isAvailable) return;
+        addOrderCard(data.orderId, data.total, data.deliveryLat, data.deliveryLng, data.deliveryAddressText, data.distanceKm, data.courierEarning);
+    });
+
+    conn.on("OrderTaken", (orderId) => {
+        removeOrderCard(orderId);
+    });
+
+    conn.on("OrderAlreadyTaken", (orderId) => {
+        removeOrderCard(orderId);
+        alert("Bu sifariş artıq başqa kuryer tərəfindən götürülüb.");
+    });
+
+    conn.on("OrderAccepted", (data) => {
+        window.location.href = `/Order/Track/${data.orderId}`;
+    });
+
+    conn.start().then(() => {
+        if (isAvailable) conn.invoke("JoinIdlePool", cfg.courierProfileId);
+    }).catch((err) => console.error("Kuryer bağlantı xətası:", err));
+
+    function addOrderCard(orderId, total, deliveryLat, deliveryLng, deliveryAddressText, distanceKm, courierEarning) {
+        if (document.getElementById("order-card-" + orderId)) return;
+        noOrdersMsg.style.display = "none";
+
+        const locationHtml = (deliveryLat != null && deliveryLng != null)
+            ? `<a href="https://www.openstreetmap.org/?mlat=${deliveryLat}&mlon=${deliveryLng}#map=16/${deliveryLat}/${deliveryLng}" target="_blank" rel="noopener" class="small">📍 Çatdırılma yerinə bax${deliveryAddressText ? ` (${deliveryAddressText})` : ""}</a>`
+            : `<span class="small text-muted">📍 Çatdırılma yeri qeyd olunmayıb</span>`;
+
+        const distanceHtml = (distanceKm != null) ? `<span class="text-muted">📏 ${Number(distanceKm).toFixed(1)} km &nbsp;•&nbsp;</span>` : "";
+        const earningHtml = (courierEarning != null) ? `<span class="fw-bold" style="color:#0b2f6b;">💰 Çatdırılma haqqınız (70%): ${Number(courierEarning).toFixed(2)} AZN</span>` : "";
+
+        const card = document.createElement("div");
+        card.id = "order-card-" + orderId;
+        card.className = "d-flex justify-content-between align-items-center border rounded p-3 flex-wrap gap-2";
+        card.innerHTML = `
+            <div>
+                <div><b>Sifariş #${orderId}</b> — ${total} AZN</div>
+                ${locationHtml}
+                <div class="small mt-1">${distanceHtml}${earningHtml}</div>
+            </div>
+            <div class="d-flex gap-2">
+                <button class="btn btn-sm btn-outline-secondary reject-btn" data-order-id="${orderId}">❌ Rədd et</button>
+                <button class="btn btn-sm btn-deal accept-btn" data-order-id="${orderId}">✅ Götür</button>
+            </div>`;
+        ordersList.appendChild(card);
+    }
+
+    function removeOrderCard(orderId) {
+        const el = document.getElementById("order-card-" + orderId);
+        if (el) el.remove();
+        if (!ordersList.querySelector("[id^=order-card-]")) {
+            noOrdersMsg.style.display = "block";
+        }
+    }
+
+    ordersList.addEventListener("click", (e) => {
+        const acceptBtn = e.target.closest(".accept-btn");
+        const rejectBtn = e.target.closest(".reject-btn");
+
+        if (acceptBtn) {
+            const orderId = parseInt(acceptBtn.dataset.orderId, 10);
+            acceptBtn.disabled = true;
+            acceptBtn.textContent = "Göndərilir...";
+            conn.invoke("AcceptOrder", orderId, cfg.courierProfileId).catch((err) => {
+                console.error(err);
+                acceptBtn.disabled = false;
+                acceptBtn.textContent = "✅ Götür";
+            });
+        }
+
+        if (rejectBtn) {
+            const orderId = parseInt(rejectBtn.dataset.orderId, 10);
+            removeOrderCard(orderId);
+        }
+    });
+
+    toggleBtn?.addEventListener("click", async () => {
+        isAvailable = !isAvailable;
+        try {
+            if (isAvailable) {
+                await conn.invoke("JoinIdlePool", cfg.courierProfileId);
+                toggleLabel.textContent = "🟢 Boşam (Offline et)";
+            } else {
+                await conn.invoke("LeaveIdlePool", cfg.courierProfileId);
+                toggleLabel.textContent = "⚪ Offline (Online ol)";
+                ordersList.querySelectorAll("[id^=order-card-]").forEach((el) => el.remove());
+                noOrdersMsg.style.display = "block";
+            }
+        } catch (err) {
+            console.error("Status dəyişdirilmədi:", err);
+        }
+    });
+})();
